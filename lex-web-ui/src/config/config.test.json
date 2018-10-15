@@ -4,6 +4,7 @@
   },
   "lex": {
     "botName": "AmplelabsBot",
+    "botAlias": "$LATEST",
     "initialText": "Hi there, my name is Chalmers. How can I help you today? You can ask me questions like  \"I’m looking for a free meal\", or  \"where is the closest drop-in from here?\"",
     "initialSpeechInstruction": "Say 'I’m looking for a free meal' to get started."
   },

@@ -150,7 +150,7 @@ const configDefault = {
     // controls if the Lex sessionAttributes should be re-initialized
     // to the config value (i.e. lex.sessionAttributes)
     // after the bot dialog is done (i.e. fail or fulfilled)
-    reInitSessionAttributesOnRestart: false,
+    reInitSessionAttributesOnRestart: true,
 
     // controls whether URLs in bot responses will be converted to links
     convertUrlToLinksInBotMessages: true,
@@ -323,7 +323,7 @@ export function mergeConfig(baseConfig, srcConfig, deep = false) {
     // merge key values back into a single object
     .reduce((merged, configItem) => ({ ...merged, ...configItem }), {});
 }
-/*
+
 // GPS related
 function updateLexPosition(position) {
   // eslint-disable-next-line
@@ -352,7 +352,7 @@ if (navigator.geolocation) {
   };
   navigator.geolocation.getCurrentPosition(updateLexPosition, errorHandler, geolocationOptions);
 }
-*/
+
 // merge build time parameters
 const configFromFiles = mergeConfig(configDefault, configEnvFile);
 

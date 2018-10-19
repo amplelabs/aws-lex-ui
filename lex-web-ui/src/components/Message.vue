@@ -140,6 +140,7 @@ export default {
       );
     },
     shouldShowAvatarImage() {
+      // console.log(this.message.text);
       return (
         this.message.type === 'bot' &&
         this.botAvatarUrl
@@ -239,14 +240,15 @@ export default {
 
 .message-bot .message-bubble {
   /* background-color: #FFEBEE; */ /* red-50 from material palette */
-  outline-color:red;
-  border:1px solid red
+  outline-color: #ffffff; 
+  border:1px solid #ffffff; /* red; */
+  background-color: #ffffff;
 }
 
 .message-human .message-bubble {
-  /* background-color: #E8EAF6; */ /* indigo-50 from material palette */
-  outline-color:#37474F;
-  border:1px solid #37474F
+  background-color: #f0a335; /* #E8EAF6; */ /* indigo-50 from material palette */
+  outline-color:#f0a335;
+  border:1px solid #f0a335
 }
 
 .dialog-state {

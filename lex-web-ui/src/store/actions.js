@@ -436,20 +436,62 @@ export default {
         });
     });
   },
+  moo(context) {
+    return context.dispatch(
+      'pushMessage',
+      {
+        // TODO: Break down the message into multiple bubbles!
+        text: 'moo',
+        type: 'bot',
+        dialogState: null,
+        responseCard: null,
+        alts: JSON.parse('{}').altMessages,
+      },
+    );
+  },
   postTextMessage(context, message) {
     return context.dispatch('interruptSpeechConversation')
       .then(() => context.dispatch('pushMessage', message))
       .then(() => context.dispatch('lexPostText', message.text))
-      .then(response => context.dispatch(
-        'pushMessage',
-        {
-          text: response.message,
-          type: 'bot',
-          dialogState: context.state.lex.dialogState,
-          responseCard: context.state.lex.responseCard,
-          alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
-        },
-      ))
+      .then((response) => {
+        // eslint-disable-next-line
+        const dummyChat = (txt) => {
+          context.dispatch('pushMessage', {
+            text: txt,
+            type: 'bot',
+          });
+          // a dummy one - you suck
+          context.dispatch('pushMessage', {
+            text: '',
+            type: '',
+          });
+        };
+        const realChat = (txt) => {
+          context.dispatch(
+            'pushMessage',
+            {
+              // TODO: Break down the message into multiple bubbles!
+              text: txt, // response.message,
+              type: 'bot',
+              dialogState: context.state.lex.dialogState,
+              responseCard: context.state.lex.responseCard,
+              alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
+            },
+          );
+        };
+        // const arr = ['apple', 'orange', 'peer', 'banana'];
+        // arr.map(x => dummyChat(x));
+        // dummyChat('1');
+        // dummyChat('2');
+        const arr = response.message.split('.');
+        if (arr.length === 1) {
+          realChat(response.message);
+        } else {
+          const last = arr.splice(-1)[0];
+          arr.map(x => dummyChat(x));
+          realChat(last);
+        }
+      })
       .then(() => {
         if (context.state.lex.dialogState === 'Fulfilled') {
           context.dispatch('reInitBot');
@@ -575,7 +617,9 @@ export default {
    * Message List Actions
    *
    **********************************************************************/
-
+  pushMessageOrig(context, message) {
+    context.commit('pushMessageOrig', message);
+  },
   pushMessage(context, message) {
     context.commit('pushMessage', message);
   },

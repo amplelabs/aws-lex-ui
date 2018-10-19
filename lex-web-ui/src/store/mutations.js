@@ -302,6 +302,13 @@ export default {
   toggleIsUiMinimized(state) {
     state.isUiMinimized = !state.isUiMinimized;
   },
+  pushMessageOrig(state, message) {
+    state.messages.push({
+      id: state.messages.length,
+      date: new Date(),
+      ...message,
+    });
+  },
   /**
    * Push new message into messages array
    */

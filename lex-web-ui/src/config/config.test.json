@@ -5,8 +5,8 @@
   "lex": {
     "botName": "AmplelabsBot",
     "botAlias": "$LATEST",
-    "initialText": "Hi there, my name is Chalmers. How can I help you today? You can ask me questions like  \"I’m looking for a free meal\", or  \"where is the closest drop-in from here?\"",
-    "initialSpeechInstruction": "Say 'I’m looking for a free meal' to get started."
+    "initialText": "Hi my name is Chalmers and I am a Chat Bot. I can help you look for things like free meals, overnight shelter, drop-ins, clothing banks here in the city. Say something to get me started!",
+    "initialSpeechInstruction": "Say something to get me started!."
   },
   "polly": {
     "voiceId": "Matthew"

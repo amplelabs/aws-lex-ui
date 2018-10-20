@@ -1,47 +1,53 @@
 <template>
-  <v-card flat class="grey lighten-5">
-    <!-- v-card-title v-if="responseCard.title.trim()" primary-title class="red lighten-5">
-      <span class="headline">{{responseCard.title}}</span>
-    </v-card-title>
-    <v-card-text v-if="responseCard.subTitle">
-      <span>{{responseCard.subTitle}}</span>
-    </v-card-text -->
-    <v-card-media
-      v-if="responseCard.imageUrl !== null"
-      :src="imageUrl"
-      contain
-      height="33vh"
-    ></v-card-media>
-    <!-- v-card-actions
-      v-for="(button, index) in responseCard.buttons"
-      v-bind:key="index"
-      actions
-      class="button-row"
-    >
-      <v-btn
-        v-if="button.text && button.value"
-        v-on:click.once.native="onButtonClick(button.value)"
-        v-bind:disabled="hasButtonBeenClicked"
-        default
-      >
-        {{button.text}}
-      </v-btn>
-    </v-card-actions -->
-    <br/>
-    <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-      <div style="align-items: center">
-      <v-btn
-        outline
-        round color="primary" dark
-        flat
-        tag="a"
-        v-bind:href="responseCard.attachmentLinkUrl"
-        target="_blank"
-      >
-        {{responseCard.subTitle}}
-      </v-btn>
-      </div>
-    </v-card-actions>
+  <v-card flat class="grey lighten-4">
+    <v-container ma-0 pa-0 grid-list-md text-xs-center>
+      <v-layout justify-start row fill-height wrap>
+        <v-flex xs12>
+          <!--v-card-title v-if="responseCard.title.trim()" class="grey lighten-4">
+            <span class="caption">{{responseCard.title}}</span>
+          </v-card-title>
+          <v-card-text v-if="responseCard.subTitle">
+            <span>{{responseCard.subTitle}}</span>
+          </v-card-text -->
+          <v-card-media
+            v-if="responseCard.imageUrl !== null"
+            :src="imageUrl"
+            contain
+            height="33vh"
+          ></v-card-media>
+        </v-flex>
+            <v-card-actions
+              ml-2 
+              v-for="(button, index) in responseCard.buttons"
+              v-bind:key="index"
+              actions
+              class="button-row"
+            >
+              <v-btn
+                v-if="button.text && button.value"
+                v-on:click.once.native="onButtonClick(button.value)"
+                v-bind:disabled="hasButtonBeenClicked"
+                round outline color="red"
+              >
+                {{button.text}}
+              </v-btn> 
+            </v-card-actions>
+        <v-flex xs12>
+          <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+            <div style="align-items: center">
+            <v-btn
+              round outline color="red"
+              tag="a"
+              v-bind:href="responseCard.attachmentLinkUrl"
+              target="_blank"
+            >
+              {{responseCard.subTitle}}
+            </v-btn>
+            </div>
+          </v-card-actions>
+        </v-flex>
+     </v-layout>
+    </v-container>
   </v-card>
 </template>
 

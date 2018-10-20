@@ -238,6 +238,6 @@ export default {
   height: calc(100% - 96px);
   position: fixed;
   top: 48px;
-  background-color: #f3f3f3;
+  background-color: #f5f5f5;
 }
 </style>

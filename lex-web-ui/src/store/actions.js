@@ -479,11 +479,7 @@ export default {
             },
           );
         };
-        // const arr = ['apple', 'orange', 'peer', 'banana'];
-        // arr.map(x => dummyChat(x));
-        // dummyChat('1');
-        // dummyChat('2');
-        const arr = response.message.split('.');
+        const arr = response.message.split(' ## ');
         if (arr.length === 1) {
           realChat(response.message);
         } else {
@@ -617,9 +613,9 @@ export default {
    * Message List Actions
    *
    **********************************************************************/
-  pushMessageOrig(context, message) {
-    context.commit('pushMessageOrig', message);
-  },
+  // pushMessageOrig(context, message) {
+  //   context.commit('pushMessageOrig', message);
+  // },
   pushMessage(context, message) {
     context.commit('pushMessage', message);
   },

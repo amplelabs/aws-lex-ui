@@ -126,11 +126,10 @@ export default {
       ))
       .then(() => Promise.all([
         // added to send an initial text
-        this.$store.dispatch('TEST_postTextMessage', {
+        this.$store.dispatch('directMessage', {
           type: 'human',
-          text: 'help',
+          text: 'hi',
         }),
-        // this.$store.dispatch('TEST_postTextMessage', 'help'),
       ]))
       .catch((error) => {
         console.error('could not initialize application while mounting:', error);

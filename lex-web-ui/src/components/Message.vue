@@ -133,6 +133,8 @@ export default {
       return (
         this.message.responseCard &&
         (this.message.responseCard.version === '0' || // example code use version 1
+         this.message.responseCard.version === '1' ||
+         this.message.responseCard.version === 1 ||
          this.message.responseCard.version === 0) &&
         this.message.responseCard.contentType === 'application/vnd.amazonaws.card.generic' &&
         'genericAttachments' in this.message.responseCard &&

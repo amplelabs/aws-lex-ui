@@ -73,9 +73,15 @@ export default {
     context.commit('mergeConfig', configObj);
   },
   initMessageList(context) {
+    /*
     context.commit('pushMessage', {
       type: 'bot',
       text: context.state.config.lex.initialText,
+    });
+    */
+    context.dispatch('directMessage', {
+      type: 'human',
+      text: 'help',
     });
   },
   initLexClient(context, lexRuntimeClient) {
@@ -181,10 +187,14 @@ export default {
     return Promise.resolve()
       .then(() => (
         (context.state.config.ui.pushInitialTextOnRestart) ?
-          context.dispatch('pushMessage', {
+          /* context.dispatch('pushMessage', {
             text: context.state.config.lex.initialText,
             type: 'bot',
-          }) :
+          }) */
+        context.dispatch('directMessage', {
+          type: 'human',
+          text: 'hi',
+        }) :
           Promise.resolve()
       ))
       .then(() => (
@@ -436,7 +446,7 @@ export default {
         });
     });
   },
-  TEST_postTextMessage(context, message) {
+  directMessage(context, message) {
     return context.dispatch('lexPostText', message.text)
       .then((response) => {
         context.dispatch(

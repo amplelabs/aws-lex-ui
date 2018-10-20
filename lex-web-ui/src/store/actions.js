@@ -436,18 +436,36 @@ export default {
         });
     });
   },
-  moo(context) {
-    return context.dispatch(
-      'pushMessage',
-      {
-        // TODO: Break down the message into multiple bubbles!
-        text: 'moo',
-        type: 'bot',
-        dialogState: null,
-        responseCard: null,
-        alts: JSON.parse('{}').altMessages,
-      },
-    );
+  TEST_postTextMessage(context, message) {
+    return context.dispatch('lexPostText', message.text)
+      .then((response) => {
+        context.dispatch(
+          'pushMessage',
+          {
+            // TODO: Break down the message into multiple bubbles!
+            text: response.message,
+            type: 'bot',
+            dialogState: '',
+            responseCard: context.state.lex.responseCard,
+            alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
+          },
+        );
+      })
+      .then(() => {
+        if (context.state.lex.dialogState === 'Fulfilled') {
+          context.dispatch('reInitBot');
+        }
+      })
+      .catch((error) => {
+        const errorMessage = (context.state.config.ui.showErrorDetails) ?
+          ` ${error}` : '';
+        console.error('error in TEST_postTextMessage', error);
+        context.dispatch(
+          'pushErrorMessage',
+          'Sorry, would you mind to ask your question in a different way?' +
+          `${errorMessage}`,
+        );
+      });
   },
   postTextMessage(context, message) {
     return context.dispatch('interruptSpeechConversation')
@@ -499,7 +517,7 @@ export default {
         console.error('error in postTextMessage', error);
         context.dispatch(
           'pushErrorMessage',
-          'Sorry, I was unable to process your message. Try again later.' +
+          'Sorry, would you mind to ask your question in a different way?' +
           `${errorMessage}`,
         );
       });

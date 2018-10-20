@@ -124,6 +124,14 @@ export default {
         'sucessfully initialized lex web ui version: ',
         this.$store.state.version,
       ))
+      .then(() => Promise.all([
+        // added to send an initial text
+        this.$store.dispatch('TEST_postTextMessage', {
+          type: 'human',
+          text: 'help',
+        }),
+        // this.$store.dispatch('TEST_postTextMessage', 'help'),
+      ]))
       .catch((error) => {
         console.error('could not initialize application while mounting:', error);
       });

@@ -81,7 +81,7 @@ export default {
     */
     context.dispatch('directMessage', {
       type: 'human',
-      text: 'help',
+      text: 'hi',
     });
   },
   initLexClient(context, lexRuntimeClient) {

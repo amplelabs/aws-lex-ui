@@ -1,7 +1,7 @@
 <template>
   <v-card flat class="grey lighten-4">
-    <v-container ma-0 pa-0 grid-list-md text-xs-center>
-      <v-layout justify-start row fill-height nowrap>
+    <v-container ml-4 pa-0 grid-list-md text-xs-center>
+      <v-layout justify-start row fill-height wrap>
         <v-flex xs12>
           <!--v-card-title v-if="responseCard.title.trim()" class="grey lighten-4">
             <span class="caption">{{responseCard.title}}</span>

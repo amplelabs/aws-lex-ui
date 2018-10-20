@@ -32,6 +32,9 @@
 
 // TODO turn this into a class
 
+// uuid for session id
+const uuidv1 = require('uuid/v1');
+
 // get env shortname to require file
 const envShortName = [
   'dev',
@@ -77,6 +80,7 @@ const configDefault = {
       // GPS related
       userPosition: null,
       userAgent: navigator.userAgent,
+      uuid: uuidv1(),
     },
 
     // controls if the session attributes are reinitialized a

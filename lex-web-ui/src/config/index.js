@@ -172,7 +172,7 @@ const configDefault = {
     showMessageDate: true,
 
     // bot avatar image URL
-    avatarImageUrl: '/static/img/circle.png',
+    avatarImageUrl: '/static/img/charlmars_avatar.png',
 
     // Show the diaglog state icon, check or alert, in the text bubble
     showDialogStateIcon: true,

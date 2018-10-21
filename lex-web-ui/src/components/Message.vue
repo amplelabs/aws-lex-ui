@@ -269,7 +269,7 @@ export default {
 }
 
 .response-card {
-  justify-content: center;
+  justify-content: justify-start; /* center; */
   width: 85vw;
 }
 </style>

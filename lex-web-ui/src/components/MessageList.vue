@@ -13,9 +13,9 @@
       v-bind:class="`message-${message.type}`"
       v-on:scrollDown="scrollDown"
     ></message>
-    <MessageLoading
+    <!-- MessageLoading
       v-if="loading"
-    ></MessageLoading>
+    ></MessageLoading -->
   </v-layout>
 </template>
 

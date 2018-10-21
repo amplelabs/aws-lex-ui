@@ -483,75 +483,32 @@ export default {
       .then(() => context.dispatch('lexPostText', message.text))
       .then((response) => {
         // eslint-disable-next-line
-        const ponderingChat = () => {
+        const ponderingChat = () => { // <- make this a proper action
           // eslint-disable-next-line
-          console.log('dot dot dot');
+          // console.log('dot dot dot');
           context.dispatch('pushMessage', {
             text: 'testing',
             type: 'pondering',
           });
-          /* context.dispatch('pushMessage', {
-            text: '',
-            type: '',
-          }); */
         };
         const dummyChat = async (txt, index) => {
           const intervalTimeInMs = 1000 * (index + 1);
-          // eslint-disable-next-line
-          // console.log(intervalTimeInMs);
           return new Promise((resolve) => {
-            /*
-            if (!context.state.lex.isProcessing) {
-              // eslint-disable-next-line
-              // console.log(context.state.lex.isProcessing);
-              context.commit('setIsLexProcessing', true);
-              // eslint-disable-next-line
-              // console.log('ppppp');
-              ponderingChat();
-            }
-            */
-            setTimeout(() => {
-              /*
-              if (context.state.lex.isProcessing) {
-                context.commit('setIsLexProcessing', false);
-              }
-              */
+            // context.commit('setIsLexProcessing', true);
+            const intervalId = setTimeout(() => {
+              clearInterval(intervalId);
+              context.commit('setIsLexProcessing', false);
               context.dispatch('pushMessage', {
                 text: txt,
                 type: 'bot',
               });
-              // eslint-disable-next-line
-              // console.log(txt);
+              // context.commit('setIsLexProcessing', true);
+              // ponderingChat();
               resolve(txt);
             }, intervalTimeInMs);
           });
-          // const timeout = ms => new Promise(res => setTimeout(res, ms));
-          // const delay = async () => {
-          //  await timeout(2000);
-          // };
-          // const intervalTimeInMs = 2000;
-          // const intervalId = setInterval(() => {
-          // clearInterval(intervalId);
-          // context.commit('setIsLexProcessing', false);
-          /*
-          context.commit('setIsLexProcessing', true);
-          ponderingChat();
-          // await delay();
-          context.commit('setIsLexProcessing', false);
-          context.dispatch('pushMessage', {
-            text: txt,
-            type: 'bot',
-          });
-          */
-          // }, intervalTimeInMs);
         };
         const realChat = (/* txt */) => {
-          // const intervalTimeInMs = 2000;
-          // context.commit('setIsLexProcessing', true);
-          // ponderingChat();
-          // const intervalId = setInterval(() => {
-          //   clearInterval(intervalId);
-          //  context.commit('setIsLexProcessing', false);
           context.dispatch(
             'pushMessage',
             {
@@ -563,16 +520,9 @@ export default {
               alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
             },
           );
-          // }, intervalTimeInMs);
-          /*
-          context.dispatch('pushMessage', {
-            text: '',
-            type: '',
-          });
-          */
         };
         const arr = response.message.split(' ## ');
-        const intervalTimeInMs = 1000;
+        const intervalTimeInMs = 1500;
         context.commit('setIsLexProcessing', true);
         ponderingChat();
         const intervalId = setInterval(async () => {
@@ -592,27 +542,12 @@ export default {
               },
             );
           } else {
-            // const last = arr.splice(-1)[0];
+            // start the ... first.
             // context.commit('setIsLexProcessing', true);
             // ponderingChat();
-            // eslint-disable-next-line
-            const results = arr.map(async (x, index) => {
-              // eslint-disable-next-line
-              const moo = dummyChat(x, index).then(t => console.log(t));
-              return moo;
-            });
-            // eslint-disable-next-line
-            // console.log(results);
-            // await Promise.all(arr.map(x => dummyChat(x)));
-            // context.commit('setIsLexProcessing', true);
-            // ponderingChat();
-            // return true;
-            // eslint-disable-next-line
-            // console.log('#');
-            // realChat(last);
-            // ponderingChat();
-            // arr.map(x => dummyChat(x));
-            realChat();
+            await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
+            // context.commit('setIsLexProcessing', false);
+            realChat(); // <- this is redundant now ...
           }
         }, intervalTimeInMs);
       })

@@ -8,7 +8,7 @@
           </v-card-title>
           <v-card-text v-if="responseCard.subTitle">
             <span>{{responseCard.subTitle}}</span>
-          </v-card-text -->
+          </v-card-text height="33vh"-->
           <v-card-media
             v-if="responseCard.imageUrl !== null"
             :src="imageUrl"
@@ -16,7 +16,22 @@
             height="33vh"
           ></v-card-media>
         </v-flex>
-            <v-card-actions
+        <v-flex xs12>
+          <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+            <div style="align-items: center">
+            <v-btn
+              class="cgred black--text"
+              flat small color="grey darken-3"
+              tag="a"
+              v-bind:href="responseCard.attachmentLinkUrl"
+              target="_blank"
+            >
+              {{ responseCard.subTitle }} <v-icon right dark>call_made</v-icon>
+            </v-btn>
+            </div>
+          </v-card-actions>
+        </v-flex>
+<v-card-actions
               ml-2 
               v-for="(button, index) in responseCard.buttons"
               v-bind:key="index"
@@ -33,21 +48,6 @@
                 {{button.text}}
               </v-btn> 
             </v-card-actions>
-        <v-flex xs12>
-          <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-            <div style="align-items: center">
-            <v-btn
-              class="cgred"
-              round outline
-              tag="a"
-              v-bind:href="responseCard.attachmentLinkUrl"
-              target="_blank"
-            >
-              {{ responseCard.subTitle }}
-            </v-btn>
-            </div>
-          </v-card-actions>
-        </v-flex>
      </v-layout>
     </v-container>
   </v-card>

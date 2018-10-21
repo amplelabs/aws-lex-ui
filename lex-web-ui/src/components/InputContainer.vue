@@ -46,7 +46,7 @@
           class="black--text input-button"
           icon
         >
-          <v-icon medium>send</v-icon>
+          <v-icon medium style="color:#D12335">send</v-icon>
         </v-btn>
         <v-btn
           v-else
@@ -57,7 +57,7 @@
           class="black--text input-button"
           icon
         >
-          <v-icon medium>{{micButtonIcon}}</v-icon>
+          <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
         </v-btn>
       </v-toolbar>
     </v-layout>

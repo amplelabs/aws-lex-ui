@@ -19,7 +19,13 @@
     v-else-if="message.text && message.type === 'bot'"
     class="message-text"
   >
-  <span v-html="message.text"></span>
+    <span v-html="message.text"></span>
+  </div>
+  <div
+    v-else-if="message.type === 'pondering' && loading"
+    class="message-text"
+  >
+    <Pondering></Pondering>
   </div>
 </template>
 
@@ -36,6 +42,9 @@ or in the "license" file accompanying this file. This file is distributed on an 
 BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the
 License for the specific language governing permissions and limitations under the License.
 */
+
+import Pondering from '@/components/Pondering';
+
 const marked = require('marked');
 
 const renderer = new marked.Renderer();
@@ -47,7 +56,13 @@ renderer.link = function link(href, title, text) {
 export default {
   name: 'message-text',
   props: ['message'],
+  components: {
+    Pondering,
+  },
   computed: {
+    loading() {
+      return this.$store.state.lex.isProcessing;
+    },
     shouldConvertUrlToLinks() {
       // eslint-disable-next-line
       // console.log(this.message.text);

@@ -41,7 +41,7 @@
               v-bind:href="responseCard.attachmentLinkUrl"
               target="_blank"
             >
-              {{responseCard.subTitle}}
+              {{ responseCard.subTitle }}
             </v-btn>
             </div>
           </v-card-actions>

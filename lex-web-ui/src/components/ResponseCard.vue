@@ -2,7 +2,7 @@
   <v-card flat class="grey lighten-4">
     <v-container ml-4 pa-0 grid-list-md text-xs-center>
       <v-layout justify-start row fill-height wrap>
-        <v-flex xs12>
+        <v-flex v-bind:class="flexClass" fluid>
           <!--v-card-title v-if="responseCard.title.trim()" class="grey lighten-4">
             <span class="caption">{{responseCard.title}}</span>
           </v-card-title>
@@ -19,35 +19,34 @@
         <v-flex xs12>
           <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
             <div style="align-items: center">
-            <v-btn
-              class="cgred black--text"
-              flat small color="grey darken-3"
-              tag="a"
-              v-bind:href="responseCard.attachmentLinkUrl"
-              target="_blank"
-            >
-              {{ responseCard.subTitle }} <v-icon right dark>call_made</v-icon>
-            </v-btn>
+              <v-btn
+                flat small color="grey darken-3"
+                tag="a"
+                v-bind:href="responseCard.attachmentLinkUrl"
+                target="_blank"
+              >
+                {{ responseCard.subTitle }} <v-icon right dark>call_made</v-icon>
+              </v-btn>
             </div>
           </v-card-actions>
-        </v-flex>
-<v-card-actions
-              ml-2 
-              v-for="(button, index) in responseCard.buttons"
-              v-bind:key="index"
-              actions
-              class="button-row"
+          </v-flex>
+          <v-card-actions
+            ml-2 
+            v-for="(button, index) in responseCard.buttons"
+            v-bind:key="index"
+            actions
+            class="button-row"
+          >
+            <v-btn
+              v-if="button.text && button.value && !hasButtonBeenClicked"
+              v-on:click.once.native="onButtonClick(button.value)"
+              v-bind:disabled="hasButtonBeenClicked"
+              class="cgred"
+              round outline
             >
-              <v-btn
-                v-if="button.text && button.value && !hasButtonBeenClicked"
-                v-on:click.once.native="onButtonClick(button.value)"
-                v-bind:disabled="hasButtonBeenClicked"
-                class="cgred"
-                round outline
-              >
-                {{button.text}}
-              </v-btn> 
-            </v-card-actions>
+              {{button.text}}
+            </v-btn> 
+          </v-card-actions>
      </v-layout>
     </v-container>
   </v-card>
@@ -78,6 +77,14 @@ export default {
   computed: {
     imageUrl() {
       return `'${this.responseCard.imageUrl}'`;
+    },
+    flexClass() {
+      // console.log(this.$vuetify.breakpoint.name);
+      // console.log(this.$vuetify.breakpoint.mdAndUp);
+      return {
+        xs12: !this.$vuetify.breakpoint.mdAndUp,
+        xs6: this.$vuetify.breakpoint.mdAndUp,
+      };
     },
   },
   methods: {

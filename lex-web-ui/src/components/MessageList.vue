@@ -43,7 +43,8 @@ export default {
   },
   computed: {
     messages() {
-      return this.$store.state.messages.reverse();
+      const moo = this.$store.state.messages.map(x => x);
+      return moo.reverse(); // this.$store.state.messages; // .reverse();
     },
     loading() {
       return this.$store.state.lex.isProcessing;

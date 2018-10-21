@@ -248,9 +248,9 @@ export default {
 }
 
 .message-human .message-bubble {
-  background-color: #f0a335; /* #E8EAF6; */ /* indigo-50 from material palette */
-  outline-color:#f0a335;
-  border:1px solid #f0a335
+  background-color: #ffcb01; /* #E8EAF6; */ /* indigo-50 from material palette */
+  outline-color:#ffcb01;
+  border:1px solid #ffcb01
 }
 
 .dialog-state {

@@ -494,21 +494,25 @@ export default {
           }); */
         };
         const dummyChat = async (txt) => {
+          const timeout = ms => new Promise(res => setTimeout(res, ms));
+          const delay = async () => {
+            await timeout(2000);
+          };
           // const intervalTimeInMs = 2000;
           // const intervalId = setInterval(() => {
           // clearInterval(intervalId);
           // context.commit('setIsLexProcessing', false);
+          context.commit('setIsLexProcessing', true);
+          ponderingChat();
+          await delay();
+          context.commit('setIsLexProcessing', false);
           context.dispatch('pushMessage', {
             text: txt,
             type: 'bot',
           });
-          context.dispatch('pushMessage', {
-            text: '',
-            type: '',
-          });
           // }, intervalTimeInMs);
         };
-        const realChat = (txt) => {
+        const realChat = (/* txt */) => {
           // const intervalTimeInMs = 2000;
           // context.commit('setIsLexProcessing', true);
           // ponderingChat();
@@ -519,8 +523,8 @@ export default {
             'pushMessage',
             {
               // TODO: Break down the message into multiple bubbles!
-              text: txt, // response.message,
-              type: 'bot',
+              text: '', // txt, // response.message,
+              type: '',
               dialogState: context.state.lex.dialogState,
               responseCard: context.state.lex.responseCard,
               alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
@@ -555,19 +559,21 @@ export default {
               },
             );
           } else {
-            const last = arr.splice(-1)[0];
+            // const last = arr.splice(-1)[0];
             // context.commit('setIsLexProcessing', true);
             // ponderingChat();
             // eslint-disable-line
             arr.map(async (x) => {
-              /* await */ dummyChat(x);
+              await dummyChat(x);
               // context.commit('setIsLexProcessing', true);
               // ponderingChat();
               return true;
             });
-            realChat(last);
-            // ponderingChat();
+            // eslint-disable-next-line
+            // console.log('#');
             // realChat(last);
+            // ponderingChat();
+            realChat();
           }
         }, intervalTimeInMs);
       })

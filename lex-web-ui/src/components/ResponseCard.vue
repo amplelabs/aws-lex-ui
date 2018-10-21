@@ -39,7 +39,7 @@
               class="button-row"
             >
               <v-btn
-                v-if="button.text && button.value"
+                v-if="button.text && button.value && !hasButtonBeenClicked"
                 v-on:click.once.native="onButtonClick(button.value)"
                 v-bind:disabled="hasButtonBeenClicked"
                 class="cgred"

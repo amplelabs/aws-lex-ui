@@ -134,7 +134,7 @@ const configDefault = {
     // chat window text placeholder
     textInputPlaceholder: 'Type here or click on the mic',
 
-    toolbarColor: 'yellow darken-2',
+    toolbarColor: '#ffcb01', // 'yellow darken-2',
 
     // chat window title
     toolbarTitle: 'Order Flowers',
@@ -145,7 +145,9 @@ const configDefault = {
     // fav icon
     // favIcon: 'https://static.wixstatic.com/media/c3a51e_a3f5ba4a59ab439388f9d2c8cb5b45c3%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/c3a51e_a3f5ba4a59ab439388f9d2c8cb5b45c3%7Emv2.png',
     // favIcon: '../../node_modules/material-design-icons/tableware-512.png',
-    favIcon: '../../node_modules/material-design-icons/maps/2x_web/ic_local_dining_black_18dp.png',
+    // favIcon: '../../node_modules/material-design-icons/maps/
+    // 2x_web/ic_local_dining_black_18dp.png',
+    favIcon: '../../static/img/circle.png',
 
     // controls if the Lex initialText will be pushed into the message
     // list after the bot dialog is done (i.e. fail or fulfilled)

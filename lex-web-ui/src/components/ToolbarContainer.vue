@@ -1,14 +1,12 @@
 <template>
-  <v-toolbar
-    v-bind:color="toolbarColor"
+  <v-toolbar style="background-color:#D12335"
     app
-    dark
     dense
     fixed
   >
     <img v-if="toolbarLogo" v-bind:src="toolbarLogo">
     <v-toolbar-title class="hidden-xs-and-down">
-      {{ toolbarTitle }}
+      <span class="white--text">{{ toolbarTitle }}</span>
     </v-toolbar-title>
     <v-spacer />
     <!-- tooltip should be before btn to avoid right margin issue in mobile -->
@@ -80,3 +78,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.cg {
+  background-color: #D12335;
+}
+</style>

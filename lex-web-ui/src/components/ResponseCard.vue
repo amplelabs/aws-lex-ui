@@ -27,7 +27,8 @@
                 v-if="button.text && button.value"
                 v-on:click.once.native="onButtonClick(button.value)"
                 v-bind:disabled="hasButtonBeenClicked"
-                round outline color="red"
+                class="cgred"
+                round outline
               >
                 {{button.text}}
               </v-btn> 
@@ -36,7 +37,8 @@
           <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
             <div style="align-items: center">
             <v-btn
-              round outline color="red"
+              class="cgred"
+              round outline
               tag="a"
               v-bind:href="responseCard.attachmentLinkUrl"
               target="_blank"
@@ -127,5 +129,8 @@ export default {
 .card__actions.button-row {
   justify-content: center;
   padding-bottom: 0.0em;
+}
+.cgred {
+  color: #D12335;
 }
 </style>

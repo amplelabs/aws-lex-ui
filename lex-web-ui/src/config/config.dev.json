@@ -13,8 +13,8 @@
   },
   "ui": {
     "parentOrigin": "http://localhost:8080",
-    "pageTitle": "Amplelabot",
-    "toolbarTitle": "Find me a meal"
+    "pageTitle": "ChalmersBot",
+    "toolbarTitle": "ChalmersBot"
   },
   "recorder": {
     "preset": "speech_recognition"

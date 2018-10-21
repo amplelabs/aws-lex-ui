@@ -484,6 +484,8 @@ export default {
       .then((response) => {
         // eslint-disable-next-line
         const ponderingChat = () => {
+          // eslint-disable-next-line
+          console.log('dot dot dot');
           context.dispatch('pushMessage', {
             text: 'testing',
             type: 'pondering',
@@ -493,23 +495,54 @@ export default {
             type: '',
           }); */
         };
-        const dummyChat = async (txt) => {
-          const timeout = ms => new Promise(res => setTimeout(res, ms));
-          const delay = async () => {
-            await timeout(2000);
-          };
+        const dummyChat = async (txt, index) => {
+          const intervalTimeInMs = 1000 * (index + 1);
+          // eslint-disable-next-line
+          // console.log(intervalTimeInMs);
+          return new Promise((resolve) => {
+            /*
+            if (!context.state.lex.isProcessing) {
+              // eslint-disable-next-line
+              // console.log(context.state.lex.isProcessing);
+              context.commit('setIsLexProcessing', true);
+              // eslint-disable-next-line
+              // console.log('ppppp');
+              ponderingChat();
+            }
+            */
+            setTimeout(() => {
+              /*
+              if (context.state.lex.isProcessing) {
+                context.commit('setIsLexProcessing', false);
+              }
+              */
+              context.dispatch('pushMessage', {
+                text: txt,
+                type: 'bot',
+              });
+              // eslint-disable-next-line
+              // console.log(txt);
+              resolve(txt);
+            }, intervalTimeInMs);
+          });
+          // const timeout = ms => new Promise(res => setTimeout(res, ms));
+          // const delay = async () => {
+          //  await timeout(2000);
+          // };
           // const intervalTimeInMs = 2000;
           // const intervalId = setInterval(() => {
           // clearInterval(intervalId);
           // context.commit('setIsLexProcessing', false);
+          /*
           context.commit('setIsLexProcessing', true);
           ponderingChat();
-          await delay();
+          // await delay();
           context.commit('setIsLexProcessing', false);
           context.dispatch('pushMessage', {
             text: txt,
             type: 'bot',
           });
+          */
           // }, intervalTimeInMs);
         };
         const realChat = (/* txt */) => {
@@ -539,10 +572,10 @@ export default {
           */
         };
         const arr = response.message.split(' ## ');
-        const intervalTimeInMs = 2000;
+        const intervalTimeInMs = 1000;
         context.commit('setIsLexProcessing', true);
         ponderingChat();
-        const intervalId = setInterval(() => {
+        const intervalId = setInterval(async () => {
           clearInterval(intervalId);
           context.commit('setIsLexProcessing', false);
           if (arr.length === 1) {
@@ -562,17 +595,23 @@ export default {
             // const last = arr.splice(-1)[0];
             // context.commit('setIsLexProcessing', true);
             // ponderingChat();
-            // eslint-disable-line
-            arr.map(async (x) => {
-              await dummyChat(x);
-              // context.commit('setIsLexProcessing', true);
-              // ponderingChat();
-              return true;
+            // eslint-disable-next-line
+            const results = arr.map(async (x, index) => {
+              // eslint-disable-next-line
+              const moo = dummyChat(x, index).then(t => console.log(t));
+              return moo;
             });
+            // eslint-disable-next-line
+            // console.log(results);
+            // await Promise.all(arr.map(x => dummyChat(x)));
+            // context.commit('setIsLexProcessing', true);
+            // ponderingChat();
+            // return true;
             // eslint-disable-next-line
             // console.log('#');
             // realChat(last);
             // ponderingChat();
+            // arr.map(x => dummyChat(x));
             realChat();
           }
         }, intervalTimeInMs);

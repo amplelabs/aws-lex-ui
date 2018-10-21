@@ -31,9 +31,14 @@ import Vuetify from 'vuetify';
 import Page from '@/components/Page';
 import { Loader as LexWebUi } from '@/lex-web-ui';
 
-import flowerLogo from '../node_modules/material-design-icons/maps/2x_web/ic_local_dining_white_18dp.png';
-import faviconLogo from '../node_modules/material-design-icons/maps/2x_web/ic_local_dining_black_18dp.png';
+// import flowerLogo from '../node_modules/material-design-icons/maps/
+// 2x_web/ic_local_dining_white_18dp.png';
+// import faviconLogo from '../node_modules/material-design-icons/maps/
+// 2x_web/ic_local_dining_black_18dp.png';
 // import flowerLogo from '../node_modules/material-design-icons/tableware-512.png';
+
+import flowerLogo from '../static/img/circle2.png';
+import faviconLogo from '../static/img/circle.png';
 
 function getToolbarLogo() {
   // Search for logo image files in ../assets/

@@ -498,12 +498,13 @@ export default {
             const intervalId = setTimeout(() => {
               clearInterval(intervalId);
               context.commit('setIsLexProcessing', false);
+              context.commit('popMessage');
               context.dispatch('pushMessage', {
                 text: txt,
                 type: 'bot',
               });
-              // context.commit('setIsLexProcessing', true);
-              // ponderingChat();
+              context.commit('setIsLexProcessing', true);
+              ponderingChat();
               resolve(txt);
             }, intervalTimeInMs);
           });
@@ -528,6 +529,7 @@ export default {
         const intervalId = setInterval(async () => {
           clearInterval(intervalId);
           context.commit('setIsLexProcessing', false);
+          context.commit('popMessage');
           if (arr.length === 1) {
             // realChat(response.message);
             context.dispatch(
@@ -543,10 +545,11 @@ export default {
             );
           } else {
             // start the ... first.
-            // context.commit('setIsLexProcessing', true);
-            // ponderingChat();
+            context.commit('setIsLexProcessing', true);
+            ponderingChat();
             await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
-            // context.commit('setIsLexProcessing', false);
+            context.commit('setIsLexProcessing', false);
+            context.commit('popMessage');
             realChat(); // <- this is redundant now ...
           }
         }, intervalTimeInMs);

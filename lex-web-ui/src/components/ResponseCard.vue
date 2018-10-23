@@ -16,10 +16,12 @@
             height="33vh"
           ></v-card-media>
         </v-flex>
-        <v-flex xs12>
-          <v-card-actions v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-            <div style="align-items: center">
+        <v-container class="cgbuttonrow">
+          <v-layout justify-start row nowrap>
+            <v-flex xs12 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+            <v-card-actions>
               <v-btn
+                class="linkbutton"
                 flat small color="grey darken-3"
                 tag="a"
                 v-bind:href="responseCard.attachmentLinkUrl"
@@ -27,26 +29,29 @@
               >
                 {{ responseCard.subTitle }} <v-icon right dark>call_made</v-icon>
               </v-btn>
-            </div>
-          </v-card-actions>
-          </v-flex>
-          <v-card-actions
-            ml-2 
-            v-for="(button, index) in responseCard.buttons"
-            v-bind:key="index"
-            actions
-            class="button-row"
-          >
-            <v-btn
-              v-if="button.text && button.value && !hasButtonBeenClicked"
-              v-on:click.once.native="onButtonClick(button.value)"
-              v-bind:disabled="hasButtonBeenClicked"
-              class="cgred"
-              round outline
+            </v-card-actions>
+            </v-flex>
+          </v-layout>
+          <v-layout justify-start row wrap>
+            <v-card-actions
+              ml-2 
+              v-for="(button, index) in responseCard.buttons"
+              v-bind:key="index"
+              actions
+              class="button-row"
             >
-              {{button.text}}
-            </v-btn> 
-          </v-card-actions>
+              <v-btn
+                v-if="button.text && button.value && !hasButtonBeenClicked"
+                v-on:click.once.native="onButtonClick(button.value)"
+                v-bind:disabled="hasButtonBeenClicked"
+                class="cgred"
+                round outline small
+              >
+                {{button.text}}
+              </v-btn> 
+            </v-card-actions>
+          </v-layout>
+        </v-container>
      </v-layout>
     </v-container>
   </v-card>
@@ -136,8 +141,25 @@ export default {
 .card__actions.button-row {
   justify-content: center;
   padding-bottom: 0.0em;
+  margin-bottom: 0px;
 }
 .cgred {
   color: #D12335;
+  margin-top: -2px;
+  margin-right: -5px;
+  text-transform: capitalize;
 }
+
+.cgbuttonrow {
+  margin-top:-1em;
+  margin-left:-1em;
+  overflow-x: auto;
+}
+
+.linkbutton {
+  margin-top:-1em;
+  margin-bottom:-1em;
+  padding-bottom: 0.5em; 
+}
+
 </style>

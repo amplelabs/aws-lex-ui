@@ -154,7 +154,7 @@ export default {
       };
     },
     shouldShowMessageDate() {
-      return this.$store.state.config.ui.showMessageDate;
+      return false; // this.$store.state.config.ui.showMessageDate;
     },
   },
   methods: {
@@ -247,6 +247,13 @@ export default {
   background-color: #ffffff;
 }
 
+.message-pondering .message-bubble {
+  /* background-color: #FFEBEE; */ /* red-50 from material palette */
+  outline-color: #ffffff; 
+  border:1px solid #ffffff; /* red; */
+  background-color: #ffffff;
+}
+
 .message-human .message-bubble {
   background-color: #ffcb01; /* #E8EAF6; */ /* indigo-50 from material palette */
   outline-color:#ffcb01;
@@ -269,7 +276,7 @@ export default {
 }
 
 .response-card {
-  justify-content: justify-start; /* center; */
+  justify-content: center;
   width: 85vw;
 }
 </style>

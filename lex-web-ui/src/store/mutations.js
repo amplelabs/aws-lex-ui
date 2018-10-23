@@ -322,6 +322,10 @@ export default {
       ...message,
     });
   },
+  popMessage(state) {
+    // state.messages.reverse().push({
+    state.messages.splice(-1, 1);
+  },
   /**
    * Set the AWS credentials provider
    */

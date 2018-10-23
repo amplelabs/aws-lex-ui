@@ -17,6 +17,7 @@
           v-on:keyup.enter.stop="postTextMessage"
           v-on:focus="onTextFieldFocus"
           v-on:blur="onTextFieldBlur"
+          color="red darken-2"
           id="text-input"
           name="text-input"
           single-line

@@ -86,7 +86,8 @@ export default {
       return out;
     },
     shouldRenderAsHtml() {
-      return (this.message.type === 'bot' && this.shouldConvertUrlToLinks);
+      return ((this.message.type === 'bot' || (this.message.type === 'pondering'))
+      && this.shouldConvertUrlToLinks);
     },
     botMessageAsHtml() {
       // Security Note: Make sure that the content is escaped according
@@ -168,5 +169,9 @@ export default {
   padding: 0.8em;
   white-space: normal;
   word-break: break-word;
+}
+
+.pondering-text {
+  background-color: aquamarine
 }
 </style>

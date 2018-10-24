@@ -26,7 +26,7 @@
     </v-btn>
     <v-dialog
       v-model="dialog"
-      max-width="290"
+      max-width="350"
     >
       <v-card>
          <div class="container">

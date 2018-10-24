@@ -13,7 +13,7 @@
             v-if="responseCard.imageUrl !== null"
             :src="imageUrl"
             contain
-            height="33vh"
+            height="23vh"
           ></v-card-media>
         </v-flex>
         <v-container class="cgbuttonrow">

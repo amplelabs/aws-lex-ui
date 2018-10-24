@@ -492,7 +492,7 @@ export default {
           });
         };
         const dummyChat = async (txt, index) => {
-          const intervalTimeInMs = 1000 * (index + 1);
+          const intervalTimeInMs = 750 * (index + 1);
           return new Promise((resolve) => {
             // context.commit('setIsLexProcessing', true);
             const intervalId = setTimeout(() => {
@@ -523,7 +523,7 @@ export default {
           );
         };
         const arr = response.message.split(' ## ');
-        const intervalTimeInMs = 1500;
+        const intervalTimeInMs = 1000;
         context.commit('setIsLexProcessing', true);
         ponderingChat();
         const intervalId = setInterval(async () => {

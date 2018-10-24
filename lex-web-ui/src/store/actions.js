@@ -480,7 +480,7 @@ export default {
   postTextMessage(context, message) {
     return context.dispatch('interruptSpeechConversation')
       .then(() => context.dispatch('pushMessage', message))
-      .then(() => context.dispatch('lexPostText', message.text))
+      .then(() => context.dispatch('lexPostText', message.text.split(' ').reverse()[0])) // FIXME:!!!
       .then((response) => {
         // eslint-disable-next-line
         const ponderingChat = () => { // <- make this a proper action

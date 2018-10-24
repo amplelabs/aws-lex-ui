@@ -39,10 +39,10 @@
               v-bind:key="index"
               actions
               class="button-row"
-            >
+            > <!-- button.value -->
               <v-btn
                 v-if="button.text && button.value && !hasButtonBeenClicked"
-                v-on:click.once.native="onButtonClick(button.value)"
+                v-on:click.once.native="onButtonClick(button.text)"
                 v-bind:disabled="hasButtonBeenClicked"
                 class="cgred"
                 round outline small

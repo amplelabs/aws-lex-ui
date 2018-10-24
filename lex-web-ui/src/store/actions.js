@@ -522,6 +522,13 @@ export default {
             },
           );
         };
+        if (response.message.match('##restart') !== null) {
+          context.dispatch('directMessage', {
+            type: 'human',
+            text: 'hi',
+          });
+          return;
+        }
         const arr = response.message.split(' ## ');
         const intervalTimeInMs = 1000;
         context.commit('setIsLexProcessing', true);

@@ -17,17 +17,43 @@
     >
       <span id="min-max-tooltip">{{toolTipMinimize}}</span>
     </v-tooltip>
-    <v-btn
-      v-if="$store.state.isRunningEmbedded"
-      v-on:click="toggleMinimize"
-      v-on="tooltipEventHandlers"
-      class="min-max-toggle"
-      icon
+    <v-btn icon
+      @click="shareCB"
     >
-      <v-icon>
-        {{ isUiMinimized ?  'arrow_drop_up' : 'arrow_drop_down' }}
-      </v-icon>
+      <span style="color:#ffffff">share</span><v-icon color="white">
+        call_made
+      </v-icon> <span style="color:#D12335">......</span>
     </v-btn>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+         <div class="container">
+        <div class="row">
+                    <p class="subheading">share link: </p>
+                    <p id="url">{{ url }}</p>
+        </div>
+    </div>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="dialog = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="copyToClipboard"
+          >
+            Copy to Clipboard
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-toolbar>
 </template>
 
@@ -48,6 +74,8 @@ export default {
   name: 'toolbar-container',
   data() {
     return {
+      url: 'https://amplebot-3d467.firebaseapp.com/#/',
+      dialog: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
         mouseenter: this.onInputButtonHoverEnter,
@@ -65,6 +93,21 @@ export default {
     },
   },
   methods: {
+    copyToClipboard() {
+      const el = document.createElement('textarea');
+      el.value = this.url;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      this.dialog = false;
+    },
+    shareCB() {
+      this.dialog = true;
+    },
     onInputButtonHoverEnter() {
       this.shouldShowTooltip = true;
     },

@@ -43,14 +43,14 @@
                     <v-icon class="play-icon">play_circle_outline</v-icon>
                   </v-btn>
                 </div>
-                <v-icon
+                <!-- v-icon
                   medium
                   v-if="message.type === 'bot' && botDialogState && showDialogStateIcon"
                   v-bind:class="`dialog-state-${botDialogState.state}`"
                   class="dialog-state"
                 >
                   {{botDialogState.icon}}
-                </v-icon>
+                </v-icon -->
               </div>
             </v-layout>
           </v-flex>

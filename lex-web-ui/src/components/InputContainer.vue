@@ -208,7 +208,8 @@ export default {
         text: this.textInput,
       };
 
-      return this.$store.dispatch('postTextMessage', message)
+      // return this.$store.dispatch('postTextMessage', message)
+      return this.$store.dispatch('postTextMessageFromUser', message)
         .then(() => {
           this.textInput = '';
         });

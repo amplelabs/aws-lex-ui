@@ -20,38 +20,48 @@
     <v-btn icon
       @click="shareCB"
     >
-      <span style="color:#ffffff">share</span><v-icon color="white">
-        call_made
-      </v-icon> <span style="color:#D12335">......</span>
+      <span style="color:#ffffff"></span><v-icon color="white">
+        open_in_new
+      </v-icon> <span style="color:#D12335"></span>
     </v-btn>
     <v-dialog
       v-model="dialog"
       max-width="350"
     >
       <v-card>
-         <div class="container">
-        <div class="row">
-                    <p class="subheading">share link: </p>
-                    <p id="url">{{ url }}</p>
-        </div>
-    </div>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color=""
-            flat="flat"
-            @click="dialog = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color=""
-            flat="flat"
-            @click="copyToClipboard"
-          >
-            Copy to Clipboard
-          </v-btn>
-        </v-card-actions>
+        <v-container grid-list-md text-xs-center>
+          <v-layout row wrap v-if="!shareConfirm">
+            <v-flex xs11>
+            <v-card-title class="subheading">Share this bot: </v-card-title>
+            </v-flex>
+            <v-flex xs1>
+              <v-icon @click="dialog = false">close</v-icon>
+            </v-flex>
+            <!-- v-card-text id="url">{{ url }}</v-card-text -->
+            <v-text-field
+              v-model="url"
+            ></v-text-field>
+          <v-card-actions>
+            <v-btn
+              color="amber lighten-1"
+              depressed
+              @click="copyToClipboard"
+            >
+              Copy URL
+            </v-btn>
+          </v-card-actions>
+          </v-layout>
+          <v-layout row wrap v-else>
+            <v-flex offset-xs2>
+              <v-card-text>Link Copied</v-card-text>
+            </v-flex>
+            <v-flex xs4>
+              <v-btn fab small color="amber lighten-1">
+                <v-icon color="white">check</v-icon>
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-card>
     </v-dialog>
   </v-toolbar>
@@ -76,6 +86,7 @@ export default {
     return {
       url: 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
+      shareConfirm: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
         mouseenter: this.onInputButtonHoverEnter,
@@ -94,6 +105,19 @@ export default {
   },
   methods: {
     copyToClipboard() {
+      // https://developers.google.com/web/updates/2018/03/clipboardapi
+      navigator.clipboard.writeText(this.url)
+        .then(() => {
+          // console.log('Text copied to clipboard');
+          // this.dialog = false;
+          this.shareConfirm = true;
+        })
+        .catch((err) => {
+          // This can happen if the user denies clipboard permissions:
+          // eslint-disable-next-line
+          console.error('Could not copy text: ', err);
+        });
+      /*
       const el = document.createElement('textarea');
       el.value = this.url;
       el.setAttribute('readonly', '');
@@ -103,7 +127,8 @@ export default {
       el.select();
       document.execCommand('copy');
       document.body.removeChild(el);
-      this.dialog = false;
+      */
+      // this.dialog = false;
     },
     shareCB() {
       this.dialog = true;

@@ -446,20 +446,87 @@ export default {
         });
     });
   },
-  directMessage(context, message) {
-    return context.dispatch('lexPostText', message.text)
-      .then((response) => {
+  ponderingChat(context) {
+    context.dispatch('pushMessage', {
+      text: 'testing',
+      type: 'pondering',
+    });
+  },
+  async dummyChat(context, txt, index) {
+    const intervalTimeInMs = 750 * (index + 1);
+    return new Promise((resolve) => {
+      // context.commit('setIsLexProcessing', true);
+      const intervalId = setTimeout(() => {
+        clearInterval(intervalId);
+        context.commit('setIsLexProcessing', false);
+        context.commit('popMessage');
+        context.dispatch('pushMessage', {
+          text: txt,
+          type: 'bot',
+        });
+        context.commit('setIsLexProcessing', true);
+        context.dispatch('ponderingChat'); // ponderingChat();
+        resolve(txt);
+      }, intervalTimeInMs);
+    });
+  },
+  processResponse(context, response) {
+    if (response.message.match('##restart') !== null) {
+      context.dispatch('directMessage', {
+        type: 'human',
+        text: 'hi',
+      });
+      return;
+    }
+    const arr = response.message.split(' ## ');
+    const intervalTimeInMs = 1000;
+    context.commit('setIsLexProcessing', true);
+    context.dispatch('ponderingChat'); // ponderingChat();
+    const intervalId = setInterval(async () => {
+      clearInterval(intervalId);
+      context.commit('setIsLexProcessing', false);
+      context.commit('popMessage');
+      if (arr.length === 1) {
         context.dispatch(
           'pushMessage',
           {
             // TODO: Break down the message into multiple bubbles!
             text: response.message,
             type: 'bot',
-            dialogState: '',
+            dialogState: context.state.lex.dialogState,
             responseCard: context.state.lex.responseCard,
             alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
           },
         );
+      } else {
+        // start the ... first.
+        context.commit('setIsLexProcessing', true);
+        context.dispatch('ponderingChat'); // ponderingChat();
+        // await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
+        await Promise.all(arr
+          .map(async (x, index) => context.dispatch('dummyChat', x, index)));
+        context.commit('setIsLexProcessing', false);
+        context.commit('popMessage');
+        context.dispatch(
+          'pushMessage',
+          {
+            // TODO: Break down the message into multiple bubbles!
+            text: '', // txt, // response.message,
+            type: '',
+            dialogState: context.state.lex.dialogState,
+            responseCard: context.state.lex.responseCard,
+            alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
+          },
+        );
+      }
+    }, intervalTimeInMs);
+  },
+  directMessage(context, message) {
+    // eslint-disable-next-line
+    console.log(message);
+    return context.dispatch('lexPostText', message.text)
+      .then((response) => {
+        context.dispatch('processResponse', response);
       })
       .then(() => {
         if (context.state.lex.dialogState === 'Fulfilled') {
@@ -477,105 +544,18 @@ export default {
         );
       });
   },
+  postTextMessageFromUser(context, message) {
+    return context.dispatch('interruptSpeechConversation')
+      .then(() => context.dispatch('pushMessage', message))
+      .then(() => context.dispatch('directMessage', message));
+  },
   postTextMessage(context, message) {
     return context.dispatch('interruptSpeechConversation')
       .then(() => context.dispatch('pushMessage', message))
-      .then(() => context.dispatch('lexPostText', message.text.split(' ').reverse()[0])) // FIXME:!!!
-      .then((response) => {
-        // eslint-disable-next-line
-        const ponderingChat = () => { // <- make this a proper action
-          // eslint-disable-next-line
-          // console.log('dot dot dot');
-          context.dispatch('pushMessage', {
-            text: 'testing',
-            type: 'pondering',
-          });
-        };
-        const dummyChat = async (txt, index) => {
-          const intervalTimeInMs = 750 * (index + 1);
-          return new Promise((resolve) => {
-            // context.commit('setIsLexProcessing', true);
-            const intervalId = setTimeout(() => {
-              clearInterval(intervalId);
-              context.commit('setIsLexProcessing', false);
-              context.commit('popMessage');
-              context.dispatch('pushMessage', {
-                text: txt,
-                type: 'bot',
-              });
-              context.commit('setIsLexProcessing', true);
-              ponderingChat();
-              resolve(txt);
-            }, intervalTimeInMs);
-          });
-        };
-        const realChat = (/* txt */) => {
-          context.dispatch(
-            'pushMessage',
-            {
-              // TODO: Break down the message into multiple bubbles!
-              text: '', // txt, // response.message,
-              type: '',
-              dialogState: context.state.lex.dialogState,
-              responseCard: context.state.lex.responseCard,
-              alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
-            },
-          );
-        };
-        if (response.message.match('##restart') !== null) {
-          context.dispatch('directMessage', {
-            type: 'human',
-            text: 'hi',
-          });
-          return;
-        }
-        const arr = response.message.split(' ## ');
-        const intervalTimeInMs = 1000;
-        context.commit('setIsLexProcessing', true);
-        ponderingChat();
-        const intervalId = setInterval(async () => {
-          clearInterval(intervalId);
-          context.commit('setIsLexProcessing', false);
-          context.commit('popMessage');
-          if (arr.length === 1) {
-            // realChat(response.message);
-            context.dispatch(
-              'pushMessage',
-              {
-                // TODO: Break down the message into multiple bubbles!
-                text: response.message,
-                type: 'bot',
-                dialogState: context.state.lex.dialogState,
-                responseCard: context.state.lex.responseCard,
-                alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
-              },
-            );
-          } else {
-            // start the ... first.
-            context.commit('setIsLexProcessing', true);
-            ponderingChat();
-            await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
-            context.commit('setIsLexProcessing', false);
-            context.commit('popMessage');
-            realChat(); // <- this is redundant now ...
-          }
-        }, intervalTimeInMs);
-      })
-      .then(() => {
-        if (context.state.lex.dialogState === 'Fulfilled') {
-          context.dispatch('reInitBot');
-        }
-      })
-      .catch((error) => {
-        const errorMessage = (context.state.config.ui.showErrorDetails) ?
-          ` ${error}` : '';
-        console.error('error in postTextMessage', error);
-        context.dispatch(
-          'pushErrorMessage',
-          'Sorry, would you mind to ask your question in a different way?' +
-          `${errorMessage}`,
-        );
-      });
+      .then(() => context.dispatch('directMessage', {
+        type: 'human',
+        text: message.text.split(' ').reverse()[0],
+      }));
   },
   lexPostText(context, text) {
     context.commit('setIsLexProcessing', true);

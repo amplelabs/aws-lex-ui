@@ -351,9 +351,9 @@ export default {
   background: #ab2f0c;
 }
 .lds-ellipsis {
-  width: 60px !important;
-  height: 60px !important;
-  -webkit-transform: translate(-30px, -30px) scale(0.3) translate(30px, 30px);
-  transform: translate(-30px, -30px) scale(0.3) translate(30px, 30px);
+  width: 40px !important;
+  height: 40px !important;
+  -webkit-transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+  transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
 }
 </style>

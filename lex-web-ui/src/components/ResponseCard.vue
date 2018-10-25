@@ -1,6 +1,6 @@
 <template>
   <v-card flat class="grey lighten-4">
-    <v-container ml-4 pa-0 grid-list-md text-xs-center>
+    <v-container pa-0 grid-list-md >
       <v-layout justify-start row fill-height wrap>
         <v-flex v-bind:class="flexClass" fluid>
           <!--v-card-title v-if="responseCard.title.trim()" class="grey lighten-4">
@@ -19,10 +19,10 @@
         <v-container class="cgbuttonrow">
           <v-layout justify-start row nowrap>
             <v-flex xs12 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-            <v-card-actions>
+            <v-card-actions ml-2>
               <v-btn
-                class="linkbutton"
-                flat small color="grey darken-3"
+                class="cgred"
+                round outline small
                 tag="a"
                 v-bind:href="responseCard.attachmentLinkUrl"
                 target="_blank"
@@ -145,21 +145,21 @@ export default {
 }
 .cgred {
   color: #D12335;
-  margin-top: -2px;
+  margin-top: -1px;
   margin-right: -5px;
   text-transform: capitalize;
 }
 
 .cgbuttonrow {
-  margin-top:-1em;
-  margin-left:-1em;
+  margin-top:-1.75em;
+  margin-left:-2.5em;
   overflow-x: auto;
 }
 
 .linkbutton {
-  margin-top:-1em;
-  margin-bottom:-1em;
-  padding-bottom: 0.5em; 
+  /* margin-top:-1em; */
+  margin-bottom:-1.5em;
+  /* padding-bottom: 0.5em; */
 }
 
 </style>

@@ -43,7 +43,8 @@
             ></v-text-field>
           <v-card-actions>
             <v-btn
-              color="amber lighten-1"
+              class="cgshare white--text"
+              color="amber accent-3"
               depressed
               @click="copyToClipboard"
             >
@@ -111,6 +112,11 @@ export default {
           // console.log('Text copied to clipboard');
           // this.dialog = false;
           this.shareConfirm = true;
+          const intervalId = setTimeout(() => {
+            this.shareConfirm = false;
+            this.dialog = false;
+            clearInterval(intervalId);
+          }, 1000);
         })
         .catch((err) => {
           // This can happen if the user denies clipboard permissions:
@@ -149,6 +155,11 @@ export default {
 
 <style>
 .cg {
-  background-color: #D12335;
+  background-color: #ffcb01;
+}
+
+.cgshare {
+  color: #ffffff;
+  text-transform: capitalize;
 }
 </style>

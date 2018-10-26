@@ -452,8 +452,13 @@ export default {
       type: 'pondering',
     });
   },
-  async dummyChat(context, txt, index) {
-    const intervalTimeInMs = 750 * (index + 1);
+  // async dummyChat(context, txt, index) {
+  async dummyChat(context, arg) {
+    const txt = arg[0];
+    const index = arg[1];
+    const intervalTimeInMs = 1000 * (index + 1);
+    // eslint-disable-next-line
+    // console.log(index);
     return new Promise((resolve) => {
       // context.commit('setIsLexProcessing', true);
       const intervalId = setTimeout(() => {
@@ -504,7 +509,7 @@ export default {
         context.dispatch('ponderingChat'); // ponderingChat();
         // await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
         await Promise.all(arr
-          .map(async (x, index) => context.dispatch('dummyChat', x, index)));
+          .map(async (x, index) => context.dispatch('dummyChat', [x, index])));
         context.commit('setIsLexProcessing', false);
         context.commit('popMessage');
         context.dispatch(

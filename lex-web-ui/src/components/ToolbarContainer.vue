@@ -26,26 +26,32 @@
     </v-btn>
     <v-dialog
       v-model="dialog"
-      max-width="350"
+      max-width="300"
     >
       <v-card>
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap v-if="!shareConfirm">
             <v-flex xs11>
-            <v-card-title class="subheading">Share this bot: </v-card-title>
+            <v-card-title 
+              class="subheading"
+              style="margin-bottom:-5em"
+            >Share this bot: 
+            </v-card-title>
             </v-flex>
             <v-flex xs1>
               <v-icon @click="dialog = false">close</v-icon>
             </v-flex>
             <!-- v-card-text id="url">{{ url }}</v-card-text -->
+            <v-card-actions>
             <v-text-field
+              color="red"
               v-model="url"
             ></v-text-field>
-          <v-card-actions>
+          
             <v-btn
               class="cgshare white--text"
               color="amber accent-3"
-              depressed
+              depressed small
               @click="copyToClipboard"
             >
               Copy URL
@@ -85,7 +91,8 @@ export default {
   name: 'toolbar-container',
   data() {
     return {
-      url: 'https://amplebot-3d467.firebaseapp.com/#/',
+      // from https://bitly.com/
+      url: 'https://bit.ly/2CGj1Cw', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
       shareConfirm: false,
       shouldShowTooltip: false,
@@ -161,5 +168,10 @@ export default {
 .cgshare {
   color: #ffffff;
   text-transform: capitalize;
+}
+
+.v-text-field input {
+  color: red;
+  font-size:0.8em !important;
 }
 </style>

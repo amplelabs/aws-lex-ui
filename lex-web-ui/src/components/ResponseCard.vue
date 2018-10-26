@@ -27,7 +27,7 @@
                 v-bind:href="responseCard.attachmentLinkUrl"
                 target="_blank"
               >
-                {{ responseCard.subTitle }} <v-icon right dark>call_made</v-icon>
+                {{ responseCard.subTitle }} <v-icon style="margin-left:-0.15em" right dark>call_made</v-icon>
               </v-btn>
             </v-card-actions>
             </v-flex>

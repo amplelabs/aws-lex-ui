@@ -23,10 +23,10 @@
   </div>
   <div
     v-else-if="message.type === 'pondering' && loading"
-    class="message-text"
+    class=""
   >
     <!-- Pondering></Pondering -->
-    <div class="lds-css ng-scope">
+    <div class="">
       <div style="width:100%;height:100%" class="lds-ellipsis">
         <div>
           <div></div>

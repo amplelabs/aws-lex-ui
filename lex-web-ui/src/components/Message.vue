@@ -245,6 +245,9 @@ export default {
   outline-color: #ffffff; 
   border:1px solid #ffffff; /* red; */
   background-color: #ffffff;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 .message-pondering .message-bubble {
@@ -257,7 +260,10 @@ export default {
 .message-human .message-bubble {
   background-color: #ffcb01; /* #E8EAF6; */ /* indigo-50 from material palette */
   outline-color:#ffcb01;
-  border:1px solid #ffcb01
+  border:1px solid #ffcb01;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 .dialog-state {

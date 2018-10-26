@@ -172,7 +172,8 @@ const configDefault = {
     showMessageDate: true,
 
     // bot avatar image URL
-    avatarImageUrl: '/static/img/charlmars_avatar.png',
+    // avatarImageUrl: '/static/img/charlmars_avatar.png',
+    avatarImageUrl: '/static/img/circle.png',
 
     // Show the diaglog state icon, check or alert, in the text bubble
     showDialogStateIcon: true,
@@ -196,7 +197,7 @@ const configDefault = {
   recorder: {
     // if set to true, voice interaction would be enabled on supported browsers
     // set to false if you don't want voice enabled
-    enable: true,
+    enable: false,
 
     // maximum recording time in seconds
     recordingTimeMax: 10,

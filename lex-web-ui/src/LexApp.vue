@@ -37,8 +37,10 @@ import { Loader as LexWebUi } from '@/lex-web-ui';
 // 2x_web/ic_local_dining_black_18dp.png';
 // import flowerLogo from '../node_modules/material-design-icons/tableware-512.png';
 
-import flowerLogo from '../static/img/charlmars_logo.png';
-import faviconLogo from '../static/img/charlmars.png';
+// import flowerLogo from '../static/img/charlmars_logo.png';
+// import faviconLogo from '../static/img/charlmars.png';
+import flowerLogo from '../static/img/Header_icon.png';
+import faviconLogo from '../static/img/Header_icon2.png';
 
 function getToolbarLogo() {
   // Search for logo image files in ../assets/

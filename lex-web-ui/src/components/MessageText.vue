@@ -26,23 +26,9 @@
     class=""
   >
     <!-- Pondering></Pondering -->
-    <div class="">
-      <div style="width:100%;height:100%" class="lds-ellipsis">
-        <div>
-          <div></div>
-        </div>
-        <div>
-          <div></div
-        ></div>
-        <div>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-        </div>
+    <div class="lds-css ng-scope">
+      <div class="lds-message" style="100%;height:100%"> 
+        <div></div><div></div><div></div>
       </div>
     </div>
   </div>
@@ -194,166 +180,91 @@ export default {
   background-color: aquamarine
 }
 
-@keyframes lds-ellipsis3 {
-  0%, 25% {
-    left: 32px;
+@keyframes lds-message {
+  0% {
     -webkit-transform: scale(0);
     transform: scale(0);
   }
   50% {
-    left: 32px;
     -webkit-transform: scale(1);
     transform: scale(1);
-  }
-  75% {
-    left: 100px;
   }
   100% {
-    left: 168px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(0);
+    transform: scale(0);
   }
 }
-@-webkit-keyframes lds-ellipsis3 {
-  0%, 25% {
-    left: 32px;
+@keyframes lds-message {
+  0% {
     -webkit-transform: scale(0);
     transform: scale(0);
   }
   50% {
-    left: 32px;
     -webkit-transform: scale(1);
     transform: scale(1);
-  }
-  75% {
-    left: 100px;
   }
   100% {
-    left: 168px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  25%, 100% {
     -webkit-transform: scale(0);
     transform: scale(0);
   }
 }
-@-webkit-keyframes lds-ellipsis2 {
+@-webkit-keyframes lds-message {
   0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  25%, 100% {
     -webkit-transform: scale(0);
     transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis {
-  0% {
-    left: 32px;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  25% {
-    left: 32px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
   }
   50% {
-    left: 100px;
-  }
-  75% {
-    left: 168px;
     -webkit-transform: scale(1);
     transform: scale(1);
   }
   100% {
-    left: 168px;
     -webkit-transform: scale(0);
     transform: scale(0);
   }
 }
-@-webkit-keyframes lds-ellipsis {
-  0% {
-    left: 32px;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  25% {
-    left: 32px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  50% {
-    left: 100px;
-  }
-  75% {
-    left: 168px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  100% {
-    left: 168px;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-}
-.lds-ellipsis {
+.lds-message {
   position: relative;
 }
-.lds-ellipsis > div {
+.lds-message > div {
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-}
-.lds-ellipsis div > div {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #f00;
-  position: absolute;
-  top: 100px;
-  left: 32px;
-  -webkit-animation: lds-ellipsis 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-  animation: lds-ellipsis 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+  top: 84px;
+  -webkit-animation: lds-message 1s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  animation: lds-message 1s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
-.lds-ellipsis div:nth-child(1) div {
-  -webkit-animation: lds-ellipsis2 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-  animation: lds-ellipsis2 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-  background: #ab2f0c;
+.lds-message > div:nth-of-type(4n + 1) {
+  background: #e69090;
 }
-.lds-ellipsis div:nth-child(2) div {
-  -webkit-animation-delay: -2.5s;
-  animation-delay: -2.5s;
-  background: rgba(67.05882352941175%,18.431372549019613%,4.70588235294117%,0.491);
+.lds-message > div:nth-of-type(4n + 2) {
+  background: #de5d5d;
 }
-.lds-ellipsis div:nth-child(3) div {
-  -webkit-animation-delay: -1.25s;
-  animation-delay: -1.25s;
-  background: rgba(67.05882352941175%,18.431372549019613%,4.70588235294117%,0.843);
+.lds-message > div:nth-of-type(4n + 3) {
+  background: #cf2525;
 }
-.lds-ellipsis div:nth-child(4) div {
+.lds-message > div:nth-of-type(4n) {
+  background: #d3e6ea;
+}
+.lds-message > div:nth-of-type(4n + 1) {
+  left: 34px;
+  -webkit-animation-delay: -0.666666666666667s;
+  animation-delay: -0.666666666666667s;
+}
+.lds-message > div:nth-of-type(4n + 2) {
+  left: 84px;
+  -webkit-animation-delay: -0.333333333333333s;
+  animation-delay: -0.333333333333333s;
+}
+.lds-message > div:nth-of-type(4n + 3) {
+  left: 134px;
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
-  background: #ab2f0c;
 }
-.lds-ellipsis div:nth-child(5) div {
-  -webkit-animation: lds-ellipsis3 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-  animation: lds-ellipsis3 5s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
-  background: #ab2f0c;
-}
-.lds-ellipsis {
-  width: 40px !important;
-  height: 40px !important;
-  -webkit-transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
-  transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+.lds-message {
+  width: 60px !important;
+  height: 60px !important;
+  -webkit-transform: translate(-30px, -30px) scale(0.3) translate(30px, 30px);
+  transform: translate(-30px, -30px) scale(0.3) translate(30px, 30px);
 }
 </style>

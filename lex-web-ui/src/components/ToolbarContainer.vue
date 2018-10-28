@@ -4,8 +4,9 @@
     dense
     fixed
   >
-    <img v-if="toolbarLogo" v-bind:src="toolbarLogo">
-    <v-toolbar-title class="hidden-xs-and-down">
+    <img width="40" style="margin-left:-0em; padding-left:12px; padding-top:9px; padding-bottom:9px"
+      v-if="toolbarLogo" v-bind:src="toolbarLogo">
+    <v-toolbar-title ma-0 pa-0 class="hidden-xs-and-down">
       <span class="white--text">{{ toolbarTitle }}</span>
     </v-toolbar-title>
     <v-spacer />
@@ -15,12 +16,13 @@
       activator=".min-max-toggle"
       left
     >
-      <span id="min-max-tooltip">{{toolTipMinimize}}</span>
+      <!-- span id="min-max-tooltip">{{toolTipMinimize}}</span -->
     </v-tooltip>
     <v-btn icon
+      style="margin-right:-1.4em; padding-left:-12px"
       @click="shareCB"
     >
-      <span style="color:#ffffff"></span><v-icon color="white">
+      <v-icon color="white">
         open_in_new
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
@@ -92,7 +94,7 @@ export default {
   data() {
     return {
       // from https://bitly.com/
-      url: 'https://bit.ly/2CGj1Cw', // 'https://amplebot-3d467.firebaseapp.com/#/',
+      url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
       shareConfirm: false,
       shouldShowTooltip: false,

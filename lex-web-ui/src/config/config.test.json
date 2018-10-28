@@ -4,7 +4,7 @@
   },
   "lex": {
     "botName": "AmplelabsBot",
-    "botAlias": "$LATEST",
+    "botAlias": "prod",
     "initialText": "Hi my name is Chalmers and I am a Chat Bot. I can help you look for things like free meals, overnight shelter, drop-ins, clothing banks here in the city. Say something to get me started!",
     "initialSpeechInstruction": "Say something to get me started!."
   },

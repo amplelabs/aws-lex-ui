@@ -151,6 +151,7 @@ export default {
     botAvatarBackground() {
       return {
         background: `url(${this.botAvatarUrl}) center center / contain no-repeat`,
+        'background-size': '32px 32px',
       };
     },
     shouldShowMessageDate() {
@@ -214,10 +215,16 @@ export default {
 .bot-avatar {
   align-self: center;
   border-radius: 50%;
-  min-width: calc(2.5em + 1.5vmin);
-  min-height: calc(2.5em + 1.5vmin);
+  border-style: none;
+  border-width: 0px;
+  min-width: 32px; /* calc(2.5em + 0.0vmin); */
+  min-height: 32px; /* calc(2.5em + 0.0vmin); */
   align-self: flex-start;
-  margin-right: 4px;
+  margin-right: 8px;
+  margin-left: 0px;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 .message-bubble {

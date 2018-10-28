@@ -17,7 +17,7 @@
           ></v-card-media>
         </v-flex>
         <v-container class="cgbuttonrow">
-          <v-layout justify-start row nowrap>
+          <!-- v-layout justify-start row nowrap>
             <v-flex xs12 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
             <v-card-actions ml-2>
               <v-btn
@@ -27,12 +27,27 @@
                 v-bind:href="responseCard.attachmentLinkUrl"
                 target="_blank"
               >
-                {{ responseCard.subTitle }} <v-icon style="margin-left:-0.15em" right dark>call_made</v-icon>
+                {{ responseCard.subTitle }} <v-icon style="margin-left:0.0em; font-size: 14px;" right dark>call_made</v-icon>
               </v-btn>
             </v-card-actions>
             </v-flex>
-          </v-layout>
+          </v-layout -->
           <v-layout justify-start row wrap>
+            <!-- -->
+            <v-card-actions
+              style="margin-top:8px;"
+              ml-2 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+              <v-btn
+                class="cgred"
+                round outline small
+                tag="a"
+                v-bind:href="responseCard.attachmentLinkUrl"
+                target="_blank"
+              >
+                {{ responseCard.subTitle }} <v-icon style="margin-left:0.0em; font-size: 14px;" right dark>call_made</v-icon>
+              </v-btn>
+            </v-card-actions>
+            <!-- -->
             <v-card-actions
               ml-2 
               v-for="(button, index) in responseCard.buttons"
@@ -151,8 +166,8 @@ export default {
 }
 
 .cgbuttonrow {
-  margin-top:-1.75em;
-  margin-left:-2.5em;
+  margin-top: -1.75em;
+  margin-left: -2.5em;
   overflow-x: auto;
 }
 

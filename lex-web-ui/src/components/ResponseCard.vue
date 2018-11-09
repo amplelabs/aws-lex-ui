@@ -144,37 +144,47 @@ export default {
   width: 75vw;
   height: 100%;
   position: inherit; /* workaround to card being displayed on top of toolbar shadow */
-  padding-bottom: 0.0em;
+  padding-bottom: 0em;
 }
 .card__title {
-  padding: 0.0em;
-  padding-top: 0.0em;
+  padding: 0em;
+  padding-top: 0em;
 }
 .card__text {
   padding: 0.33em;
 }
+.card__actions {
+  padding-bottom: 0px !important;
+}
 .card__actions.button-row {
   justify-content: center;
-  padding-bottom: 0.0em;
+  padding-bottom: 0em;
   margin-bottom: 0px;
 }
+
 .cgred {
-  color: #D12335;
-  margin-top: -1px;
-  margin-right: -5px;
+  color: #d12335;
+  margin: 0.25em 0 0;
+  text-transform: capitalize;
+  font-size: 16px;
+  height: 3em;
+  padding: 0 0.5em;
+}
+
+.container {
+  padding: 2vh 1.5vh;
   text-transform: capitalize;
 }
 
 .cgbuttonrow {
-  margin-top: -1.75em;
-  margin-left: -2.5em;
+  margin-top: -2em;
+  margin-left: 0.5em;
   overflow-x: auto;
 }
 
 .linkbutton {
   /* margin-top:-1em; */
-  margin-bottom:-1.5em;
+  margin-bottom: -1.5em;
   /* padding-bottom: 0.5em; */
 }
-
 </style>

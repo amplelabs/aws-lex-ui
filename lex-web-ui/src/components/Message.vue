@@ -293,3 +293,9 @@ export default {
   width: 85vw;
 }
 </style>
+
+<style>
+.message-text p {
+  margin-bottom: 0;
+}
+</style>

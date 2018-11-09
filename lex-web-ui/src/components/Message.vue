@@ -212,6 +212,13 @@ export default {
   max-width: 80vw;
 }
 
+@media (max-width: 500px) {
+  .message,
+  .message-bubble-row {
+    max-width: 95vw;
+  }
+}
+
 .bot-avatar {
   align-self: center;
   border-radius: 50%;

@@ -23,6 +23,15 @@
       @click="shareCB"
     >
       <v-icon color="white">
+        feedback
+      </v-icon> <span style="color:#D12335"></span>
+    </v-btn>
+    &nbsp; &nbsp;
+    <v-btn icon
+      style="margin-right:-1.4em; padding-left:-12px"
+      @click="shareCB"
+    >
+      <v-icon color="white">
         open_in_new
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>

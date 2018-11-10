@@ -133,20 +133,18 @@ export default {
       return (
         this.message.responseCard &&
         (this.message.responseCard.version === '0' || // example code use version 1
-         this.message.responseCard.version === '1' ||
-         this.message.responseCard.version === 1 ||
-         this.message.responseCard.version === 0) &&
-        this.message.responseCard.contentType === 'application/vnd.amazonaws.card.generic' &&
+          this.message.responseCard.version === '1' ||
+          this.message.responseCard.version === 1 ||
+          this.message.responseCard.version === 0) &&
+        this.message.responseCard.contentType ===
+          'application/vnd.amazonaws.card.generic' &&
         'genericAttachments' in this.message.responseCard &&
         this.message.responseCard.genericAttachments instanceof Array
       );
     },
     shouldShowAvatarImage() {
       // console.log(this.message.text);
-      return (
-        this.message.type === 'bot' &&
-        this.botAvatarUrl
-      );
+      return this.message.type === 'bot' && this.botAvatarUrl;
     },
     botAvatarBackground() {
       return {
@@ -204,11 +202,13 @@ export default {
 </script>
 
 <style scoped>
-.message, .message-bubble-column {
+.message,
+.message-bubble-column {
   flex: 0 0 auto;
 }
 
-.message, .message-bubble-row {
+.message,
+.message-bubble-row {
   max-width: 80vw;
 }
 
@@ -230,8 +230,8 @@ export default {
   margin-right: 8px;
   margin-left: 0px;
   -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .message-bubble {
@@ -244,40 +244,41 @@ export default {
 }
 
 .focusable {
-  box-shadow: 0 0.25px 0.75px rgba(0,0,0,0.12), 0 0.25px 0.5px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 0.25px 0.75px rgba(0, 0, 0, 0.12), 0 0.25px 0.5px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: default;
 }
 
 .focusable:focus {
-  box-shadow: 0 1.25px 3.75px rgba(0,0,0,0.25), 0 1.25px 2.5px rgba(0,0,0,0.22);
+  box-shadow: 0 1.25px 3.75px rgba(0, 0, 0, 0.25), 0 1.25px 2.5px rgba(0, 0, 0, 0.22);
   outline: none;
 }
 
 .message-bot .message-bubble {
   /* background-color: #FFEBEE; */ /* red-50 from material palette */
-  outline-color: #ffffff; 
-  border:1px solid #ffffff; /* red; */
+  outline-color: #ffffff;
+  border: 1px solid #ffffff; /* red; */
   background-color: #ffffff;
   -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-bottom: 12px;
 }
 
 .message-pondering .message-bubble {
   /* background-color: #FFEBEE; */ /* red-50 from material palette */
-  outline-color: #ffffff; 
-  border:1px solid #ffffff; /* red; */
+  outline-color: #ffffff;
+  border: 1px solid #ffffff; /* red; */
   background-color: #ffffff;
 }
 
 .message-human .message-bubble {
   background-color: #ffcb01; /* #E8EAF6; */ /* indigo-50 from material palette */
-  outline-color:#ffcb01;
-  border:1px solid #ffcb01;
+  outline-color: #ffcb01;
+  border: 1px solid #ffcb01;
   -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .dialog-state {
@@ -304,5 +305,9 @@ export default {
 <style>
 .message-text p {
   margin-bottom: 0;
+}
+
+.card__media {
+  margin-bottom: 12px;
 }
 </style>

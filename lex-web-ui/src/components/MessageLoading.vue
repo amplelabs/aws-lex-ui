@@ -44,10 +44,8 @@ export default {
       progress: '.',
     };
   },
-  computed: {
-  },
-  methods: {
-  },
+  computed: {},
+  methods: {},
   created() {
     this.interval = setInterval(() => {
       if (this.progress.length > 2) {
@@ -64,11 +62,13 @@ export default {
 </script>
 
 <style scoped>
-.message, .message-bubble-column {
+.message,
+.message-bubble-column {
   flex: 0 0 auto;
 }
 
-.message, .message-bubble-row {
+.message,
+.message-bubble-row {
   max-width: 80vw;
 }
 
@@ -79,12 +79,10 @@ export default {
   padding: 0 12px;
   width: fit-content;
   align-self: center;
+  margin-bottom: 0.5rem;
 }
-
 
 .message-bot .message-bubble {
-  background-color: #FFFFFF; /* #FFEBEE; */ /* red-50 from material palette */
+  background-color: #ffffff; /* #FFEBEE; */ /* red-50 from material palette */
 }
-
-
 </style>

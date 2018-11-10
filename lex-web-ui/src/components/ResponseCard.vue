@@ -109,9 +109,11 @@ export default {
   },
   methods: {
     displayLinkCaption() {
-      if (this.subTitle === null
-        || this.subTitle === undefined
-        || typeof (this.subTitle) !== 'string') {
+      if (
+        this.subTitle === null ||
+        this.subTitle === undefined ||
+        typeof this.subTitle !== 'string'
+      ) {
         return false;
       }
       const len = this.subTitle.length;
@@ -172,7 +174,7 @@ export default {
 }
 
 .container {
-  padding: 2vh 1.5vh;
+  padding: 12px;
   text-transform: capitalize;
 }
 

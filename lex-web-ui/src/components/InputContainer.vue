@@ -6,11 +6,12 @@
       ma-0
       class="input-container"
     >
-      <v-toolbar color="white" dense flat>
+      <v-toolbar :color="inputboxColor" dense flat>
         <!--
           using v-show instead of v-if to make recorder-status transition work
         -->
-        <v-text-field
+        <transition name="fade">
+        <v-text-field v-if="readyForInput"
           v-bind:label="textInputPlaceholder"
           v-show="shouldShowTextInput"
           v-model="textInput"
@@ -23,7 +24,7 @@
           single-line
           hide-details
         ></v-text-field>
-
+        </transition>
         <recorder-status
           v-show="!shouldShowTextInput"
         ></recorder-status>
@@ -38,6 +39,7 @@
         >
           <span id="input-button-tooltip">{{inputButtonTooltip}}</span>
         </v-tooltip>
+        <div v-if="readyForInput">
         <v-btn
           v-if="shouldShowSendButton"
           v-on:click="postTextMessage"
@@ -60,6 +62,7 @@
         >
           <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
         </v-btn>
+        </div>
       </v-toolbar>
       <v-content class="reference">
         <v-container fluid grid-list-sm mb-1 pt-0>
@@ -107,6 +110,7 @@ export default {
   data() {
     return {
       textInput: '',
+      inputboxColor: 'white',
       isTextFieldFocused: false,
       shouldShowTooltip: false,
       // workaround: vuetify tooltips doesn't seem to support touch events
@@ -123,7 +127,21 @@ export default {
   components: {
     RecorderStatus,
   },
+  watch: {
+    readyForInput(val) {
+      if (val) {
+        this.inputboxColor = 'white';
+        return;
+      }
+      this.inputboxColor = 'grey lighten-4';
+    },
+  },
   computed: {
+    readyForInput() {
+      // eslint-disable-next-line no-console
+      // console.log(!this.$store.state.botIsTexting);
+      return !this.$store.state.botIsTexting;
+    },
     isBotSpeaking() {
       return this.$store.state.botAudio.isSpeaking;
     },
@@ -303,6 +321,13 @@ a {
 a:link {
   color:white !important;
   text-decoration: none;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>

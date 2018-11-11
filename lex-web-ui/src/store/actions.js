@@ -505,6 +505,7 @@ export default {
             alts: JSON.parse(response.sessionAttributes.appContext || '{}').altMessages,
           },
         );
+        context.commit('setBotIsTexting', false);
       } else {
         // start the ... first.
         context.commit('setIsLexProcessing', true);
@@ -513,6 +514,7 @@ export default {
         await Promise.all(arr
           .map(async (x, index) => context.dispatch('dummyChat', [x, index])));
         context.commit('setIsLexProcessing', false);
+        context.commit('setBotIsTexting', false);
         context.commit('popMessage');
         context.dispatch(
           'pushMessage',
@@ -533,6 +535,7 @@ export default {
     // console.log(message);
     return context.dispatch('lexPostText', message.text)
       .then((response) => {
+        context.commit('setBotIsTexting', true);
         context.dispatch('processResponse', response);
       })
       .then(() => {
@@ -549,6 +552,7 @@ export default {
           'Sorry, would you mind to ask your question in a different way?' +
           `${errorMessage}`,
         );
+        context.commit('setBotIsTexting', false);
       });
   },
   postTextMessageFromUser(context, message) {

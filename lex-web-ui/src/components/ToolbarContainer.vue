@@ -2,6 +2,7 @@
   <v-toolbar style="background-color:#D12335"
     app
     dense
+    flat
     fixed
   >
     <img width="40" style="margin-left:-0em; padding-left:12px; padding-top:9px; padding-bottom:9px"

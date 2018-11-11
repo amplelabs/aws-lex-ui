@@ -61,8 +61,8 @@
           <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-content class="reference" ma-0 pa-0>
-        <v-container fluid grid-list-sm ma-0 pa-0>
+      <v-content class="reference">
+        <v-container fluid grid-list-sm mb-1 pt-0>
           <v-layout row>
             <v-flex xs6>
               <v-card flat class="reference-card white--text" style="background-color: #d12335;">
@@ -273,7 +273,7 @@ export default {
 <style>
 .footer {
   /* make footer same height as dense toolbar */
-  height: 48px;
+  height: 58px;
 }
 
 .reference {

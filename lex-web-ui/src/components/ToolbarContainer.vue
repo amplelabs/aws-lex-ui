@@ -69,6 +69,7 @@
                 <v-btn
                   style="margin-left:-5px; color: #d12335;"
                   round outline small
+                  @click="feedback = false;"
                 >
                   Submit
                 </v-btn>

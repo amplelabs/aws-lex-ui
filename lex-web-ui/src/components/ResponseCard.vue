@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     imageUrl() {
-      return `'${this.responseCard.imageUrl}'`;
+      return `${this.responseCard.imageUrl}`;
     },
     flexClass() {
       // console.log(this.$vuetify.breakpoint.name);
@@ -187,4 +187,20 @@ export default {
   margin-bottom: -1.5em;
   /* padding-bottom: 0.5em; */
 }
+
+a {
+  color:#d12335 !important;
+  text-decoration: none;
+}
+
+a:link {
+  color:#d12335 !important;
+  text-decoration: none;
+}
+
+a[href^="tel:"] {
+  color: black !important;
+  text-decoration: underline;
+}
+
 </style>

@@ -273,7 +273,7 @@ export default {
 <style>
 .footer {
   /* make footer same height as dense toolbar */
-  height: 58px;
+  height: 48px;
 }
 
 .reference {

@@ -11,9 +11,9 @@
           using v-show instead of v-if to make recorder-status transition work
         -->
         <transition name="fade">
-        <v-text-field v-if="readyForInput"
+        <v-text-field
           v-bind:label="textInputPlaceholder"
-          v-show="shouldShowTextInput"
+          v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
           v-on:keyup.enter.stop="postTextMessage"
           v-on:focus="onTextFieldFocus"
@@ -39,7 +39,7 @@
         >
           <span id="input-button-tooltip">{{inputButtonTooltip}}</span>
         </v-tooltip>
-        <div v-if="readyForInput">
+        <div v-show="readyForInput">
         <v-btn
           v-if="shouldShowSendButton"
           v-on:click="postTextMessage"
@@ -323,7 +323,8 @@ a:link {
   text-decoration: none;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1.5s;
+  /* transition: opacity 1.5s; */
+  transition: all 1.5s ease;
 }
 
 .fade-enter, .fade-leave-to {

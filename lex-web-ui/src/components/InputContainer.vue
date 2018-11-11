@@ -1,12 +1,12 @@
 <template>
   <v-footer app fixed>
     <v-layout
-      row
+      column
       justify-space-between
       ma-0
       class="input-container"
     >
-      <v-toolbar color="white" dense>
+      <v-toolbar color="white" dense flat>
         <!--
           using v-show instead of v-if to make recorder-status transition work
         -->
@@ -61,6 +61,26 @@
           <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
         </v-btn>
       </v-toolbar>
+      <v-content class="reference" ma-0 pa-0>
+        <v-container fluid grid-list-sm ma-0 pa-0>
+          <v-layout row>
+            <v-flex xs6>
+              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+                <a href="https://www.amplelabs.co/">
+                <v-card-text class="highlighted ">Terms and Conditions</v-card-text>
+                </a>
+              </v-card>
+            </v-flex>
+            <v-flex xs6>
+              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+                <a href="https://www.amplelabs.co/">
+                <v-card-text class="highlighted text-xs-right font-italic">Disclaimer</v-card-text>
+                </a>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
     </v-layout>
   </v-footer>
 </template>
@@ -253,6 +273,36 @@ export default {
 <style>
 .footer {
   /* make footer same height as dense toolbar */
-  min-height: 48px;
+  height: 48px;
 }
+
+.reference {
+  min-height: 48px;
+  background-color: #d12335;
+}
+
+.reference-card {
+  margin-top:-48px;
+  background-color: #d12335;
+  color: white;
+}
+
+.cgred {
+  color: #d12335;
+}
+
+.highlighted {
+  font-style: italic;
+}
+
+a {
+  color:white !important;
+  text-decoration: none;
+}
+
+a:link {
+  color:white !important;
+  text-decoration: none;
+}
+
 </style>

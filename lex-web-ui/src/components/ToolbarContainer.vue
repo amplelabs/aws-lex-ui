@@ -20,12 +20,41 @@
     </v-tooltip>
     <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
-      @click="shareCB"
+      @click="feedbackCB"
     >
       <v-icon color="white">
         feedback
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
+    <v-dialog
+      v-model="feedback"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChamlersBot Feedback Form</v-toolbar-title>
+      </v-toolbar>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column>
+            <v-flex xs12>
+              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              placeholder="Placeholder"
+              box
+            ></v-text-field>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-dialog>
     &nbsp; &nbsp;
     <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
@@ -105,6 +134,7 @@ export default {
       // from https://bitly.com/
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
+      feedback: false,
       shareConfirm: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
@@ -154,6 +184,9 @@ export default {
       */
       // this.dialog = false;
     },
+    feedbackCB() {
+      this.feedback = true;
+    },
     shareCB() {
       this.dialog = true;
     },
@@ -184,5 +217,9 @@ export default {
 .v-text-field input {
   color: red;
   font-size:0.8em !important;
+}
+
+.cgred {
+  color: #d12335;
 }
 </style>

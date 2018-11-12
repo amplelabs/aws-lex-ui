@@ -110,7 +110,7 @@ export default {
   data() {
     return {
       textInput: '',
-      inputboxColor: 'white',
+      inputboxColor: 'grey lighten-4',
       isTextFieldFocused: false,
       shouldShowTooltip: false,
       // workaround: vuetify tooltips doesn't seem to support touch events
@@ -161,7 +161,7 @@ export default {
       return this.$store.state.recState.isRecorderEnabled;
     },
     isSendButtonDisabled() {
-      return this.textInput.length < 1;
+      return false; // this.textInput.length < 1;
     },
     micButtonIcon() {
       if (this.isMicMuted) {

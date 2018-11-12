@@ -36,7 +36,7 @@ export default {
     slotToElicit: '',
     slots: {},
   },
-  botIsTexting: false,
+  botIsTexting: true, // false,
   messages: [],
   polly: {
     outputFormat: 'ogg_vorbis',

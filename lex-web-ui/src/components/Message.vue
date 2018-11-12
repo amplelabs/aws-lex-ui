@@ -322,4 +322,13 @@ a {
   text-decoration: underline;
 }
 
+.speech-fade-enter-active,{
+  transition: opacity 1.5s;
+}
+
+.speech-fade-enter /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+
 </style>

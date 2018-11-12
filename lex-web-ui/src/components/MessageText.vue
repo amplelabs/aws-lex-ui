@@ -10,11 +10,6 @@
     v-html="altHtmlMessage"
     class="message-text"
   ></div>
-  <!-- div
-    v-else-if="message.text && shouldRenderAsHtml"
-    v-html="botMessageAsHtml"
-    class="message-text"
-  ></div -->
   <div
     v-else-if="message.text && message.type === 'bot'"
     class="message-text"

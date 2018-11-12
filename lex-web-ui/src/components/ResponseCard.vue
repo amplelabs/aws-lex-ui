@@ -1,14 +1,8 @@
 <template>
   <v-card flat class="grey lighten-4">
-    <v-container pa-0 grid-list-md >
+    <v-container pa-0 grid-list-md>
       <v-layout justify-start row fill-height wrap>
         <v-flex v-bind:class="flexClass" fluid>
-          <!--v-card-title v-if="responseCard.title.trim()" class="grey lighten-4">
-            <span class="caption">{{responseCard.title}}</span>
-          </v-card-title>
-          <v-card-text v-if="responseCard.subTitle">
-            <span>{{responseCard.subTitle}}</span>
-          </v-card-text height="33vh"-->
           <v-card-media
             v-if="responseCard.imageUrl !== null"
             :src="imageUrl"
@@ -16,26 +10,10 @@
             height="23vh"
           ></v-card-media>
         </v-flex>
-        <v-container class="cgbuttonrow">
-          <!-- v-layout justify-start row nowrap>
-            <v-flex xs12 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-            <v-card-actions ml-2>
-              <v-btn
-                class="cgred"
-                round outline small
-                tag="a"
-                v-bind:href="responseCard.attachmentLinkUrl"
-                target="_blank"
-              >
-                {{ responseCard.subTitle }} <v-icon style="margin-left:0.0em; font-size: 14px;" right dark>call_made</v-icon>
-              </v-btn>
-            </v-card-actions>
-            </v-flex>
-          </v-layout -->
+        <v-container grid-list-xs class="cgbuttonrow" ma-0 pa-0>
           <v-layout justify-start row wrap>
             <!-- -->
             <v-card-actions
-              style="margin-top:8px;"
               ml-2 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
               <v-btn
                 class="cgred"
@@ -65,6 +43,7 @@
                 {{button.text}}
               </v-btn> 
             </v-card-actions>
+            <!-- -->
           </v-layout>
         </v-container>
      </v-layout>
@@ -177,8 +156,10 @@ export default {
 }
 
 .cgbuttonrow {
-  margin-top: -2em;
-  margin-left: 0.5em;
+  /* margin-top: -2em;
+  margin-left: 0.5em; */
+  margin-top: 0px;
+  margin-left: 0px;
   overflow-x: auto;
 }
 

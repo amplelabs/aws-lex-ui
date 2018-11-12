@@ -288,7 +288,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .footer {
   /* make footer same height as dense toolbar */
   height: 48px;

@@ -315,7 +315,8 @@ export default {
   opacity: 0;
 }
 
-a[href^="tel:"] {
+/* [href^="tel:"] */
+a {
   color: black !important;
   text-decoration: underline;
 }

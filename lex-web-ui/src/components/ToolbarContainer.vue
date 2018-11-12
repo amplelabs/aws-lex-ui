@@ -20,12 +20,69 @@
     </v-tooltip>
     <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
-      @click="shareCB"
+      @click="feedbackCB"
     >
       <v-icon color="white">
         feedback
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
+    <v-dialog
+      v-model="feedback"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChamlersBot Feedback Form</v-toolbar-title>
+      </v-toolbar>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column>
+            <v-flex xs12>
+              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+            ></v-text-field>
+            </v-flex>
+             <v-flex xs12>
+              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea
+                style="margin-top: -30px"
+                outline
+                color="#d12335"
+                name="input-7-4"
+              ></v-textarea>
+            </v-flex>
+            </v-layout>
+            <v-layout row>
+              <v-flex xs3>
+                <v-btn
+                  style="margin-left:-5px; color: #d12335;"
+                  round outline small
+                  @click="feedback = false;"
+                >
+                  Submit
+                </v-btn>
+              </v-flex>
+              <v-flex xs9>
+                <p class="text-xs-right">
+                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
+                </p>
+              </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-dialog>
     &nbsp; &nbsp;
     <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
@@ -105,6 +162,7 @@ export default {
       // from https://bitly.com/
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
+      feedback: false,
       shareConfirm: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
@@ -154,6 +212,9 @@ export default {
       */
       // this.dialog = false;
     },
+    feedbackCB() {
+      this.feedback = true;
+    },
     shareCB() {
       this.dialog = true;
     },
@@ -171,7 +232,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cg {
   background-color: #ffcb01;
 }
@@ -182,7 +243,22 @@ export default {
 }
 
 .v-text-field input {
-  color: red;
+  color: #d12335;
   font-size:0.8em !important;
 }
+
+.cgred {
+  color: #d12335;
+}
+
+a {
+  color:black !important;
+  text-decoration: none;
+}
+
+a:link {
+  color:black !important;
+  text-decoration: none;
+}
+
 </style>

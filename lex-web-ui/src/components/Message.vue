@@ -62,6 +62,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
+      <transition name="fade">
       <v-flex
         v-if="shouldDisplayResponseCard"
         class="response-card"
@@ -75,6 +76,7 @@
         >
         </response-card>
       </v-flex>
+      </transition>
     </v-layout>
   </v-flex>
 </template>
@@ -309,5 +311,17 @@ export default {
 
 .card__media {
   margin-bottom: 12px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+a[href^='tel:'] {
+  color: black !important;
+  text-decoration: underline;
 }
 </style>

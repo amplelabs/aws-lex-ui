@@ -1,20 +1,21 @@
 <template>
   <v-card flat class="grey lighten-4">
-    <v-container pa-0 grid-list-md>
-      <v-layout justify-start row fill-height wrap>
-        <v-flex v-bind:class="flexClass" fluid>
-          <v-card-media
+    <v-container pa-0 grid-list-md >
+      <v-layout row fill-height wrap>
+        <v-flex xs12 fluid>
+          <v-img
             v-if="responseCard.imageUrl !== null"
             :src="imageUrl"
             contain
-            height="23vh"
-          ></v-card-media>
+            :height="mapHeight"
+            :style="mapOffset"
+          ></v-img>
         </v-flex>
-        <v-container grid-list-xs class="cgbuttonrow" ma-0 pa-0>
+        <v-container class="cgbuttonrow" :style="styleAdj">
           <v-layout justify-start row wrap>
             <!-- -->
             <v-card-actions
-              ml-2 v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+              v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
               <v-btn
                 class="cgred"
                 round outline small
@@ -27,7 +28,6 @@
             </v-card-actions>
             <!-- -->
             <v-card-actions
-              ml-2 
               v-for="(button, index) in responseCard.buttons"
               v-bind:key="index"
               actions
@@ -43,7 +43,6 @@
                 {{button.text}}
               </v-btn> 
             </v-card-actions>
-            <!-- -->
           </v-layout>
         </v-container>
      </v-layout>
@@ -74,6 +73,18 @@ export default {
     };
   },
   computed: {
+    mapOffset() {
+      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-370px;';
+      return 'margin-left:25px;';
+    },
+    mapHeight() {
+      if (this.$vuetify.breakpoint.mdAndUp) return '300px';
+      return '23vh';
+    },
+    styleAdj() {
+      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-45px;';
+      return 'margin-left:15px';
+    },
     imageUrl() {
       return `${this.responseCard.imageUrl}`;
     },
@@ -156,9 +167,7 @@ export default {
 }
 
 .cgbuttonrow {
-  /* margin-top: -2em;
-  margin-left: 0.5em; */
-  margin-top: 0px;
+  margin-top: -20px;
   margin-left: 0px;
   overflow-x: auto;
 }

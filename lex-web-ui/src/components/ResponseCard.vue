@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     mapOffset() {
-      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-370px;';
+      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-170px;';
       return 'margin-left:25px;';
     },
     mapHeight() {
@@ -82,7 +82,7 @@ export default {
       return '23vh';
     },
     styleAdj() {
-      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-45px;';
+      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:15px;';
       return 'margin-left:15px';
     },
     imageUrl() {

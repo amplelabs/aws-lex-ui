@@ -36,6 +36,15 @@
         dense
       >
         <v-toolbar-title class="white--text">ChamlersBot Feedback Form</v-toolbar-title>
+        <v-spacer />
+        <v-btn icon
+          style="margin-right:-1.4em; padding-left:-12px"
+          @click="feedback=false"
+        >
+          <v-icon color="white">
+            close
+          </v-icon> <span style="color:#D12335"></span>
+        </v-btn>
       </v-toolbar>
       <v-card>
         <v-container
@@ -90,55 +99,62 @@
       @click="shareCB"
     >
       <v-icon color="white">
-        open_in_new
+        share
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
     <v-dialog
       v-model="dialog"
-      max-width="300"
+      max-width="400"
     >
-      <v-card>
-        <v-container grid-list-md text-xs-center>
-          <v-layout row wrap v-if="!shareConfirm">
-            <v-flex xs11>
-            <v-card-title 
-              class="subheading"
-              style="margin-bottom:-5em"
-            >Share this bot: 
-            </v-card-title>
-            </v-flex>
-            <v-flex xs1>
-              <v-icon @click="dialog = false">close</v-icon>
-            </v-flex>
-            <!-- v-card-text id="url">{{ url }}</v-card-text -->
-            <v-card-actions>
+    <v-toolbar
+      style="background-color:#D12335"
+      dense
+    >
+      <v-toolbar-title class="white--text">Share ChalmersBot</v-toolbar-title>
+      <v-spacer />
+      <v-btn icon
+        style="margin-right:-1.4em; padding-left:-12px"
+        @click="dialog=false"
+      >
+        <v-icon color="white">
+          close
+        </v-icon> <span style="color:#D12335"></span>
+      </v-btn>
+    </v-toolbar>
+    <v-card>
+      <v-container
+        fluid
+        grid-list-lg
+      >
+        <v-layout column v-if="!shareConfirm">
+          <v-flex xs12>
             <v-text-field
               color="red"
               v-model="url"
             ></v-text-field>
-          
+          </v-flex>
+          <v-flex xs12>
             <v-btn
-              class="cgshare white--text"
-              color="amber accent-3"
-              depressed small
+              style="margin-left:-5px; color: #d12335;"
+              round outline small
               @click="copyToClipboard"
             >
               Copy URL
             </v-btn>
-          </v-card-actions>
-          </v-layout>
-          <v-layout row wrap v-else>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap v-else>
             <v-flex offset-xs2>
               <v-card-text>Link Copied</v-card-text>
             </v-flex>
             <v-flex xs4>
-              <v-btn fab small color="amber lighten-1">
-                <v-icon color="white">check</v-icon>
+              <v-btn fab small style="color: #d12335;">
+                <v-icon>check</v-icon>
               </v-btn>
             </v-flex>
           </v-layout>
-        </v-container>
-      </v-card>
+      </v-container>
+    </v-card>
     </v-dialog>
   </v-toolbar>
 </template>

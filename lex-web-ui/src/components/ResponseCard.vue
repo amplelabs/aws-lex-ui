@@ -1,53 +1,45 @@
 <template>
-  <v-card flat class="grey lighten-4">
-    <v-container pa-0 grid-list-md >
-      <v-layout row fill-height wrap>
-        <v-flex xs12 fluid>
-          <v-img
-            v-if="responseCard.imageUrl !== null"
-            :src="imageUrl"
-            contain
-            :height="mapHeight"
-            :style="mapOffset"
-          ></v-img>
-        </v-flex>
-        <v-container class="cgbuttonrow" :style="styleAdj">
-          <v-layout justify-start row wrap>
-            <!-- -->
-            <v-card-actions
-              v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
-              <v-btn
-                class="cgred"
-                round outline small
-                tag="a"
-                v-bind:href="responseCard.attachmentLinkUrl"
-                target="_blank"
-              >
-                {{ responseCard.subTitle }} <!-- v-icon style="margin-left:0.0em; font-size: 14px;" right dark>call_made</v-icon -->
-              </v-btn>
-            </v-card-actions>
-            <!-- -->
-            <v-card-actions
-              v-for="(button, index) in responseCard.buttons"
-              v-bind:key="index"
-              actions
-              class="button-row"
-            > <!-- button.value -->
-              <v-btn
-                v-if="button.text && button.value && !hasButtonBeenClicked"
-                v-on:click.once.native="onButtonClick(button.text)"
-                v-bind:disabled="hasButtonBeenClicked"
-                class="cgred"
-                round outline small
-              >
-                {{button.text}}
-              </v-btn> 
-            </v-card-actions>
-          </v-layout>
-        </v-container>
-     </v-layout>
-    </v-container>
-  </v-card>
+  <v-container class="cgbuttonrow" grid-list-md >
+    <v-img
+      v-if="responseCard.imageUrl !== null"
+      :src="imageUrl"
+      :height="mapHeight"
+      width="80wh"
+      :style="mapOffset"
+    ></v-img>
+    <v-layout row wrap>
+      <v-card-actions
+        v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+        <v-btn
+          class="cgred"
+          :style="styleAdj"
+          round outline small
+          tag="a"
+          v-bind:href="responseCard.attachmentLinkUrl"
+          target="_blank"
+        >
+          {{ responseCard.subTitle }}
+        </v-btn>
+      </v-card-actions>
+      <v-card-actions
+        v-for="(button, index) in responseCard.buttons"
+        v-bind:key="index"
+        actions
+        class="button-row"
+        >
+        <v-btn
+          v-if="button.text && button.value && !hasButtonBeenClicked"
+          v-on:click.once.native="onButtonClick(button.text)"
+          v-bind:disabled="hasButtonBeenClicked"
+          class="cgred"
+          :style="styleAdj"
+          round outline small
+        >
+          {{button.text}}
+        </v-btn> 
+      </v-card-actions>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -74,27 +66,20 @@ export default {
   },
   computed: {
     mapOffset() {
-      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-170px;';
-      return 'margin-left:25px;';
+      // if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-170px;';
+      return 'margin-left:10px;'; //  'margin-left:25px;';
     },
     mapHeight() {
-      if (this.$vuetify.breakpoint.mdAndUp) return '300px';
+      if (this.$vuetify.breakpoint.mdAndUp) return '400px';
+      if (this.$vuetify.breakpoint.smAndUp) return '300px';
       return '23vh';
     },
     styleAdj() {
-      if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:15px;';
-      return 'margin-left:15px';
+      // if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:15px;';
+      return 'margin-left:10px';
     },
     imageUrl() {
       return `${this.responseCard.imageUrl}`;
-    },
-    flexClass() {
-      // console.log(this.$vuetify.breakpoint.name);
-      // console.log(this.$vuetify.breakpoint.mdAndUp);
-      return {
-        xs12: !this.$vuetify.breakpoint.mdAndUp,
-        xs6: this.$vuetify.breakpoint.mdAndUp,
-      };
     },
   },
   methods: {
@@ -154,7 +139,7 @@ export default {
 
 .cgred {
   color: #d12335;
-  margin: 0.25em 0 0;
+  margin: 0.25em 0 0 0;
   text-transform: capitalize;
   font-size: 16px;
   height: 3em;

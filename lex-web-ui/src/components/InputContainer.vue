@@ -58,21 +58,21 @@
           class="black--text input-button"
           icon
         >
-          <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
+          <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>s
         </v-btn>
       </v-toolbar>
       <v-content class="reference">
         <v-container fluid grid-list-sm mb-1 pt-0>
           <v-layout row>
             <v-flex xs6>
-              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+              <v-card flat class="reference-card white--text" style="background-color: #ae1e2c;">
                 <a href="https://www.amplelabs.co/">
                 <v-card-text class="highlighted ">Terms and Conditions</v-card-text>
                 </a>
               </v-card>
             </v-flex>
             <v-flex xs6>
-              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+              <v-card flat class="reference-card white--text" style="background-color: #ae1e2c;">
                 <a href="https://www.amplelabs.co/">
                 <v-card-text class="highlighted text-xs-right font-italic">Disclaimer</v-card-text>
                 </a>
@@ -278,13 +278,21 @@ export default {
 
 .reference {
   min-height: 48px;
-  background-color: #d12335;
+  background-color: #ae1e2c;
+}
+
+.reference a {
+  color: white
 }
 
 .reference-card {
   margin-top:-48px;
   background-color: #d12335;
   color: white;
+}
+
+.v-card__text {
+  padding: 12px 0;
 }
 
 .cgred {
@@ -296,13 +304,19 @@ export default {
 }
 
 a {
-  color:white !important;
   text-decoration: none;
 }
 
 a:link {
-  color:white !important;
   text-decoration: none;
+}
+
+.v-responsive {
+  margin-bottom: 12px;
+}
+
+.v-toolbar .v-input {
+  margin-top: -16px;
 }
 
 </style>

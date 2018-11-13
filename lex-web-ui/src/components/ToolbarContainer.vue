@@ -51,7 +51,7 @@
           fluid
           grid-list-lg
         >
-          <v-layout column>
+          <v-layout column v-if="!feedbackSubmitted">
             <v-flex xs12>
               <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
             </v-flex>
@@ -74,12 +74,12 @@
               ></v-textarea>
             </v-flex>
             </v-layout>
-            <v-layout row>
+            <v-layout row v-if="!feedbackSubmitted">
               <v-flex xs3>
                 <v-btn
                   style="margin-left:-5px; color: #d12335;"
                   round outline small
-                  @click="feedback = false;"
+                  @click="submitFeedback"
                 >
                   Submit
                 </v-btn>
@@ -89,6 +89,16 @@
                   Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
                 </p>
               </v-flex>
+          </v-layout>
+          <v-layout row align-center v-else>
+            <v-flex xs2>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs10 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Sucess! <br> Your Feedback has been submitted.
+            </p>
+          </v-flex>
           </v-layout>
         </v-container>
       </v-card>
@@ -104,7 +114,7 @@
     </v-btn>
     <v-dialog
       v-model="dialog"
-      max-width="400"
+      max-width="350"
     >
     <v-toolbar
       style="background-color:#D12335"
@@ -126,14 +136,14 @@
         fluid
         grid-list-lg
       >
-        <v-layout column v-if="!shareConfirm">
-          <v-flex xs12>
+        <v-layout align-center row v-if="!shareConfirm">
+          <v-flex xs8>
             <v-text-field
               color="red"
               v-model="url"
             ></v-text-field>
           </v-flex>
-          <v-flex xs12>
+          <v-flex xs4>
             <v-btn
               style="margin-left:-5px; color: #d12335;"
               round outline small
@@ -143,16 +153,16 @@
             </v-btn>
           </v-flex>
         </v-layout>
-        <v-layout row wrap v-else>
-            <v-flex offset-xs2>
-              <v-card-text>Link Copied</v-card-text>
-            </v-flex>
-            <v-flex xs4>
-              <v-btn fab small style="color: #d12335;">
-                <v-icon>check</v-icon>
-              </v-btn>
-            </v-flex>
-          </v-layout>
+        <v-layout row wrap text-xs-right v-else>
+          <v-flex xs4>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs8 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Sucess! <br> Link copied!
+            </p>
+          </v-flex>
+        </v-layout>
       </v-container>
     </v-card>
     </v-dialog>
@@ -181,6 +191,7 @@ export default {
       dialog: false,
       feedback: false,
       shareConfirm: false,
+      feedbackSubmitted: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
         mouseenter: this.onInputButtonHoverEnter,
@@ -198,6 +209,14 @@ export default {
     },
   },
   methods: {
+    submitFeedback() {
+      this.feedbackSubmitted = true;
+      const intervalId = setTimeout(() => {
+        this.feedbackSubmitted = false;
+        this.feedback = false;
+        clearInterval(intervalId);
+      }, 2000);
+    },
     copyToClipboard() {
       // https://developers.google.com/web/updates/2018/03/clipboardapi
       navigator.clipboard.writeText(this.url)
@@ -209,7 +228,7 @@ export default {
             this.shareConfirm = false;
             this.dialog = false;
             clearInterval(intervalId);
-          }, 1000);
+          }, 2000);
         })
         .catch((err) => {
           // This can happen if the user denies clipboard permissions:

@@ -147,7 +147,7 @@ export default {
   padding-bottom: 0px !important;
 }
 .card__actions.button-row {
-  justify-content: center;
+  justify-content: left; /* center; */
   padding-bottom: 0em;
   margin-bottom: 0px;
 }

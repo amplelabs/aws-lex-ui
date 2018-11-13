@@ -146,13 +146,14 @@ export default {
     shouldShowAvatarImage() {
       // console.log(this.message.text);
       return (
-        this.message.type === 'bot' &&
+        (this.message.type === 'bot' || this.message.type === 'pondering') &&
         this.botAvatarUrl
       );
     },
     botAvatarBackground() {
       return {
         background: `url(${this.botAvatarUrl}) center center / contain no-repeat`,
+        // 'background-color': 'grey lighten-4',
         'background-size': '32px 32px',
       };
     },

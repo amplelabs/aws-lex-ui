@@ -178,4 +178,9 @@ a[href^="tel:"] {
   text-decoration: underline;
 }
 
+.v-btn {
+  min-width: 120px;
+  height: 40px;
+}
+
 </style>

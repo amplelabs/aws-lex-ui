@@ -30,6 +30,8 @@
 
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
+location.reload(true);
+
 // TODO turn this into a class
 
 // uuid for session id

@@ -106,6 +106,86 @@
     &nbsp; &nbsp;
     <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
+      @click="resourceCB"
+    >
+      <v-icon color="white">
+        add_location
+      </v-icon> <span style="color:#D12335"></span>
+    </v-btn>
+    <v-dialog
+      v-model="resource"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChalmersBot Add New Resource</v-toolbar-title>
+        <v-spacer />
+        <v-btn icon
+          style="margin-right:-1.4em; padding-left:-12px"
+          @click="resource=false"
+        >
+          <v-icon color="white">
+            close
+          </v-icon> <span style="color:#D12335"></span>
+        </v-btn>
+      </v-toolbar>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column v-if="!resourceSubmitted">
+            <v-flex xs12>
+              <v-card-text style="margin-left:-15px">Organization Name</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+            ></v-text-field>
+            </v-flex>
+             <v-flex xs12>
+              <v-card-text style="margin-left:-15px; margin-top: -30px">Description</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea
+                style="margin-top: -30px"
+                outline
+                color="#d12335"
+                name="input-7-4"
+              ></v-textarea>
+            </v-flex>
+            </v-layout>
+            <v-layout row v-if="!resourceSubmitted">
+              <v-flex xs3>
+                <v-btn
+                  style="margin-left:-5px; color: #d12335;"
+                  round outline small
+                  @click="submitResource"
+                >
+                  Submit
+                </v-btn>
+              </v-flex>
+          </v-layout>
+          <v-layout row align-center v-else>
+            <v-flex xs2>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs10 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Success! <br> Your Resource has been submitted.
+            </p>
+          </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-dialog>
+    &nbsp; &nbsp;
+    <v-btn icon
+      style="margin-right:-1.4em; padding-left:-12px"
       @click="shareCB"
     >
       <v-icon color="white">
@@ -190,8 +270,10 @@ export default {
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
       feedback: false,
+      resource: false,
       shareConfirm: false,
       feedbackSubmitted: false,
+      resourceSubmitted: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
         mouseenter: this.onInputButtonHoverEnter,
@@ -214,6 +296,14 @@ export default {
       const intervalId = setTimeout(() => {
         this.feedbackSubmitted = false;
         this.feedback = false;
+        clearInterval(intervalId);
+      }, 2000);
+    },
+    submitResource() {
+      this.resourceSubmitted = true;
+      const intervalId = setTimeout(() => {
+        this.resourceSubmitted = false;
+        this.resource = false;
         clearInterval(intervalId);
       }, 2000);
     },
@@ -250,6 +340,9 @@ export default {
     },
     feedbackCB() {
       this.feedback = true;
+    },
+    resourceCB() {
+      this.resource = true;
     },
     shareCB() {
       this.dialog = true;

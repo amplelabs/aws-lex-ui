@@ -35,7 +35,7 @@
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">ChamlersBot Feedback Form</v-toolbar-title>
+        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"
@@ -96,7 +96,7 @@
           </v-flex>
           <v-flex xs10 >
             <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Sucess! <br> Your Feedback has been submitted.
+              Success! <br> Your Feedback has been submitted.
             </p>
           </v-flex>
           </v-layout>
@@ -159,7 +159,7 @@
           </v-flex>
           <v-flex xs8 >
             <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Sucess! <br> Link copied!
+              Success! <br> Link copied!
             </p>
           </v-flex>
         </v-layout>

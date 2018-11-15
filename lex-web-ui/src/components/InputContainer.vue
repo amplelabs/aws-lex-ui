@@ -11,7 +11,7 @@
           using v-show instead of v-if to make recorder-status transition work
         -->
         <transition name="fade">
-        <v-text-field
+        <v-text-field style="margin-bottom:20px"
           v-bind:label="textInputPlaceholder"
           v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
@@ -64,26 +64,24 @@
         </v-btn>
         </div>
       </v-toolbar>
-      <v-content class="reference">
+      <!-- v-content class="reference">
         <v-container fluid grid-list-sm mb-1 pt-0>
           <v-layout row>
             <v-flex xs6>
               <v-card flat class="reference-card white--text" style="background-color: #d12335;">
                 <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted ">Terms and Conditions</v-card-text>
                 </a>
               </v-card>
             </v-flex>
             <v-flex xs6>
               <v-card flat class="reference-card white--text" style="background-color: #d12335;">
                 <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted text-xs-right font-italic">Disclaimer</v-card-text>
                 </a>
               </v-card>
             </v-flex>
           </v-layout>
         </v-container>
-      </v-content>
+      </v-content -->
     </v-layout>
   </v-footer>
 </template>
@@ -296,12 +294,12 @@ export default {
 
 .reference {
   min-height: 48px;
-  background-color: #d12335;
+  background-color: white; /* #d12335; */
 }
 
 .reference-card {
   margin-top:-48px;
-  background-color: #d12335;
+  background-color:white; /* #d12335; */
   color: white;
 }
 

@@ -249,4 +249,7 @@ export default {
   top: 48px;
   background-color: #f5f5f5;
 }
+.v-text-field--outline input, .v-textarea.v-text-field--enclosed textarea {
+  margin-top: 0px;
+}
 </style>

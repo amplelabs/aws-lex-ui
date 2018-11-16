@@ -138,26 +138,146 @@
         >
           <v-layout column v-if="!resourceSubmitted">
             <v-flex xs12>
-              <v-card-text style="margin-left:-15px">Organization Name</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Name of the Organization</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
               style="margin-top: -30px"
               color="#d12335"
               outline
+              placeholder="Organization Name"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Nickname</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="What it's known as in the community"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Address</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 1"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 2"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 3"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 4"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="City"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Postal Code"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Phone Number"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Website</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="http://"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Email</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
             ></v-text-field>
             </v-flex>
              <v-flex xs12>
-              <v-card-text style="margin-left:-15px; margin-top: -30px">Description</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Description</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-textarea
                 style="margin-top: -30px"
                 outline
                 color="#d12335"
+                placeholder="Describe the organization in 1-2 sentences. Avoid listing the services it provides and instead explain the organization's mission"
                 name="input-7-4"
               ></v-textarea>
             </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Legal Status</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="eg non-profit, government, business"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <!-- HOUR SELECTION -->
             </v-layout>
             <v-layout row v-if="!resourceSubmitted">
               <v-flex xs3>

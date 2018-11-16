@@ -35,7 +35,7 @@
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">ChamlersBot Feedback Form</v-toolbar-title>
+        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"
@@ -96,7 +96,207 @@
           </v-flex>
           <v-flex xs10 >
             <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Sucess! <br> Your Feedback has been submitted.
+              Success! <br> Your Feedback has been submitted.
+            </p>
+          </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-dialog>
+    &nbsp; &nbsp;
+    <v-btn icon
+      style="margin-right:-1.4em; padding-left:-12px"
+      @click="resourceCB"
+    >
+      <v-icon color="white">
+        add_location
+      </v-icon> <span style="color:#D12335"></span>
+    </v-btn>
+    <v-dialog
+      v-model="resource"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChalmersBot Add New Resource</v-toolbar-title>
+        <v-spacer />
+        <v-btn icon
+          style="margin-right:-1.4em; padding-left:-12px"
+          @click="resource=false"
+        >
+          <v-icon color="white">
+            close
+          </v-icon> <span style="color:#D12335"></span>
+        </v-btn>
+      </v-toolbar>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column v-if="!resourceSubmitted">
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Name of the Organization</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Organization Name"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Nickname</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="What it's known as in the community"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Address</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 1"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 2"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 3"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Address 4"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="City"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Postal Code"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Phone Number"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Website</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="http://"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Email</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+             <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Description</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea
+                style="margin-top: -30px"
+                outline
+                color="#d12335"
+                placeholder="Describe the organization in 1-2 sentences. Avoid listing the services it provides and instead explain the organization's mission"
+                name="input-7-4"
+              ></v-textarea>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Legal Status</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="eg non-profit, government, business"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <!-- TODO: Add hour selections -->
+            </v-layout>
+            <v-layout row v-if="!resourceSubmitted">
+              <v-flex xs3>
+                <v-btn
+                  style="margin-left:-5px; color: #d12335;"
+                  round outline small
+                  @click="submitResource"
+                >
+                  Submit
+                </v-btn>
+              </v-flex>
+          </v-layout>
+          <v-layout row align-center v-else>
+            <v-flex xs2>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs10 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Success! <br> Your Resource has been submitted.
             </p>
           </v-flex>
           </v-layout>
@@ -159,7 +359,7 @@
           </v-flex>
           <v-flex xs8 >
             <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Sucess! <br> Link copied!
+              Success! <br> Link copied!
             </p>
           </v-flex>
         </v-layout>
@@ -190,8 +390,10 @@ export default {
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
       feedback: false,
+      resource: false,
       shareConfirm: false,
       feedbackSubmitted: false,
+      resourceSubmitted: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
         mouseenter: this.onInputButtonHoverEnter,
@@ -214,6 +416,14 @@ export default {
       const intervalId = setTimeout(() => {
         this.feedbackSubmitted = false;
         this.feedback = false;
+        clearInterval(intervalId);
+      }, 2000);
+    },
+    submitResource() {
+      this.resourceSubmitted = true;
+      const intervalId = setTimeout(() => {
+        this.resourceSubmitted = false;
+        this.resource = false;
         clearInterval(intervalId);
       }, 2000);
     },
@@ -250,6 +460,9 @@ export default {
     },
     feedbackCB() {
       this.feedback = true;
+    },
+    resourceCB() {
+      this.resource = true;
     },
     shareCB() {
       this.dialog = true;

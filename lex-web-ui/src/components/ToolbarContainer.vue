@@ -277,7 +277,7 @@
               maxlength="50"
             ></v-text-field>
             </v-flex>
-            <!-- HOUR SELECTION -->
+            <!-- TODO: Add hour selections -->
             </v-layout>
             <v-layout row v-if="!resourceSubmitted">
               <v-flex xs3>

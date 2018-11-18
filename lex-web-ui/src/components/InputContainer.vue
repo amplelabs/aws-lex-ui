@@ -1,17 +1,20 @@
 <template>
-  <v-footer app fixed>
+  <!-- v-footer app fixed -->
+  <v-footer
+    fixed
+    height="100px"
+  >
     <v-layout
-      column
-      justify-space-between
-      ma-0
-      class="input-container"
+      justify-center
+      row
+      wrap
     >
-      <v-toolbar :color="inputboxColor" dense flat>
-        <!--
-          using v-show instead of v-if to make recorder-status transition work
-        -->
-        <transition name="fade">
-        <v-text-field style="height:48px; margin-top:-20px;"
+      <v-card style="width:100%;height:60px;" :color="inputboxColor">
+        <v-layout row nowrap>
+          <v-flex xs11>
+            <transition name="fade">
+        <v-text-field
+          style="margin-left:10px;"
           v-bind:label="textInputPlaceholder"
           v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
@@ -23,25 +26,14 @@
           name="text-input"
           single-line
           hide-details
-        ></v-text-field>
+        ></v-text-field>  
         </transition>
-        <recorder-status
-          v-show="!shouldShowTextInput"
-        ></recorder-status>
-
-        <!-- separate tooltip as a workaround to support mobile touch events -->
-        <!-- tooltip should be before btn to avoid right margin issue in mobile -->
-        <v-tooltip
-          activator=".input-button"
-          v-model="shouldShowTooltip"
-          ref="tooltip"
-          left
-        >
-          <span id="input-button-tooltip">{{inputButtonTooltip}}</span>
-        </v-tooltip>
-        <div v-show="readyForInput">
+        </v-flex>
+        <v-flex xs1>
+          <transition name="fade">
         <v-btn
-          v-if="shouldShowSendButton"
+          style="margin-top:15px; margin-left:-5px;"
+          v-show="shouldShowSendButton & readyForInput"
           v-on:click="postTextMessage"
           v-on="tooltipEventHandlers"
           v-bind:disabled="isSendButtonDisabled"
@@ -51,53 +43,117 @@
         >
           <v-icon medium style="color:#D12335">send</v-icon>
         </v-btn>
-        <v-btn
-          v-else
-          v-on:click="onMicClick"
-          v-on="tooltipEventHandlers"
-          v-bind:disabled="isMicButtonDisabled"
-          ref="mic"
-          class="black--text input-button"
-          icon
+        </transition>
+        </v-flex>
+        </v-layout>
+      </v-card>
+      <v-card style="width:100%;height:40px;">
+        <v-layout row nowrap>
+      <v-flex xs5
+      >
+        <a href="https://www.amplelabs.co/terms-conditions" target="_blank">
+        <v-card-text justify-center ml-2 style="font-size:12px;">
+          Terms &amp; Conditions
+          </v-card-text>
+        </a>
+      </v-flex>
+      <v-flex xs3
+      >
+        <a href="https://www.amplelabs.co/chalmersbot-2" target="_blank">
+          <v-card-text justify-center align-start style="font-size:12px; margin-left:-10px;">
+          Learn More
+          </v-card-text>
+        </a>
+      </v-flex>
+      <v-flex xs4
+      >
+        <v-card-text justify-center align-end ml-2
+          @click="feedbackCB"
+          style="color: #d12335; font-size:12px; font-weight:bold">
+         Give Feedback
+        </v-card-text>
+      </v-flex>
+        </v-layout>
+      </v-card>
+    </v-layout>
+    <v-dialog
+      v-model="feedback"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
+        <v-spacer />
+        <v-btn icon
+          style="margin-right:-1.4em; padding-left:-12px"
+          @click="feedback=false"
         >
-          <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
+          <v-icon color="white">
+            close
+          </v-icon> <span style="color:#D12335"></span>
         </v-btn>
-        </div>
-        
       </v-toolbar>
-      <!-- v-content class="reference">
-        <v-container fluid grid-list-sm mb-1 pt-0>
-          <v-layout row>
-            <v-flex xs4>
-              <v-card flat class="reference-card">
-                <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted "
-                style="font-size:12px; margin-top:-60px; margin-left:-10px, padding-left:0px;"
-                >Terms &#38; Conditions</v-card-text>
-                </a>
-              </v-card>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column v-if="!feedbackSubmitted">
+            <v-flex xs12>
+              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
             </v-flex>
-            <v-flex xs4>
-              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
-                <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted text-xs-right font-italic">Learn More</v-card-text>
-                </a>
-              </v-card>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+            ></v-text-field>
             </v-flex>
-            <v-flex xs4>
-              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
-                <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted text-xs-right font-italic">Give Feedback</v-card-text>
-                </a>
-              </v-card>
+             <v-flex xs12>
+              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
             </v-flex>
+            <v-flex xs12>
+              <v-textarea
+                style="margin-top: -30px"
+                outline
+                color="#d12335"
+                name="input-7-4"
+              ></v-textarea>
+            </v-flex>
+            </v-layout>
+            <v-layout row v-if="!feedbackSubmitted">
+              <v-flex xs3>
+                <v-btn
+                  style="margin-left:-5px; color: #d12335;"
+                  round outline small
+                  @click="submitFeedback"
+                >
+                  Submit
+                </v-btn>
+              </v-flex>
+              <v-flex xs9>
+                <p class="text-xs-right">
+                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
+                </p>
+              </v-flex>
+          </v-layout>
+          <v-layout row align-center v-else>
+            <v-flex xs2>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs10 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Success! <br> Your Feedback has been submitted.
+            </p>
+          </v-flex>
           </v-layout>
         </v-container>
-      </v-content -->
-    </v-layout>
+      </v-card>
+    </v-dialog>
   </v-footer>
 </template>
-
 <script>
 /*
 Copyright 2017-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -131,6 +187,8 @@ export default {
         touchend: this.onInputButtonHoverLeave,
         touchcancel: this.onInputButtonHoverLeave,
       },
+      feedback: false,
+      feedbackSubmitted: false,
     };
   },
   props: ['textInputPlaceholder', 'initialSpeechInstruction'],
@@ -143,7 +201,7 @@ export default {
         this.inputboxColor = 'white';
         return;
       }
-      this.inputboxColor = 'grey lighten-4';
+      this.inputboxColor = '#f3f4f5';
     },
   },
   computed: {
@@ -205,6 +263,17 @@ export default {
     },
   },
   methods: {
+    submitFeedback() {
+      this.feedbackSubmitted = true;
+      const intervalId = setTimeout(() => {
+        this.feedbackSubmitted = false;
+        this.feedback = false;
+        clearInterval(intervalId);
+      }, 2000);
+    },
+    feedbackCB() {
+      this.feedback = true;
+    },
     onInputButtonHoverEnter() {
       this.shouldShowTooltip = true;
     },
@@ -305,7 +374,7 @@ export default {
 
 .footer {
   /* make footer same height as dense toolbar */
-  height: 48px;
+  height: 100px;
 }
 
 .reference {

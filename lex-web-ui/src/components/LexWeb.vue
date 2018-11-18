@@ -1,5 +1,6 @@
 <template>
   <v-app id="lex-web"
+    style="background: #f3f4f5;"
   >
     <toolbar-container
       v-bind:toolbar-title="toolbarTitle"
@@ -244,10 +245,10 @@ export default {
 <style>
 .message-list-container {
   /* vuetify toolbar and footer are 48px each when using 'dense' */
-  height: calc(100% - 90px); /* additional 48 for the T&C and disclaimer */
+  height: calc(100% - 148px); /* additional 48 for the T&C and disclaimer */
   position: fixed;
   top: 48px;
-  background-color: #f5f5f5;
+  background-color:#f3f4f5;
 }
 .v-text-field--outline input, .v-textarea.v-text-field--enclosed textarea {
   margin-top: 0px;

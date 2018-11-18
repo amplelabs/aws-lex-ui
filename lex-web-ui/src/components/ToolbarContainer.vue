@@ -19,16 +19,8 @@
       activator=".min-max-toggle"
       left
     >
-      <!-- span id="min-max-tooltip">{{toolTipMinimize}}</span -->
     </v-tooltip>
-    <!-- v-btn icon
-      style="margin-right:-1.4em; padding-left:-12px"
-      @click="feedbackCB"
-    >
-      <v-icon color="white">
-        feedback
-      </v-icon> <span style="color:#D12335"></span>
-    </v-btn -->
+    <!-- TODO: remove feedback stuff from here ... it is now in the input container -->
     <v-dialog
       v-model="feedback"
       max-width="400"
@@ -106,14 +98,6 @@
       </v-card>
     </v-dialog>
     &nbsp; &nbsp;
-    <!-- v-btn icon
-      style="margin-right:-1.4em; padding-left:-12px"
-      @click="resourceCB"
-    >
-      <v-icon color="white">
-        add_location
-      </v-icon> <span style="color:#D12335"></span>
-    </v-btn -->
     <v-dialog
       v-model="resource"
       max-width="400"

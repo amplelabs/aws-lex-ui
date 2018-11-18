@@ -5,10 +5,12 @@
     flat
     fixed
   >
-    <img width="40" style="margin-left:-0em; padding-left:12px; padding-top:9px; padding-bottom:9px"
+    <img width="40" style="margin-left:-1.5em; padding-left:12px; padding-top:9px; padding-bottom:9px"
       v-if="toolbarLogo" v-bind:src="toolbarLogo">
     <v-toolbar-title ma-0 pa-0 class="hidden-xs-and-down">
-      <span class="white--text">{{ toolbarTitle }}</span>
+      <span class="white--text"
+      style="font-size:18px; font-weight: bold;"
+      >{{ toolbarTitle }}</span>
     </v-toolbar-title>
     <v-spacer />
     <!-- tooltip should be before btn to avoid right margin issue in mobile -->
@@ -19,14 +21,14 @@
     >
       <!-- span id="min-max-tooltip">{{toolTipMinimize}}</span -->
     </v-tooltip>
-    <v-btn icon
+    <!-- v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
       @click="feedbackCB"
     >
       <v-icon color="white">
         feedback
       </v-icon> <span style="color:#D12335"></span>
-    </v-btn>
+    </v-btn -->
     <v-dialog
       v-model="feedback"
       max-width="400"
@@ -104,14 +106,14 @@
       </v-card>
     </v-dialog>
     &nbsp; &nbsp;
-    <v-btn icon
+    <!-- v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
       @click="resourceCB"
     >
       <v-icon color="white">
         add_location
       </v-icon> <span style="color:#D12335"></span>
-    </v-btn>
+    </v-btn -->
     <v-dialog
       v-model="resource"
       max-width="400"
@@ -305,7 +307,7 @@
     </v-dialog>
     &nbsp; &nbsp;
     <v-btn icon
-      style="margin-right:-1.4em; padding-left:-12px"
+      style="margin-right:-10.0px; padding-left:-0px"
       @click="shareCB"
     >
       <v-icon color="white">

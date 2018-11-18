@@ -533,7 +533,7 @@ export default {
   directMessage(context, message) {
     // eslint-disable-next-line
     // console.log(message);
-    return context.dispatch('lexPostText', message.text)
+    return context.dispatch('lexPostText', message.text.replace(/^\w/, c => c.toUpperCase()))
       .then((response) => {
         context.commit('setBotIsTexting', true);
         context.dispatch('processResponse', response);

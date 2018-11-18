@@ -13,8 +13,8 @@
   },
   "ui": {
     "parentOrigin": "http://localhost:8080",
-    "pageTitle": "ChalmersBot (BETA)",
-    "toolbarTitle": "ChalmersBot (BETA)"
+    "pageTitle": "ChalmersBot (DEV)",
+    "toolbarTitle": "ChalmersBot (DEV)"
   },
   "recorder": {
     "preset": "speech_recognition"

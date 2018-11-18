@@ -70,7 +70,7 @@ export default {
 .message-list {
   overflow-y: auto;
   overflow-x: hidden;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .message-bot {

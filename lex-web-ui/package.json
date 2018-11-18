@@ -7,9 +7,10 @@
   "private": true,
   "main": "dist/bundle/lex-web-ui.js",
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "dev": "NODE_ENV=development node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "testbot": "NODE_ENV=testing node build/dev-server.js",
+    "build": "NODE_ENV=production node build/build.js",
     "build-dist": "node build/build-dist.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -18,6 +19,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.180.0",
+    "font-proxima-nova": "^1.0.1",
     "marked": "^0.3.19",
     "material-design-icons": "^3.0.1",
     "roboto-fontface": "^0.8.0",

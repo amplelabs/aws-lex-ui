@@ -11,7 +11,7 @@
           using v-show instead of v-if to make recorder-status transition work
         -->
         <transition name="fade">
-        <v-text-field
+        <v-text-field style="height:48px; margin-top:-20px;"
           v-bind:label="textInputPlaceholder"
           v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
@@ -63,27 +63,37 @@
           <v-icon medium style="color:#D12335">{{micButtonIcon}}</v-icon>
         </v-btn>
         </div>
+        
       </v-toolbar>
-      <v-content class="reference">
+      <!-- v-content class="reference">
         <v-container fluid grid-list-sm mb-1 pt-0>
           <v-layout row>
-            <v-flex xs6>
-              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+            <v-flex xs4>
+              <v-card flat class="reference-card">
                 <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted ">Terms and Conditions</v-card-text>
+                <v-card-text class="highlighted "
+                style="font-size:12px; margin-top:-60px; margin-left:-10px, padding-left:0px;"
+                >Terms &#38; Conditions</v-card-text>
                 </a>
               </v-card>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs4>
               <v-card flat class="reference-card white--text" style="background-color: #d12335;">
                 <a href="https://www.amplelabs.co/">
-                <v-card-text class="highlighted text-xs-right font-italic">Disclaimer</v-card-text>
+                <v-card-text class="highlighted text-xs-right font-italic">Learn More</v-card-text>
+                </a>
+              </v-card>
+            </v-flex>
+            <v-flex xs4>
+              <v-card flat class="reference-card white--text" style="background-color: #d12335;">
+                <a href="https://www.amplelabs.co/">
+                <v-card-text class="highlighted text-xs-right font-italic">Give Feedback</v-card-text>
                 </a>
               </v-card>
             </v-flex>
           </v-layout>
         </v-container>
-      </v-content>
+      </v-content -->
     </v-layout>
   </v-footer>
 </template>
@@ -289,37 +299,43 @@ export default {
 };
 </script>
 <style scoped>
+.v-text-field input {
+    font-size: 16px;
+}
+
 .footer {
   /* make footer same height as dense toolbar */
   height: 48px;
 }
 
 .reference {
-  min-height: 48px;
-  background-color: #d12335;
+  height: 48px; /* 48px; */
+  background-color: white;
 }
+
 
 .reference-card {
   margin-top:-48px;
-  background-color: #d12335;
-  color: white;
+  /* background-color: #d12335;
+  color: white; */
 }
 
 .cgred {
   color: #d12335;
 }
 
+/*
 .highlighted {
   font-style: italic;
 }
-
+*/
 a {
-  color:white !important;
+  color: #d12335 !important;
   text-decoration: none;
 }
 
 a:link {
-  color:white !important;
+  color: #d12335 !important;
   text-decoration: none;
 }
 .fade-enter-active, .fade-leave-active {

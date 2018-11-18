@@ -241,7 +241,7 @@ export default {
   border-radius: 12px;
   display: inline-flex;
   font-size: calc(1em + 0.25vmin);
-  padding: 0 12px;
+  padding: 6px 20px 6px 20px;
   width: fit-content;
   align-self: center;
 }
@@ -281,6 +281,7 @@ export default {
   -webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+  font-size: 16px;
 }
 
 .dialog-state {

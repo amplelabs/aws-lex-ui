@@ -3,8 +3,8 @@
     "poolId": "us-east-1:ec13e8e5-e7da-45a5-99ec-294cde8bee82"
   },
   "lex": {
-    "botName": "AmplelabsBot",
-    "botAlias": "prod",
+    "botName": "AmplelabsBot_Dev",
+    "botAlias": "dev",
     "initialText": "Hi my name is Chalmers and I am a Chat Bot. I can help you look for things like free meals, overnight shelter, drop-ins, clothing banks here in the city. Say something to get me started!",
     "initialSpeechInstruction": "Say something to get me started!."
   },
@@ -13,8 +13,8 @@
   },
   "ui": {
     "parentOrigin": "http://localhost:8080",
-    "pageTitle": "ChalmersBot (BETA)",
-    "toolbarTitle": "ChalmersBot (BETA)"
+    "pageTitle": "ChalmersBot (TEST)",
+    "toolbarTitle": "ChalmersBot (TEST)"
   },
   "recorder": {
     "preset": "speech_recognition"

@@ -48,17 +48,20 @@
         </v-layout>
       </v-card>
       <v-card style="width:100%;height:40px;">
-        <!-- v-container grid-list-xs text-xs-center fluid style="margin-top:-30px;" mx-0 px-0 -->
-        <v-layout row nowrap>
-      <v-flex xs5
+        <v-container fluid style="margin-top:-30px;" mx-0 px-0>
+        <v-layout row nowrap justify-center>
+      <v-layout row text-xs-left>
+      <v-flex xs12
       >
         <a href="https://www.amplelabs.co/terms-conditions" target="_blank">
-        <v-card-text justify-center ml-2 style="font-size:12px; margin-left:-5px">
+        <v-card-text justify-start ml-2 style="font-size:12px; margin-left:-5px">
           Terms &amp; Conditions
           </v-card-text>
         </a>
       </v-flex>
-      <v-flex xs3
+      </v-layout>
+      <v-layout row text-xs-center>
+      <v-flex xs12
       >
         <a href="https://www.amplelabs.co/chalmersbot-2" target="_blank">
           <v-card-text justify-center style="font-size:12px; margin-left:-10px;">
@@ -66,16 +69,19 @@
           </v-card-text>
         </a>
       </v-flex>
-      <v-flex xs4
+      </v-layout>
+      <v-layout row text-xs-right>
+      <v-flex xs12
       >
-        <v-card-text justify-center ml-2
+        <v-card-text justify-end
           @click="feedbackCB"
           style="color: #d12335; font-size:12px; font-weight:bold">
          Give Feedback
         </v-card-text>
       </v-flex>
+      </v-layout>
         </v-layout>
-        <!-- /v-container -->
+        </v-container>
       </v-card>
     </v-layout>
     <v-dialog
@@ -277,7 +283,7 @@ export default {
       // eslint-disable-next-line
       // console.log(process.env.VUE_APP_API_KEY_VALUE);
       const postUrl = 'https://1f2sneichf.execute-api.us-east-1.amazonaws.com/dev/feedback';
-      const VUE_APP_API_KEY_VALUE = '';
+      // const VUE_APP_API_KEY_VALUE = '';
       const item = {
         id: uuid.v1(),
         name: this.nameInput === null || this.nameInput.length === 0 ? 'na' : this.nameInput,
@@ -288,7 +294,7 @@ export default {
       console.log(item);
       axios.post(postUrl, item, {
         headers: {
-          'x-api-key': /* process.env. */ VUE_APP_API_KEY_VALUE,
+          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
         },
       })
         .then((resp) => {

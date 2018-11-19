@@ -48,11 +48,12 @@
         </v-layout>
       </v-card>
       <v-card style="width:100%;height:40px;">
+        <!-- v-container grid-list-xs text-xs-center fluid style="margin-top:-30px;" mx-0 px-0 -->
         <v-layout row nowrap>
       <v-flex xs5
       >
         <a href="https://www.amplelabs.co/terms-conditions" target="_blank">
-        <v-card-text justify-center ml-2 style="font-size:12px;">
+        <v-card-text justify-center ml-2 style="font-size:12px; margin-left:-5px">
           Terms &amp; Conditions
           </v-card-text>
         </a>
@@ -60,20 +61,21 @@
       <v-flex xs3
       >
         <a href="https://www.amplelabs.co/chalmersbot-2" target="_blank">
-          <v-card-text justify-center align-start style="font-size:12px; margin-left:-10px;">
+          <v-card-text justify-center style="font-size:12px; margin-left:-10px;">
           Learn More
           </v-card-text>
         </a>
       </v-flex>
       <v-flex xs4
       >
-        <v-card-text justify-center align-end ml-2
+        <v-card-text justify-center ml-2
           @click="feedbackCB"
           style="color: #d12335; font-size:12px; font-weight:bold">
          Give Feedback
         </v-card-text>
       </v-flex>
         </v-layout>
+        <!-- /v-container -->
       </v-card>
     </v-layout>
     <v-dialog
@@ -108,6 +110,7 @@
               <v-text-field
               style="margin-top: -30px"
               color="#d12335"
+              v-model="nameInput"
               outline
             ></v-text-field>
             </v-flex>
@@ -120,6 +123,7 @@
                 outline
                 color="#d12335"
                 name="input-7-4"
+                v-model="feedbackInput"
               ></v-textarea>
             </v-flex>
             </v-layout>
@@ -170,6 +174,8 @@ License for the specific language governing permissions and limitations under th
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 import RecorderStatus from '@/components/RecorderStatus';
+import axios from 'axios';
+import uuid from 'uuid';
 
 export default {
   name: 'input-container',
@@ -189,6 +195,8 @@ export default {
       },
       feedback: false,
       feedbackSubmitted: false,
+      nameInput: null,
+      feedbackInput: null,
     };
   },
   props: ['textInputPlaceholder', 'initialSpeechInstruction'],
@@ -265,11 +273,42 @@ export default {
   methods: {
     submitFeedback() {
       this.feedbackSubmitted = true;
+      // const postUrl = process.env.VUE_APP_CREATE_URL;
+      // eslint-disable-next-line
+      // console.log(process.env.VUE_APP_API_KEY_VALUE);
+      const postUrl = 'https://1f2sneichf.execute-api.us-east-1.amazonaws.com/dev/feedback';
+      const VUE_APP_API_KEY_VALUE = '';
+      const item = {
+        id: uuid.v1(),
+        name: this.nameInput === null || this.nameInput.length === 0 ? 'na' : this.nameInput,
+        feedback: this.feedbackInput === null || this.feedbackInput.length === 0 ?
+          'na' : this.feedbackInput,
+      };
+      // eslint-disable-next-line
+      console.log(item);
+      axios.post(postUrl, item, {
+        headers: {
+          'x-api-key': /* process.env. */ VUE_APP_API_KEY_VALUE,
+        },
+      })
+        .then((resp) => {
+          // resp.status === 200
+          // resp.data === item
+          // eslint-disable-next-line
+          console.log(resp.status);
+          this.feedbackSubmitted = false;
+          this.feedback = false;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      /*
       const intervalId = setTimeout(() => {
         this.feedbackSubmitted = false;
         this.feedback = false;
         clearInterval(intervalId);
       }, 2000);
+      */
     },
     feedbackCB() {
       this.feedback = true;

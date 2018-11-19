@@ -21,6 +21,14 @@
     >
     </v-tooltip>
     <!-- TODO: remove feedback stuff from here ... it is now in the input container -->
+    <!-- v-btn icon
+      style="margin-right:-1.4em; padding-left:-12px"
+      @click="feedbackCB"
+    >
+      <v-icon color="white">
+        feedback
+      </v-icon> <span style="color:#D12335"></span>
+    </v-btn -->
     <v-dialog
       v-model="feedback"
       max-width="400"
@@ -431,18 +439,6 @@ export default {
           // eslint-disable-next-line
           console.error('Could not copy text: ', err);
         });
-      /*
-      const el = document.createElement('textarea');
-      el.value = this.url;
-      el.setAttribute('readonly', '');
-      el.style.position = 'absolute';
-      el.style.left = '-9999px';
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-      */
-      // this.dialog = false;
     },
     feedbackCB() {
       this.feedback = true;
@@ -487,12 +483,12 @@ export default {
 }
 
 a {
-  color:black !important;
+  color:#d12335 !important;
   text-decoration: none;
 }
 
 a:link {
-  color:black !important;
+  color:#d12335 !important;
   text-decoration: none;
 }
 

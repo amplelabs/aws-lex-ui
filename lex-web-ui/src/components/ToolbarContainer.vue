@@ -58,10 +58,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_name"
+              placeholder="Organization Name"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="Organization Name"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -70,55 +71,61 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address1"
               placeholder="Address 1"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address2"
               placeholder="Address 2"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address3"
               placeholder="Address 3"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address4"
               placeholder="Address 4"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_city"
               placeholder="City"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_zip"
+              placeholder="Postal Code"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="Postal Code"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -127,10 +134,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="www"
+              placeholder="http://"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="http://"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -139,10 +147,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_phone"
+              placeholder="Phone Number"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="Phone Number"
               maxlength="30"
             ></v-text-field>
             </v-flex>
@@ -151,10 +160,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_service"
+              placeholder="e.g. meals, shelter"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="e.g. meals, shelter"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -163,6 +173,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_desc"
               style="margin-top: -30px"
               color="#d12335"
               outline
@@ -174,10 +185,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_days"
+              placeholder="Monday, Tuesday, etc."
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="Monday, Tuesday, etc."
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -186,10 +198,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_times"
+              placeholder="1pm - 3pm, etc."
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="1pm - 3pm, etc."
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -198,10 +211,11 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_eligibility"
+              placeholder="e.g. ages, gender(s)"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="e.g. ages, gender(s)"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -210,6 +224,7 @@
             </v-flex>
             <v-flex xs12>
               <v-textarea
+                v-model="org_notes"
                 style="margin-top: -30px"
                 outline
                 color="#d12335"
@@ -221,6 +236,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="contact_name"
               style="margin-top: -30px"
               color="#d12335"
               outline
@@ -232,6 +248,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="contact_phone"
               style="margin-top: -30px"
               color="#d12335"
               outline

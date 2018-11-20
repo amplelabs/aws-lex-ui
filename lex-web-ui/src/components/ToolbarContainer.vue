@@ -20,28 +20,20 @@
       left
     >
     </v-tooltip>
-    <!-- TODO: remove feedback stuff from here ... it is now in the input container -->
-    <!-- v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
-      @click="feedbackCB"
     >
       <v-icon color="white">
-        feedback
       </v-icon> <span style="color:#D12335"></span>
-    </v-btn -->
     <v-dialog
-      v-model="feedback"
       max-width="400"
     >
       <v-toolbar
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"
-          @click="feedback=false"
         >
           <v-icon color="white">
             close
@@ -53,9 +45,7 @@
           fluid
           grid-list-lg
         >
-          <v-layout column v-if="!feedbackSubmitted">
             <v-flex xs12>
-              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -64,48 +54,6 @@
               outline
             ></v-text-field>
             </v-flex>
-             <v-flex xs12>
-              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-textarea
-                style="margin-top: -30px"
-                outline
-                color="#d12335"
-                name="input-7-4"
-              ></v-textarea>
-            </v-flex>
-            </v-layout>
-            <v-layout row v-if="!feedbackSubmitted">
-              <v-flex xs3>
-                <v-btn
-                  style="margin-left:-5px; color: #d12335;"
-                  round outline small
-                  @click="submitFeedback"
-                >
-                  Submit
-                </v-btn>
-              </v-flex>
-              <v-flex xs9>
-                <p class="text-xs-right">
-                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
-                </p>
-              </v-flex>
-          </v-layout>
-          <v-layout row align-center v-else>
-            <v-flex xs2>
-            <v-icon large style="color:#D12335">check_circle</v-icon>
-          </v-flex>
-          <v-flex xs10 >
-            <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Success! <br> Your Feedback has been submitted.
-            </p>
-          </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-dialog>
-    &nbsp; &nbsp;
     <v-dialog
       v-model="resource"
       max-width="400"
@@ -405,14 +353,6 @@ export default {
     },
   },
   methods: {
-    submitFeedback() {
-      this.feedbackSubmitted = true;
-      const intervalId = setTimeout(() => {
-        this.feedbackSubmitted = false;
-        this.feedback = false;
-        clearInterval(intervalId);
-      }, 2000);
-    },
     submitResource() {
       this.resourceSubmitted = true;
       const intervalId = setTimeout(() => {
@@ -439,9 +379,6 @@ export default {
           // eslint-disable-next-line
           console.error('Could not copy text: ', err);
         });
-    },
-    feedbackCB() {
-      this.feedback = true;
     },
     resourceCB() {
       this.resource = true;

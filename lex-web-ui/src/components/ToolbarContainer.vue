@@ -359,6 +359,11 @@ or in the "license" file accompanying this file. This file is distributed on an 
 BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the
 License for the specific language governing permissions and limitations under the License.
 */
+
+import axios from 'axios';
+import uuid from 'uuid';
+// require('dotenv').config({ path: '../.env' })
+
 export default {
   name: 'toolbar-container',
   data() {
@@ -366,10 +371,8 @@ export default {
       // from https://bitly.com/
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
-      feedback: false,
       resource: false,
       shareConfirm: false,
-      feedbackSubmitted: false,
       resourceSubmitted: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
@@ -390,11 +393,51 @@ export default {
   methods: {
     submitResource() {
       this.resourceSubmitted = true;
+      // eslint-disable-next-line
+      // console.log(process.env.VUE_APP_API_KEY_VALUE);
+      const postUrl = 'https://u80h6gc31h.execute-api.us-east-1.amazonaws.com/dev/resources';
+      const item = {
+        id: uuid.v1(),
+        org_name: this.org_name === null || this.org_name.length === 0 ? 'na' : this.org_name,
+        org_address: this.org_address === null || this.org_address.length === 0 ? 'na' : this.org_address,
+        org_phone: this.org_phone === null || this.org_phone.length === 0 ? 'na' : this.org_phone,
+        www: this.org_www === null || this.org_www.length === 0 ? 'na' : this.org_www,
+        email: this.email === null || this.email.length === 0 ? 'na' : this.email,
+        service: this.service === null || this.service.length === 0 ? 'na' : this.service,
+        desc: this.desc === null || this.desc.length === 0 ? 'na' : this.desc,
+        days: this.days === null || this.days.length === 0 ? 'na' : this.days,
+        times: this.times === null || this.times.length === 0 ? 'na' : this.times,
+        eligibility: this.eligibility === null || this.eligibility.length === 0 ? 'na' : this.eligibility,
+        notes: this.notes === null || this.notes.length === 0 ? 'na' : this.notes,
+        contact_name: this.contact_name === null || this.contact_name.length === 0 ? 'na' : this.contact_name,
+        contact_email: this.contact_email === null || this.contact_email.length === 0 ? 'na' : this.contact_email,
+      };
+      // eslint-disable-next-line
+      console.log(item);
+      axios.post(postUrl, item, {
+        headers: {
+          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
+        },
+      })
+        .then((resp) => {
+          // resp.status === 200
+          // resp.data === item
+          // eslint-disable-next-line
+          console.log(resp.status);
+          this.resourceSubmitted = false;
+          this.resource = false;
+        })
+        .catch((err) => {
+          // eslint-disable-next-line
+          console.error(err);
+        });
+      /*
       const intervalId = setTimeout(() => {
         this.resourceSubmitted = false;
         this.resource = false;
         clearInterval(intervalId);
       }, 2000);
+      */
     },
     copyToClipboard() {
       // https://developers.google.com/web/updates/2018/03/clipboardapi

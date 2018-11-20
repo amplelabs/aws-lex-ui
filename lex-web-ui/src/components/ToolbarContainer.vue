@@ -20,40 +20,14 @@
       left
     >
     </v-tooltip>
+    <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
+      @click="resourceCB"
     >
       <v-icon color="white">
+        add_box
       </v-icon> <span style="color:#D12335"></span>
-    <v-dialog
-      max-width="400"
-    >
-      <v-toolbar
-        style="background-color:#D12335"
-        dense
-      >
-        <v-spacer />
-        <v-btn icon
-          style="margin-right:-1.4em; padding-left:-12px"
-        >
-          <v-icon color="white">
-            close
-          </v-icon> <span style="color:#D12335"></span>
-        </v-btn>
-      </v-toolbar>
-      <v-card>
-        <v-container
-          fluid
-          grid-list-lg
-        >
-            <v-flex xs12>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-            ></v-text-field>
-            </v-flex>
+    </v-btn>
     <v-dialog
       v-model="resource"
       max-width="400"
@@ -62,7 +36,7 @@
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">ChalmersBot Add New Resource</v-toolbar-title>
+        <v-toolbar-title class="white--text">Add Resource</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"
@@ -92,19 +66,7 @@
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Nickname</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              placeholder="What it's known as in the community"
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Address</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Organization address</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -161,18 +123,6 @@
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              placeholder="Phone Number"
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
               <v-card-text style="margin: -30px 0 0 -15px;">Website</v-card-text>
             </v-flex>
             <v-flex xs12>
@@ -185,7 +135,31 @@
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Email</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Phone Number"
+              maxlength="30"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Name of service</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="e.g. meals, shelter"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Service Description</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -195,31 +169,75 @@
               maxlength="50"
             ></v-text-field>
             </v-flex>
-             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Description</v-card-text>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Days served</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="Monday, Tuesday, etc."
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Times served</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="1pm - 3pm, etc."
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Who is eligible?</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              placeholder="e.g. ages, gender(s)"
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Additional notes</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-textarea
                 style="margin-top: -30px"
                 outline
                 color="#d12335"
-                placeholder="Describe the organization in 1-2 sentences. Avoid listing the services it provides and instead explain the organization's mission"
                 name="input-7-4"
               ></v-textarea>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Legal Status</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Contact Name</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="eg non-profit, government, business"
               maxlength="50"
             ></v-text-field>
             </v-flex>
-            <!-- TODO: Add hour selections -->
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Contact Email</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
             </v-layout>
             <v-layout row v-if="!resourceSubmitted">
               <v-flex xs3>

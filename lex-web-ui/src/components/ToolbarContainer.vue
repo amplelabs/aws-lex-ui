@@ -405,10 +405,13 @@ export default {
   },
   methods: {
     restartCB() {
+      /*
       this.$store.dispatch('postTextMessage', {
         type: 'human',
         text: 'restart',
       });
+      */
+      window.location.reload();
     },
     clearForm() {
       this.org_name = null;
@@ -450,8 +453,7 @@ export default {
       console.log(item);
       axios.post(postUrl, item, {
         headers: {
-          // 'x-api-key': process.env.VUE_APP_API_KEY_RES_VALUE,
-          'x-api-key': 'hVxnMnd8mu34IwZgzHap73Wvl3bAcoIA7qSES38P',
+          'x-api-key': process.env.VUE_APP_API_KEY_RES_VALUE,
         },
       })
         .then((resp) => {

@@ -25,7 +25,7 @@
       @click="resourceCB"
     >
       <v-icon color="white">
-        add_box
+        add_circle
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
     <v-dialog
@@ -60,7 +60,7 @@
               <v-text-field
               v-model="org_name"
               placeholder="Organization Name"
-              style="margin-top: -30px"
+              style="margin-top: -30px;"
               color="#d12335"
               outline
               maxlength="50"
@@ -70,16 +70,16 @@
               <v-card-text style="margin: -30px 0 0 -15px;">Organization address</v-card-text>
             </v-flex>
             <v-flex xs12>
-              <v-text-field
-              v-model="org_address1"
-              placeholder="Address 1"
+              <v-textarea
+              v-model="org_address"
+              placeholder="Address"
               style="margin-top: -30px"
               color="#d12335"
               outline
               maxlength="50"
-            ></v-text-field>
+            ></v-textarea>
             </v-flex>
-            <v-flex xs12>
+            <!-- v-flex xs12>
               <v-text-field
               v-model="org_address2"
               placeholder="Address 2"
@@ -128,7 +128,7 @@
               outline
               maxlength="50"
             ></v-text-field>
-            </v-flex>
+            </v-flex -->
             <v-flex xs12>
               <v-card-text style="margin: -30px 0 0 -15px;">Website</v-card-text>
             </v-flex>
@@ -160,7 +160,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="org_service"
+              v-model="service"
               placeholder="e.g. meals, shelter"
               style="margin-top: -30px"
               color="#d12335"
@@ -173,7 +173,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="org_desc"
+              v-model="desc"
               style="margin-top: -30px"
               color="#d12335"
               outline
@@ -185,7 +185,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="org_days"
+              v-model="days"
               placeholder="Monday, Tuesday, etc."
               style="margin-top: -30px"
               color="#d12335"
@@ -198,7 +198,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="org_times"
+              v-model="times"
               placeholder="1pm - 3pm, etc."
               style="margin-top: -30px"
               color="#d12335"
@@ -211,7 +211,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="org_eligibility"
+              v-model="eligibility"
               placeholder="e.g. ages, gender(s)"
               style="margin-top: -30px"
               color="#d12335"
@@ -224,7 +224,7 @@
             </v-flex>
             <v-flex xs12>
               <v-textarea
-                v-model="org_notes"
+                v-model="notes"
                 style="margin-top: -30px"
                 outline
                 color="#d12335"
@@ -248,7 +248,7 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              v-model="contact_phone"
+              v-model="contact_email"
               style="margin-top: -30px"
               color="#d12335"
               outline
@@ -382,6 +382,19 @@ export default {
         touchend: this.onInputButtonHoverLeave,
         touchcancel: this.onInputButtonHoverLeave,
       },
+      org_name: null,
+      org_address: null,
+      org_phone: null,
+      www: null,
+      email: null,
+      service: null,
+      desc: null,
+      days: null,
+      times: null,
+      eligibility: null,
+      notes: null,
+      contact_name: null,
+      contact_email: null,
     };
   },
   props: ['toolbarTitle', 'toolbarColor', 'toolbarLogo', 'isUiMinimized'],
@@ -391,6 +404,21 @@ export default {
     },
   },
   methods: {
+    clearForm() {
+      this.org_name = null;
+      this.org_address = null;
+      this.org_phone = null;
+      this.www = null;
+      this.email = null;
+      this.service = null;
+      this.desc = null;
+      this.days = null;
+      this.times = null;
+      this.eligibility = null;
+      this.notes = null;
+      this.contact_name = null;
+      this.contact_email = null;
+    },
     submitResource() {
       this.resourceSubmitted = true;
       // eslint-disable-next-line
@@ -401,7 +429,7 @@ export default {
         org_name: this.org_name === null || this.org_name.length === 0 ? 'na' : this.org_name,
         org_address: this.org_address === null || this.org_address.length === 0 ? 'na' : this.org_address,
         org_phone: this.org_phone === null || this.org_phone.length === 0 ? 'na' : this.org_phone,
-        www: this.org_www === null || this.org_www.length === 0 ? 'na' : this.org_www,
+        www: this.www === null || this.www.length === 0 ? 'na' : this.www,
         email: this.email === null || this.email.length === 0 ? 'na' : this.email,
         service: this.service === null || this.service.length === 0 ? 'na' : this.service,
         desc: this.desc === null || this.desc.length === 0 ? 'na' : this.desc,
@@ -416,7 +444,7 @@ export default {
       console.log(item);
       axios.post(postUrl, item, {
         headers: {
-          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
+          'x-api-key': process.env.VUE_APP_API_KEY_RES_VALUE,
         },
       })
         .then((resp) => {
@@ -426,8 +454,12 @@ export default {
           console.log(resp.status);
           this.resourceSubmitted = false;
           this.resource = false;
+          this.clearForm();
         })
         .catch((err) => {
+          this.resourceSubmitted = false;
+          this.resource = false;
+          this.clearForm();
           // eslint-disable-next-line
           console.error(err);
         });

@@ -20,92 +20,14 @@
       left
     >
     </v-tooltip>
-    <!-- TODO: remove feedback stuff from here ... it is now in the input container -->
-    <!-- v-btn icon
+    <v-btn icon
       style="margin-right:-1.4em; padding-left:-12px"
-      @click="feedbackCB"
+      @click="resourceCB"
     >
       <v-icon color="white">
-        feedback
+        add_box
       </v-icon> <span style="color:#D12335"></span>
-    </v-btn -->
-    <v-dialog
-      v-model="feedback"
-      max-width="400"
-    >
-      <v-toolbar
-        style="background-color:#D12335"
-        dense
-      >
-        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
-        <v-spacer />
-        <v-btn icon
-          style="margin-right:-1.4em; padding-left:-12px"
-          @click="feedback=false"
-        >
-          <v-icon color="white">
-            close
-          </v-icon> <span style="color:#D12335"></span>
-        </v-btn>
-      </v-toolbar>
-      <v-card>
-        <v-container
-          fluid
-          grid-list-lg
-        >
-          <v-layout column v-if="!feedbackSubmitted">
-            <v-flex xs12>
-              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-            ></v-text-field>
-            </v-flex>
-             <v-flex xs12>
-              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-textarea
-                style="margin-top: -30px"
-                outline
-                color="#d12335"
-                name="input-7-4"
-              ></v-textarea>
-            </v-flex>
-            </v-layout>
-            <v-layout row v-if="!feedbackSubmitted">
-              <v-flex xs3>
-                <v-btn
-                  style="margin-left:-5px; color: #d12335;"
-                  round outline small
-                  @click="submitFeedback"
-                >
-                  Submit
-                </v-btn>
-              </v-flex>
-              <v-flex xs9>
-                <p class="text-xs-right">
-                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
-                </p>
-              </v-flex>
-          </v-layout>
-          <v-layout row align-center v-else>
-            <v-flex xs2>
-            <v-icon large style="color:#D12335">check_circle</v-icon>
-          </v-flex>
-          <v-flex xs10 >
-            <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Success! <br> Your Feedback has been submitted.
-            </p>
-          </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-dialog>
-    &nbsp; &nbsp;
+    </v-btn>
     <v-dialog
       v-model="resource"
       max-width="400"
@@ -114,7 +36,7 @@
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">ChalmersBot Add New Resource</v-toolbar-title>
+        <v-toolbar-title class="white--text">Add Resource</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"
@@ -136,91 +58,74 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_name"
               placeholder="Organization Name"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Nickname</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Organization address</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              placeholder="What it's known as in the community"
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Address</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address1"
               placeholder="Address 1"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address2"
               placeholder="Address 2"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address3"
               placeholder="Address 3"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_address4"
               placeholder="Address 4"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_city"
               placeholder="City"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
+              v-model="org_zip"
               placeholder="Postal Code"
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="Phone Number"
               maxlength="50"
             ></v-text-field>
             </v-flex>
@@ -229,49 +134,127 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="www"
+              placeholder="http://"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="http://"
               maxlength="50"
             ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Email</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Phone Number</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="org_phone"
+              placeholder="Phone Number"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="30"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Name of service</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="org_service"
+              placeholder="e.g. meals, shelter"
               style="margin-top: -30px"
               color="#d12335"
               outline
               maxlength="50"
             ></v-text-field>
             </v-flex>
-             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Description</v-card-text>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Service Description</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="org_desc"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Days served</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="org_days"
+              placeholder="Monday, Tuesday, etc."
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Times served</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="org_times"
+              placeholder="1pm - 3pm, etc."
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Who is eligible?</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="org_eligibility"
+              placeholder="e.g. ages, gender(s)"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Additional notes</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-textarea
+                v-model="org_notes"
                 style="margin-top: -30px"
                 outline
                 color="#d12335"
-                placeholder="Describe the organization in 1-2 sentences. Avoid listing the services it provides and instead explain the organization's mission"
                 name="input-7-4"
               ></v-textarea>
             </v-flex>
             <v-flex xs12>
-              <v-card-text style="margin: -30px 0 0 -15px;">Legal Status</v-card-text>
+              <v-card-text style="margin: -30px 0 0 -15px;">Contact Name</v-card-text>
             </v-flex>
             <v-flex xs12>
               <v-text-field
+              v-model="contact_name"
               style="margin-top: -30px"
               color="#d12335"
               outline
-              placeholder="eg non-profit, government, business"
               maxlength="50"
             ></v-text-field>
             </v-flex>
-            <!-- TODO: Add hour selections -->
+            <v-flex xs12>
+              <v-card-text style="margin: -30px 0 0 -15px;">Contact Email</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              v-model="contact_phone"
+              style="margin-top: -30px"
+              color="#d12335"
+              outline
+              maxlength="50"
+            ></v-text-field>
+            </v-flex>
             </v-layout>
             <v-layout row v-if="!resourceSubmitted">
               <v-flex xs3>
@@ -376,6 +359,11 @@ or in the "license" file accompanying this file. This file is distributed on an 
 BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the
 License for the specific language governing permissions and limitations under the License.
 */
+
+import axios from 'axios';
+import uuid from 'uuid';
+// require('dotenv').config({ path: '../.env' })
+
 export default {
   name: 'toolbar-container',
   data() {
@@ -383,10 +371,8 @@ export default {
       // from https://bitly.com/
       url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
       dialog: false,
-      feedback: false,
       resource: false,
       shareConfirm: false,
-      feedbackSubmitted: false,
       resourceSubmitted: false,
       shouldShowTooltip: false,
       tooltipEventHandlers: {
@@ -405,21 +391,53 @@ export default {
     },
   },
   methods: {
-    submitFeedback() {
-      this.feedbackSubmitted = true;
-      const intervalId = setTimeout(() => {
-        this.feedbackSubmitted = false;
-        this.feedback = false;
-        clearInterval(intervalId);
-      }, 2000);
-    },
     submitResource() {
       this.resourceSubmitted = true;
+      // eslint-disable-next-line
+      // console.log(process.env.VUE_APP_API_KEY_VALUE);
+      const postUrl = 'https://u80h6gc31h.execute-api.us-east-1.amazonaws.com/dev/resources';
+      const item = {
+        id: uuid.v1(),
+        org_name: this.org_name === null || this.org_name.length === 0 ? 'na' : this.org_name,
+        org_address: this.org_address === null || this.org_address.length === 0 ? 'na' : this.org_address,
+        org_phone: this.org_phone === null || this.org_phone.length === 0 ? 'na' : this.org_phone,
+        www: this.org_www === null || this.org_www.length === 0 ? 'na' : this.org_www,
+        email: this.email === null || this.email.length === 0 ? 'na' : this.email,
+        service: this.service === null || this.service.length === 0 ? 'na' : this.service,
+        desc: this.desc === null || this.desc.length === 0 ? 'na' : this.desc,
+        days: this.days === null || this.days.length === 0 ? 'na' : this.days,
+        times: this.times === null || this.times.length === 0 ? 'na' : this.times,
+        eligibility: this.eligibility === null || this.eligibility.length === 0 ? 'na' : this.eligibility,
+        notes: this.notes === null || this.notes.length === 0 ? 'na' : this.notes,
+        contact_name: this.contact_name === null || this.contact_name.length === 0 ? 'na' : this.contact_name,
+        contact_email: this.contact_email === null || this.contact_email.length === 0 ? 'na' : this.contact_email,
+      };
+      // eslint-disable-next-line
+      console.log(item);
+      axios.post(postUrl, item, {
+        headers: {
+          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
+        },
+      })
+        .then((resp) => {
+          // resp.status === 200
+          // resp.data === item
+          // eslint-disable-next-line
+          console.log(resp.status);
+          this.resourceSubmitted = false;
+          this.resource = false;
+        })
+        .catch((err) => {
+          // eslint-disable-next-line
+          console.error(err);
+        });
+      /*
       const intervalId = setTimeout(() => {
         this.resourceSubmitted = false;
         this.resource = false;
         clearInterval(intervalId);
       }, 2000);
+      */
     },
     copyToClipboard() {
       // https://developers.google.com/web/updates/2018/03/clipboardapi
@@ -439,9 +457,6 @@ export default {
           // eslint-disable-next-line
           console.error('Could not copy text: ', err);
         });
-    },
-    feedbackCB() {
-      this.feedback = true;
     },
     resourceCB() {
       this.resource = true;

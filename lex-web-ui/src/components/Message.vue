@@ -333,4 +333,18 @@ a {
 }
 
 
+a {
+  color: #d12335 !important;
+  text-decoration: none;
+}
+
+a:link {
+  color: #d12335 !important;
+  text-decoration: none;
+}
+
+a[href^="tel:"] {
+  color: #d12335 !important;
+  text-decoration: underline;
+}
 </style>

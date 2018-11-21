@@ -11,10 +11,10 @@
     >
       <v-card style="width:100%;height:60px;" :color="inputboxColor">
         <v-layout row nowrap>
-          <v-flex xs11>
+          <v-flex xs12>
             <transition name="fade">
         <v-text-field
-          style="margin-left:10px;"
+          style="margin-right:15px; margin-left:10px"
           v-bind:label="textInputPlaceholder"
           v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
@@ -26,23 +26,9 @@
           name="text-input"
           single-line
           hide-details
+          append-icon="send"
+          @click:append="postTextMessage"
         ></v-text-field>  
-        </transition>
-        </v-flex>
-        <v-flex xs1>
-          <transition name="fade">
-        <v-btn
-          style="margin-top:15px; margin-left:-5px;"
-          v-show="shouldShowSendButton & readyForInput"
-          v-on:click="postTextMessage"
-          v-on="tooltipEventHandlers"
-          v-bind:disabled="isSendButtonDisabled"
-          ref="send"
-          class="black--text input-button"
-          icon
-        >
-          <v-icon medium style="color:#D12335">send</v-icon>
-        </v-btn>
         </transition>
         </v-flex>
         </v-layout>

@@ -9,7 +9,7 @@
       v-if="toolbarLogo" v-bind:src="toolbarLogo" @click="restartCB">
     <v-toolbar-title ma-0 pa-0 class="hidden-xs-and-down" @click="restartCB">
       <v-btn class="white--text" flat
-      style="font-size:18px; font-weight: bold; background:#d12335; margin-left:-15px"
+      style="font-size:18px; font-weight: bold; background:#d12335; margin-left:-17px"
       >{{ toolbarTitle }}</v-btn>
     </v-toolbar-title>
     <v-spacer />

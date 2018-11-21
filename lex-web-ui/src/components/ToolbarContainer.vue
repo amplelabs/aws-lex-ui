@@ -405,12 +405,6 @@ export default {
   },
   methods: {
     restartCB() {
-      /*
-      this.$store.dispatch('postTextMessage', {
-        type: 'human',
-        text: 'restart',
-      });
-      */
       window.location.reload();
     },
     clearForm() {

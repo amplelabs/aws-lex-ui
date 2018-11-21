@@ -483,6 +483,13 @@ export default {
       });
       return;
     }
+    if (response.message.match('##error') !== null) {
+      context.dispatch('directMessage', {
+        type: 'human',
+        text: 'error',
+      });
+      return;
+    }
     const arr = response.message.split(' ## ');
     const intervalTimeInMs = 1000;
     context.commit('setIsLexProcessing', true);

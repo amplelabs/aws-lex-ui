@@ -8,9 +8,9 @@
     <img width="40" style="margin-left:-12px; padding-left:12px; padding-top:9px; padding-bottom:9px"
       v-if="toolbarLogo" v-bind:src="toolbarLogo" @click="restartCB">
     <v-toolbar-title ma-0 pa-0 class="hidden-xs-and-down" @click="restartCB">
-      <span class="white--text"
-      style="font-size:18px; font-weight: bold;"
-      >{{ toolbarTitle }}</span>
+      <v-btn class="white--text" flat
+      style="font-size:18px; font-weight: bold; background:#d12335; margin-left:-15px"
+      >{{ toolbarTitle }}</v-btn>
     </v-toolbar-title>
     <v-spacer />
     <!-- tooltip should be before btn to avoid right margin issue in mobile -->

@@ -36,7 +36,7 @@
         style="background-color:#D12335"
         dense
       >
-        <v-toolbar-title class="white--text">Add Resource</v-toolbar-title>
+        <v-toolbar-title class="white--text">Add a new resource</v-toolbar-title>
         <v-spacer />
         <v-btn icon
           style="margin-right:-1.4em; padding-left:-12px"

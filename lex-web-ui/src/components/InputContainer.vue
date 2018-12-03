@@ -16,7 +16,6 @@
         <v-text-field
           style="margin-right:15px; margin-left:10px"
           v-bind:label="textInputPlaceholder"
-          v-show="shouldShowTextInput & readyForInput"
           v-model="textInput"
           v-on:keyup.enter.stop="postTextMessage"
           v-on:focus="onTextFieldFocus"
@@ -28,7 +27,7 @@
           hide-details
           append-icon="send"
           @click:append="postTextMessage"
-        ></v-text-field>  
+        ></v-text-field>  <!-- v-show="shouldShowTextInput & readyForInput" -->
         </transition>
         </v-flex>
         </v-layout>
@@ -207,8 +206,7 @@ export default {
   computed: {
     readyForInput() {
       // eslint-disable-next-line no-console
-      // console.log(!this.$store.state.botIsTexting);
-      return !this.$store.state.botIsTexting;
+      console.log(!this.$store.state.botIsTexting);
     },
     isBotSpeaking() {
       return this.$store.state.botAudio.isSpeaking;
@@ -259,7 +257,8 @@ export default {
       );
     },
     shouldShowTextInput() {
-      return !(this.isBotSpeaking || this.isSpeechConversationGoing);
+      // return !(this.isBotSpeaking || this.isSpeechConversationGoing);
+      return true; // disable transition
     },
   },
   methods: {

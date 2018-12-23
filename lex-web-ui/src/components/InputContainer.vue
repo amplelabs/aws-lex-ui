@@ -2,7 +2,7 @@
   <!-- v-footer app fixed -->
   <v-footer
     fixed
-    height="100px"
+    height="80px"
   >
     <v-layout
       justify-center
@@ -32,44 +32,10 @@
         </v-flex>
         </v-layout>
       </v-card>
-      <v-card style="width:100%;height:40px;">
-        <v-container fluid style="margin-top:-30px;" mx-0 px-0>
-        <v-layout row nowrap justify-center>
-      <v-layout row text-xs-left>
-      <v-flex xs12
-      >
-        <a href="https://www.amplelabs.co/terms-conditions" target="_blank">
-        <v-card-text justify-start ml-2 style="font-size:12px; margin-left:-5px">
-          Terms &amp; Conditions
-          </v-card-text>
-        </a>
-      </v-flex>
-      </v-layout>
-      <v-layout row text-xs-center>
-      <v-flex xs12
-      >
-        <a href="https://www.amplelabs.co/chalmersbot-2" target="_blank">
-          <v-card-text justify-center style="font-size:12px; margin-left:-10px;">
-          Learn More
-          </v-card-text>
-        </a>
-      </v-flex>
-      </v-layout>
-      <v-layout row text-xs-right>
-      <v-flex xs12
-      >
-        <v-card-text justify-end
-          @click="feedbackCB"
-          style="color: #d12335; font-size:12px; font-weight:bold">
-         Give Feedback
-        </v-card-text>
-      </v-flex>
-      </v-layout>
-        </v-layout>
-        </v-container>
+      <v-card style="width:100%;height:20px;">
       </v-card>
     </v-layout>
-    <v-dialog
+    <!-- v-dialog
       v-model="feedback"
       max-width="400"
     >
@@ -146,7 +112,7 @@
           </v-layout>
         </v-container>
       </v-card>
-    </v-dialog>
+    </v-dialog -->
   </v-footer>
 </template>
 <script>
@@ -165,15 +131,13 @@ License for the specific language governing permissions and limitations under th
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 import RecorderStatus from '@/components/RecorderStatus';
-import axios from 'axios';
-import uuid from 'uuid';
 
 export default {
   name: 'input-container',
   data() {
     return {
       textInput: '',
-      inputboxColor: 'grey lighten-4',
+      inputboxColor: 'white',
       isTextFieldFocused: false,
       shouldShowTooltip: false,
       // workaround: vuetify tooltips doesn't seem to support touch events
@@ -262,48 +226,6 @@ export default {
     },
   },
   methods: {
-    submitFeedback() {
-      this.feedbackSubmitted = true;
-      // const postUrl = process.env.VUE_APP_CREATE_URL;
-      // eslint-disable-next-line
-      // console.log(process.env.VUE_APP_API_KEY_VALUE);
-      const postUrl = 'https://1f2sneichf.execute-api.us-east-1.amazonaws.com/dev/feedback';
-      // const VUE_APP_API_KEY_VALUE = '';
-      const item = {
-        id: uuid.v1(),
-        name: this.nameInput === null || this.nameInput.length === 0 ? 'na' : this.nameInput,
-        feedback: this.feedbackInput === null || this.feedbackInput.length === 0 ?
-          'na' : this.feedbackInput,
-      };
-      // eslint-disable-next-line
-      console.log(item);
-      axios.post(postUrl, item, {
-        headers: {
-          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
-        },
-      })
-        .then((resp) => {
-          // resp.status === 200
-          // resp.data === item
-          // eslint-disable-next-line
-          console.log(resp.status);
-          this.feedbackSubmitted = false;
-          this.feedback = false;
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-      /*
-      const intervalId = setTimeout(() => {
-        this.feedbackSubmitted = false;
-        this.feedback = false;
-        clearInterval(intervalId);
-      }, 2000);
-      */
-    },
-    feedbackCB() {
-      this.feedback = true;
-    },
     onInputButtonHoverEnter() {
       this.shouldShowTooltip = true;
     },
@@ -445,5 +367,4 @@ a:link {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
-
 </style>

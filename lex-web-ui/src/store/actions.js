@@ -456,7 +456,7 @@ export default {
   async dummyChat(context, arg) {
     const txt = arg[0];
     const index = arg[1];
-    const intervalTimeInMs = 2000 * (index + 1);
+    const intervalTimeInMs = 2800 * (index + 1);
     // eslint-disable-next-line
     // console.log(index);
     return new Promise((resolve) => {

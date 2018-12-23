@@ -79,56 +79,6 @@
               maxlength="50"
             ></v-textarea>
             </v-flex>
-            <!-- v-flex xs12>
-              <v-text-field
-              v-model="org_address2"
-              placeholder="Address 2"
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              v-model="org_address3"
-              placeholder="Address 3"
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              v-model="org_address4"
-              placeholder="Address 4"
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              v-model="org_city"
-              placeholder="City"
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              maxlength="50"
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              v-model="org_zip"
-              placeholder="Postal Code"
-              style="margin-top: -30px"
-              color="#d12335"
-              outline
-              maxlength="50"
-            ></v-text-field>
-            </v-flex -->
             <v-flex xs12>
               <v-card-text style="margin: -30px 0 0 -15px;">Website</v-card-text>
             </v-flex>
@@ -283,10 +233,10 @@
     &nbsp; &nbsp;
     <v-btn icon
       style="margin-right:-10.0px; padding-left:-0px"
-      @click="shareCB"
+      @click="feedbackCB"
     >
       <v-icon color="white">
-        share
+        feedback
       </v-icon> <span style="color:#D12335"></span>
     </v-btn>
     <v-dialog
@@ -343,6 +293,84 @@
       </v-container>
     </v-card>
     </v-dialog>
+        <v-dialog
+      v-model="feedback"
+      max-width="400"
+    >
+      <v-toolbar
+        style="background-color:#D12335"
+        dense
+      >
+        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
+        <v-spacer />
+        <v-btn icon
+          style="margin-right:-1.4em; padding-left:-12px"
+          @click="feedback=false"
+        >
+          <v-icon color="white">
+            close
+          </v-icon> <span style="color:#D12335"></span>
+        </v-btn>
+      </v-toolbar>
+      <v-card>
+        <v-container
+          fluid
+          grid-list-lg
+        >
+          <v-layout column v-if="!feedbackSubmitted">
+            <v-flex xs12>
+              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+              style="margin-top: -30px"
+              color="#d12335"
+              v-model="nameInput"
+              outline
+            ></v-text-field>
+            </v-flex>
+             <v-flex xs12>
+              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea
+                style="margin-top: -30px"
+                outline
+                color="#d12335"
+                name="input-7-4"
+                v-model="feedbackInput"
+              ></v-textarea>
+            </v-flex>
+            </v-layout>
+            <v-layout row v-if="!feedbackSubmitted">
+              <v-flex xs3>
+                <v-btn
+                  style="margin-left:-5px; color: #d12335;"
+                  round outline small
+                  @click="submitFeedback"
+                >
+                  Submit
+                </v-btn>
+              </v-flex>
+              <v-flex xs9>
+                <p class="text-xs-right">
+                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
+                </p>
+              </v-flex>
+          </v-layout>
+          <v-layout row align-center v-else>
+            <v-flex xs2>
+            <v-icon large style="color:#D12335">check_circle</v-icon>
+          </v-flex>
+          <v-flex xs10 >
+            <p class="text-xs-left font-weight-bold" style="color:#D12335">
+              Success! <br> Your Feedback has been submitted.
+            </p>
+          </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-dialog>
   </v-toolbar>
 </template>
 
@@ -395,6 +423,11 @@ export default {
       notes: null,
       contact_name: null,
       contact_email: null,
+      // for feedback from, moved from inputContainer
+      feedback: false,
+      feedbackSubmitted: false,
+      nameInput: null,
+      feedbackInput: null,
     };
   },
   props: ['toolbarTitle', 'toolbarColor', 'toolbarLogo', 'isUiMinimized'],
@@ -404,6 +437,42 @@ export default {
     },
   },
   methods: {
+    submitFeedback() {
+      this.feedbackSubmitted = true;
+      // const postUrl = process.env.VUE_APP_CREATE_URL;
+      // eslint-disable-next-line
+      // console.log(process.env.VUE_APP_API_KEY_VALUE);
+      const postUrl = 'https://1f2sneichf.execute-api.us-east-1.amazonaws.com/dev/feedback';
+      // const VUE_APP_API_KEY_VALUE = '';
+      const item = {
+        id: uuid.v1(),
+        name: this.nameInput === null || this.nameInput.length === 0 ? 'na' : this.nameInput,
+        feedback: this.feedbackInput === null || this.feedbackInput.length === 0 ?
+          'na' : this.feedbackInput,
+      };
+      // eslint-disable-next-line
+      console.log(item);
+      axios.post(postUrl, item, {
+        headers: {
+          'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
+        },
+      })
+        .then((resp) => {
+          // resp.status === 200
+          // resp.data === item
+          // eslint-disable-next-line
+          console.log(resp.status);
+          this.feedbackSubmitted = false;
+          this.feedback = false;
+        })
+        .catch((err) => {
+          // eslint-disable-next-line
+          console.error(err);
+        });
+    },
+    feedbackCB() {
+      this.feedback = true;
+    },
     restartCB() {
       window.location.reload();
     },

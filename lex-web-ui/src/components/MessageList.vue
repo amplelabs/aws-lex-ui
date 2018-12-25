@@ -13,9 +13,6 @@
       v-bind:class="`message-${message.type}`"
       v-on:scrollDown="scrollDown"
     ></message>
-    <!-- MessageLoading
-      v-if="loading"
-    ></MessageLoading -->
   </v-layout>
 </template>
 
@@ -49,12 +46,6 @@ export default {
     loading() {
       return this.$store.state.lex.isProcessing;
     },
-  },
-  watch: {
-    // autoscroll message list to the bottom when messages change
-    // messages() {
-    //  this.scrollDown();
-    // },
   },
   methods: {
     scrollDown() {

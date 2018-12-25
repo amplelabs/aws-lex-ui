@@ -1,22 +1,5 @@
 <template>
   <span>{{ progress }} </span>
-  <!-- v-flex d-flex class="message message-bot">
-    <v-layout column ma-2 class="message-layout">
-      <v-flex d-flex class="message-bubble-date-container">
-        <v-layout column class="message-bubble-column">
-          <v-flex d-flex class="message-bubble-avatar-container">
-            <v-layout row class="message-bubble-row">
-              <div
-                class="message-bubble focusable"
-              >
-                {{ progress }} 
-              </div>
-            </v-layout>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-flex -->
 </template>
 
 <script>
@@ -66,7 +49,7 @@ export default {
 
 
 .message-bot .message-bubble {
-  background-color: #FFFFFF; /* #FFEBEE; */ /* red-50 from material palette */
+  background-color: #FFFFFF;
 }
 
 </style>

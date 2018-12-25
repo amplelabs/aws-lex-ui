@@ -73,6 +73,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "^2.0.9",
+    "material-design-icons-iconfont": "^4.0.3",
     "mocha": "^4.1.0",
     "nightwatch": "^0.9.19",
     "opn": "^5.1.0",

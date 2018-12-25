@@ -15,7 +15,6 @@
  * Entry point for sample application.
  * See lex-web-ui.js for the component entry point.
  */
-
 import Vue from 'vue';
 import router from '@/router';
 import LexApp from '@/LexApp';

@@ -81,10 +81,8 @@ export default {
   align-self: center;
 }
 
-
 .message-bot .message-bubble {
-  background-color: #FFFFFF; /* #FFEBEE; */ /* red-50 from material palette */
+  background-color: #FFFFFF;
 }
-
 
 </style>

@@ -27,7 +27,7 @@
           hide-details
           append-icon="send"
           @click:append="postTextMessage"
-        ></v-text-field>  <!-- v-show="shouldShowTextInput & readyForInput" -->
+        ></v-text-field>
         </transition>
         </v-flex>
         </v-layout>
@@ -35,84 +35,6 @@
       <v-card style="width:100%;height:20px;">
       </v-card>
     </v-layout>
-    <!-- v-dialog
-      v-model="feedback"
-      max-width="400"
-    >
-      <v-toolbar
-        style="background-color:#D12335"
-        dense
-      >
-        <v-toolbar-title class="white--text">ChalmersBot Feedback Form</v-toolbar-title>
-        <v-spacer />
-        <v-btn icon
-          style="margin-right:-1.4em; padding-left:-12px"
-          @click="feedback=false"
-        >
-          <v-icon color="white">
-            close
-          </v-icon> <span style="color:#D12335"></span>
-        </v-btn>
-      </v-toolbar>
-      <v-card>
-        <v-container
-          fluid
-          grid-list-lg
-        >
-          <v-layout column v-if="!feedbackSubmitted">
-            <v-flex xs12>
-              <v-card-text style="margin-left:-15px">Name (optional)</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-              style="margin-top: -30px"
-              color="#d12335"
-              v-model="nameInput"
-              outline
-            ></v-text-field>
-            </v-flex>
-             <v-flex xs12>
-              <v-card-text style="margin-left:-15px; margin-top: -30px">Feedback</v-card-text>
-            </v-flex>
-            <v-flex xs12>
-              <v-textarea
-                style="margin-top: -30px"
-                outline
-                color="#d12335"
-                name="input-7-4"
-                v-model="feedbackInput"
-              ></v-textarea>
-            </v-flex>
-            </v-layout>
-            <v-layout row v-if="!feedbackSubmitted">
-              <v-flex xs3>
-                <v-btn
-                  style="margin-left:-5px; color: #d12335;"
-                  round outline small
-                  @click="submitFeedback"
-                >
-                  Submit
-                </v-btn>
-              </v-flex>
-              <v-flex xs9>
-                <p class="text-xs-right">
-                  Looking for other ways to get in touch? Email us at <a href="mailto:general@amplelabs.co">general@amplelabs.co.</a>
-                </p>
-              </v-flex>
-          </v-layout>
-          <v-layout row align-center v-else>
-            <v-flex xs2>
-            <v-icon large style="color:#D12335">check_circle</v-icon>
-          </v-flex>
-          <v-flex xs10 >
-            <p class="text-xs-left font-weight-bold" style="color:#D12335">
-              Success! <br> Your Feedback has been submitted.
-            </p>
-          </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </v-dialog -->
   </v-footer>
 </template>
 <script>
@@ -191,7 +113,7 @@ export default {
       return this.$store.state.recState.isRecorderEnabled;
     },
     isSendButtonDisabled() {
-      return false; // this.textInput.length < 1;
+      return false;
     },
     micButtonIcon() {
       if (this.isMicMuted) {
@@ -221,7 +143,6 @@ export default {
       );
     },
     shouldShowTextInput() {
-      // return !(this.isBotSpeaking || this.isSpeechConversationGoing);
       return true; // disable transition
     },
   },
@@ -334,22 +255,14 @@ export default {
   background-color: white;
 }
 
-
 .reference-card {
   margin-top:-48px;
-  /* background-color: #d12335;
-  color: white; */
 }
 
 .cgred {
   color: #d12335;
 }
 
-/*
-.highlighted {
-  font-style: italic;
-}
-*/
 a {
   color: #d12335 !important;
   text-decoration: none;
@@ -360,11 +273,11 @@ a:link {
   text-decoration: none;
 }
 .fade-enter-active, .fade-leave-active {
-  /* transition: opacity 1.5s; */
   transition: all 1.5s ease;
 }
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
 </style>

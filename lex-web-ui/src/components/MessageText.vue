@@ -65,14 +65,13 @@ export default {
     },
     shouldConvertUrlToLinks() {
       // eslint-disable-next-line
-      // console.log(this.message.text);
-      return true; // this.$store.state.config.ui.convertUrlToLinksInBotMessages;
+      return true;
     },
     shouldStripTags() {
-      return false; // this.$store.state.config.ui.stripTagsFromBotMessages;
+      return false;
     },
     AllowSuperDangerousHTMLInMessage() {
-      return true; // this.$store.state.config.ui.AllowSuperDangerousHTMLInMessage;
+      return true;
     },
     altHtmlMessage() {
       let out = false;

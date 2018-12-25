@@ -43,14 +43,6 @@
                     <v-icon class="play-icon">play_circle_outline</v-icon>
                   </v-btn>
                 </div>
-                <!-- v-icon
-                  medium
-                  v-if="message.type === 'bot' && botDialogState && showDialogStateIcon"
-                  v-bind:class="`dialog-state-${botDialogState.state}`"
-                  class="dialog-state"
-                >
-                  {{botDialogState.icon}}
-                </v-icon -->
               </div>
             </v-layout>
           </v-flex>
@@ -163,11 +155,6 @@ export default {
   },
   methods: {
     playAudio() {
-      // XXX doesn't play in Firefox or Edge
-      /* XXX also tried:
-      const audio = new Audio(this.message.audio);
-      audio.play();
-      */
       const audioElem = this.$el.querySelector('audio');
       if (audioElem) {
         audioElem.play();
@@ -247,18 +234,15 @@ export default {
 }
 
 .focusable {
-  /* box-shadow: 0 0.25px 0.75px rgba(0,0,0,0.12), 0 0.25px 0.5px rgba(0,0,0,0.24); */
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   cursor: default;
 }
 
 .focusable:focus {
-  /* box-shadow: 0 1.25px 3.75px rgba(0,0,0,0.25), 0 1.25px 2.5px rgba(0,0,0,0.22); */
   outline: none;
 }
 
 .message-bot .message-bubble {
-  /* background-color: #FFEBEE; */ /* red-50 from material palette */
   outline-color: #ffffff; 
   border:1px solid #ffffff; /* red; */
   background-color: #ffffff;
@@ -268,14 +252,13 @@ export default {
 }
 
 .message-pondering .message-bubble {
-  /* background-color: #FFEBEE; */ /* red-50 from material palette */
   outline-color: #ffffff; 
   border:1px solid #ffffff; /* red; */
   background-color: #ffffff;
 }
 
 .message-human .message-bubble {
-  background-color: #ffcb01; /* #E8EAF6; */ /* indigo-50 from material palette */
+  background-color: #ffcb01;
   outline-color:#ffcb01;
   border:1px solid #ffcb01;
   -webkit-box-shadow: none;

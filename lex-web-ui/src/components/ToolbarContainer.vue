@@ -396,9 +396,7 @@ export default {
   name: 'toolbar-container',
   data() {
     return {
-      // from https://bitly.com/
-      url: 'https://chalmersbot.amplelabs.co', // 'https://amplebot-3d467.firebaseapp.com/#/',
-      dialog: false,
+      url: 'https://chalmersbot.amplelabs.co',
       resource: false,
       shareConfirm: false,
       resourceSubmitted: false,
@@ -439,11 +437,8 @@ export default {
   methods: {
     submitFeedback() {
       this.feedbackSubmitted = true;
-      // const postUrl = process.env.VUE_APP_CREATE_URL;
       // eslint-disable-next-line
-      // console.log(process.env.VUE_APP_API_KEY_VALUE);
-      const postUrl = 'https://1f2sneichf.execute-api.us-east-1.amazonaws.com/dev/feedback';
-      // const VUE_APP_API_KEY_VALUE = '';
+      const postUrl = process.env.VUE_APP_CREATE_URL;
       const item = {
         id: uuid.v1(),
         name: this.nameInput === null || this.nameInput.length === 0 ? 'na' : this.nameInput,
@@ -451,15 +446,12 @@ export default {
           'na' : this.feedbackInput,
       };
       // eslint-disable-next-line
-      console.log(item);
       axios.post(postUrl, item, {
         headers: {
           'x-api-key': process.env.VUE_APP_API_KEY_VALUE,
         },
       })
         .then((resp) => {
-          // resp.status === 200
-          // resp.data === item
           // eslint-disable-next-line
           console.log(resp.status);
           this.feedbackSubmitted = false;
@@ -494,8 +486,7 @@ export default {
     submitResource() {
       this.resourceSubmitted = true;
       // eslint-disable-next-line
-      // console.log(process.env.VUE_APP_API_KEY_VALUE);
-      const postUrl = 'https://u80h6gc31h.execute-api.us-east-1.amazonaws.com/dev/resources';
+      const postUrl = process.env.VUE_APP_API_KEY_VALUE;
       const item = {
         id: uuid.v1(),
         org_name: this.org_name === null || this.org_name.length === 0 ? 'na' : this.org_name,
@@ -520,8 +511,6 @@ export default {
         },
       })
         .then((resp) => {
-          // resp.status === 200
-          // resp.data === item
           // eslint-disable-next-line
           console.log(resp.status);
           this.resourceSubmitted = false;
@@ -535,13 +524,6 @@ export default {
           // eslint-disable-next-line
           console.error(err);
         });
-      /*
-      const intervalId = setTimeout(() => {
-        this.resourceSubmitted = false;
-        this.resource = false;
-        clearInterval(intervalId);
-      }, 2000);
-      */
     },
     copyToClipboard() {
       // https://developers.google.com/web/updates/2018/03/clipboardapi

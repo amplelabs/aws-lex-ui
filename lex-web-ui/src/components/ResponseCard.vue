@@ -66,8 +66,7 @@ export default {
   },
   computed: {
     mapOffset() {
-      // if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:-170px;';
-      return 'margin-left:10px;'; //  'margin-left:25px;';
+      return 'margin-left:10px;';
     },
     mapHeight() {
       if (this.$vuetify.breakpoint.mdAndUp) return '400px';
@@ -75,7 +74,6 @@ export default {
       return '23vh';
     },
     styleAdj() {
-      // if (this.$vuetify.breakpoint.mdAndUp) return 'margin-left:15px;';
       return 'margin-left:10px';
     },
     imageUrl() {
@@ -109,7 +107,6 @@ export default {
   mounted() {
     // eslint-disable-next-line
     this.subTitle = this.responseCard.subTitle;
-    // console.log(this.responseCard.subTitle);
   },
 };
 </script>
@@ -132,7 +129,7 @@ export default {
   padding-bottom: 0px !important;
 }
 .card__actions.button-row {
-  justify-content: left; /* center; */
+  justify-content: left;
   padding-bottom: 0em;
   margin-bottom: 0px;
 }
@@ -158,9 +155,7 @@ export default {
 }
 
 .linkbutton {
-  /* margin-top:-1em; */
   margin-bottom: -1.5em;
-  /* padding-bottom: 0.5em; */
 }
 
 a {

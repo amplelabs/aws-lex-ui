@@ -14,6 +14,7 @@
           <v-flex xs12>
             <transition name="fade">
         <v-text-field
+          :disabled="!readyForInput"
           style="margin-right:15px; margin-left:10px"
           v-bind:label="textInputPlaceholder"
           v-model="textInput"
@@ -92,7 +93,8 @@ export default {
   computed: {
     readyForInput() {
       // eslint-disable-next-line no-console
-      console.log(!this.$store.state.botIsTexting);
+      // console.log(!this.$store.state.botIsTexting);
+      return !this.$store.state.botIsTexting;
     },
     isBotSpeaking() {
       return this.$store.state.botAudio.isSpeaking;

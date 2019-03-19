@@ -25,6 +25,10 @@ import silentMp3 from '@/assets/silent.mp3';
 
 import LexClient from '@/lib/lex/client';
 
+// TODO: Replace the key with env var
+// e.g. process.env.DASHBOT_API_KEY_GENERIC
+const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
+
 // non-state variables that may be mutated outside of store
 // set via initializers at run time
 let awsCredentials;
@@ -73,12 +77,6 @@ export default {
     context.commit('mergeConfig', configObj);
   },
   initMessageList(context) {
-    /*
-    context.commit('pushMessage', {
-      type: 'bot',
-      text: context.state.config.lex.initialText,
-    });
-    */
     context.dispatch('directMessage', {
       type: 'human',
       text: 'hi',
@@ -187,14 +185,10 @@ export default {
     return Promise.resolve()
       .then(() => (
         (context.state.config.ui.pushInitialTextOnRestart) ?
-          /* context.dispatch('pushMessage', {
-            text: context.state.config.lex.initialText,
-            type: 'bot',
-          }) */
-        context.dispatch('directMessage', {
-          type: 'human',
-          text: 'hi',
-        }) :
+          context.dispatch('directMessage', {
+            type: 'human',
+            text: 'hi',
+          }) :
           Promise.resolve()
       ))
       .then(() => (
@@ -504,7 +498,6 @@ export default {
         context.dispatch(
           'pushMessage',
           {
-            // TODO: Break down the message into multiple bubbles!
             text: response.message,
             type: 'bot',
             dialogState: context.state.lex.dialogState,
@@ -516,8 +509,7 @@ export default {
       } else {
         // start the ... first.
         context.commit('setIsLexProcessing', true);
-        context.dispatch('ponderingChat'); // ponderingChat();
-        // await Promise.all(arr.map(async (x, index) => dummyChat(x, index)));
+        context.dispatch('ponderingChat');
         await Promise.all(arr
           .map(async (x, index) => context.dispatch('dummyChat', [x, index])));
         context.commit('setIsLexProcessing', false);
@@ -526,7 +518,6 @@ export default {
         context.dispatch(
           'pushMessage',
           {
-            // TODO: Break down the message into multiple bubbles!
             text: '', // txt, // response.message,
             type: '',
             dialogState: context.state.lex.dialogState,
@@ -684,10 +675,28 @@ export default {
    * Message List Actions
    *
    **********************************************************************/
-  // pushMessageOrig(context, message) {
-  //   context.commit('pushMessageOrig', message);
-  // },
   pushMessage(context, message) {
+    // before commit, send the message to dashbot
+    // TODO: Intent has to be tracked in the Lex side
+    const { type, text } = message;
+    if (type === 'human') {
+      dashbot.logIncoming({
+        text,
+        userId: 'USERIDHERE123123',
+        platformJson: {
+          tbd: 'n/a',
+        },
+      });
+    }
+    if (type === 'bot') {
+      dashbot.logOutgoing({
+        text,
+        userId: 'USERIDHERE123123',
+        platformJson: {
+          tbd: 'n/a',
+        },
+      });
+    }
     context.commit('pushMessage', message);
   },
   pushErrorMessage(context, text, dialogState = 'Failed') {

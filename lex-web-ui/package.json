@@ -11,6 +11,8 @@
     "start": "node build/dev-server.js",
     "testbot": "NODE_ENV=testing node build/dev-server.js",
     "build": "NODE_ENV=production node build/build.js",
+    "build-dev": "NODE_ENV=development node build/build.js",
+    "build-testing": "NODE_ENV=testing node build/build.js",
     "build-dist": "node build/build-dist.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -20,6 +22,7 @@
   "dependencies": {
     "aws-sdk": "^2.180.0",
     "axios": "^0.18.0",
+    "dashbot": "^10.3.4",
     "font-proxima-nova": "^1.0.1",
     "marked": "^0.3.19",
     "material-design-icons": "^3.0.1",

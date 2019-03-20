@@ -27,6 +27,9 @@ import LexClient from '@/lib/lex/client';
 
 // TODO: Replace the key with env var
 // e.g. process.env.DASHBOT_API_KEY_GENERIC
+// TODO: add session ID:
+// e.g. sessionAttribute.uuid
+// TODO: log error handler
 const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
 
 // non-state variables that may be mutated outside of store
@@ -680,18 +683,48 @@ export default {
     // TODO: Intent has to be tracked in the Lex side
     const { type, text } = message;
     if (type === 'human') {
-      dashbot.logIncoming({
+      const log = {
         text,
-        userId: 'USERIDHERE123123',
+        userId: context.state.config.lex.sessionAttributes.uuid,
         platformJson: {
           tbd: 'n/a',
         },
-      });
+      };
+      switch (text.toLowerCase()) {
+        case 'free meal':
+          log.intent = {
+            name: 'free meal',
+          };
+          break;
+        case 'drop-in':
+          log.intent = {
+            name: 'drop-in',
+          };
+          break;
+        case 'clothing':
+          log.intent = {
+            name: 'clothing',
+          };
+          break;
+        case 'shelter':
+          log.intent = {
+            name: 'shelter',
+          };
+          break;
+        case 'not listed':
+          log.intent = {
+            name: 'not listed',
+          };
+          break;
+        default:
+          break;
+      }
+      dashbot.logIncoming(log);
     }
     if (type === 'bot') {
       dashbot.logOutgoing({
         text,
-        userId: 'USERIDHERE123123',
+        userId: context.state.config.lex.sessionAttributes.uuid,
         platformJson: {
           tbd: 'n/a',
         },

@@ -71,4 +71,6 @@ export default {
   awsCreds: {
     provider: 'cognito', // cognito|parentWindow
   },
+
+  lastUserInput: null,
 };

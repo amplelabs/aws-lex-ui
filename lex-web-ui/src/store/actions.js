@@ -31,6 +31,7 @@ import LexClient from '@/lib/lex/client';
 // e.g. sessionAttribute.uuid
 // TODO: log error handler
 const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
+// const dashbot = require('dashbot')(process.env.DASHBOT_KEY || '1234abcd').universal;
 
 // non-state variables that may be mutated outside of store
 // set via initializers at run time
@@ -719,9 +720,23 @@ export default {
         default:
           break;
       }
-      dashbot.logIncoming(log);
+      // just save the user input for now
+      context.commit('setLastUserInput', log);
     }
     if (type === 'bot') {
+      const errMsg = 'could you please reword your answer';
+      if (context.state.lastUserInput !== null) {
+        if (text.match(errMsg) === null) {
+          dashbot.logIncoming(context.state.lastUserInput);
+        } else {
+          const log = context.state.lastUserInput;
+          log.intent = {
+            name: 'NotHandled',
+          };
+          dashbot.logIncoming(log);
+          context.commit('setLastUserInput', null);
+        }
+      }
       dashbot.logOutgoing({
         text,
         userId: context.state.config.lex.sessionAttributes.uuid,

@@ -328,4 +328,11 @@ export default {
   setAwsCredsProvider(state, provider) {
     state.awsCreds.provider = provider;
   },
+  /**
+   * Save last User input
+   */
+  setLastUserInput(state, log) {
+    state.lastUserInput = log;
+  },
+
 };

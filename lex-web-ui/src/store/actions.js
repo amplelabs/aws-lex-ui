@@ -764,8 +764,8 @@ export default {
               // eslint-disable-next-line
               console.log(error);
             });
-          context.commit('setLastUserInput', null);
         }
+        context.commit('setLastUserInput', null);
       }
       // dashbot.logOutgoing({
       //   text,

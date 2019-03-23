@@ -80,7 +80,33 @@ const configDefault = {
       // GPS related
       userPosition: null,
       userAgent: navigator.userAgent,
-      uuid: uuidv1(),
+      // uuid: uuidv1(),
+      uuid: (() => {
+        const localStorageKey = 'chalmersbot'; // TODO: env var!!!
+        const currTime = new Date();
+        const newID = {
+          chalmersID: null,
+          created_at: null,
+          updated_at: null,
+        };
+        const existingID = JSON.parse(window.localStorage.getItem(localStorageKey)
+        || JSON.stringify(newID));
+        if (existingID.chalmersID === newID.chalmersID) {
+          // cookie does not exist
+          newID.chalmersID = uuidv1();
+          newID.created_at = currTime;
+          newID.updated_at = currTime;
+          window.localStorage.setItem(localStorageKey, JSON.stringify(newID));
+        } else {
+          // just update the timestamp
+          existingID.updated_at = currTime;
+          window.localStorage.setItem(localStorageKey, JSON.stringify(existingID));
+        }
+        const updatedCookie = window.localStorage.getItem(localStorageKey);
+        // eslint-disable-next-line
+        // console.log(`check: ${JSON.parse(updatedCookie).chalmersID}`);
+        return JSON.parse(updatedCookie).chalmersID;
+      })(),
     },
 
     // controls if the session attributes are reinitialized a

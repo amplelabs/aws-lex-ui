@@ -18,6 +18,8 @@ License for the specific language governing permissions and limitations under th
 /* eslint no-console: ["error", { allow: ["info", "warn", "error"] }] */
 /* eslint spaced-comment: ["error", "always", { "exceptions": ["*"] }] */
 
+import axios from 'axios';
+
 import LexAudioRecorder from '@/lib/lex/recorder';
 import initRecorderHandlers from '@/store/recorder-handlers';
 import silentOgg from '@/assets/silent.ogg';
@@ -30,8 +32,13 @@ import LexClient from '@/lib/lex/client';
 // TODO: add session ID:
 // e.g. sessionAttribute.uuid
 // TODO: log error handler
-const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
+// const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
 // const dashbot = require('dashbot')(process.env.DASHBOT_KEY || '1234abcd').universal;
+
+const dashBotURL = 'https://tracker.dashbot.io/track?platform=universal&v=10.1.1-rest';
+const dashBotAPI = process.env.DASHBOT_KEY || 'x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A';
+const dashBotIncomingURL = `${dashBotURL}&type=incoming&apiKey=${dashBotAPI}`;
+const dashBotOutcomingURL = `${dashBotURL}&type=outgoing&apiKey=${dashBotAPI}`;
 
 // non-state variables that may be mutated outside of store
 // set via initializers at run time
@@ -712,6 +719,11 @@ export default {
             name: 'shelter',
           };
           break;
+        case 'emergency':
+          log.intent = {
+            name: 'emergency',
+          };
+          break;
         case 'not listed':
           log.intent = {
             name: 'not listed',
@@ -727,23 +739,56 @@ export default {
       const errMsg = 'could you please reword your answer';
       if (context.state.lastUserInput !== null) {
         if (text.match(errMsg) === null) {
-          dashbot.logIncoming(context.state.lastUserInput);
+          // dashbot.logIncoming(context.state.lastUserInput);
+          axios.post(dashBotIncomingURL, context.state.lastUserInput)
+            .then((/* response */) => {
+              // eslint-disable-next-line
+              // console.log(response);
+            })
+            .catch((error) => {
+              // eslint-disable-next-line
+              console.log(error);
+            });
         } else {
           const log = context.state.lastUserInput;
           log.intent = {
             name: 'NotHandled',
           };
-          dashbot.logIncoming(log);
+          // dashbot.logIncoming(log);
+          axios.post(dashBotIncomingURL, log)
+            .then((/* response */) => {
+              // eslint-disable-next-line
+              // console.log(response);
+            })
+            .catch((error) => {
+              // eslint-disable-next-line
+              console.log(error);
+            });
           context.commit('setLastUserInput', null);
         }
       }
-      dashbot.logOutgoing({
+      // dashbot.logOutgoing({
+      //   text,
+      //   userId: context.state.config.lex.sessionAttributes.uuid,
+      //   platformJson: {
+      //     tbd: 'n/a',
+      //   },
+      // });
+      axios.post(dashBotOutcomingURL, {
         text,
         userId: context.state.config.lex.sessionAttributes.uuid,
         platformJson: {
           tbd: 'n/a',
         },
-      });
+      })
+        .then((/* response*/) => {
+          // eslint-disable-next-line
+          // console.log(response);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.log(error);
+        });
     }
     context.commit('pushMessage', message);
   },

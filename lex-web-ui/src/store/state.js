@@ -73,4 +73,5 @@ export default {
   },
 
   lastUserInput: null,
+  currMealJson: null,
 };

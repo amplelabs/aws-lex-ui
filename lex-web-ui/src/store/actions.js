@@ -481,6 +481,18 @@ export default {
     });
   },
   processResponse(context, response) {
+    if (response.message.match('##MAPINFO') !== null) {
+      // context.dispatch('directMessage', {
+      //   type: 'human',
+      //   text: 'hi',
+      //   // });
+      const tmp = response.message.slice(10).split('##');
+      const mealJson = JSON.parse(tmp[0]);
+      context.commit('setMealJson', mealJson);
+      console.log(mealJson); // eslint-disable-line
+      response.message = tmp.slice(1).join('##'); // eslint-disable-line
+      //   return;
+    }
     if (response.message.match('##restart') !== null) {
       context.dispatch('directMessage', {
         type: 'human',

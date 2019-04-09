@@ -334,5 +334,10 @@ export default {
   setLastUserInput(state, log) {
     state.lastUserInput = log;
   },
-
+  /*
+  * Save meal json from lex
+  */
+  setMealJson(state, json) {
+    state.currMealJson = json;
+  },
 };

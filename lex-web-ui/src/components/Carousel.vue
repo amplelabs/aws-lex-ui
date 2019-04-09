@@ -54,7 +54,8 @@ export default {
   },
   beforeMount() {
     this.lex = Object.assign({}, this.$store.state.lex);
-    console.log('before mounte ...'); // eslint-disable-line
+    this.meal = Object.assign({}, this.$store.state.currMealJson);
+    console.log(this.meal) // eslint-disable-line
   },
   computed: {
     // freeMeal() {
@@ -71,8 +72,8 @@ export default {
       const regex2 = /\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})/gim;
       // eslint-disable-next-line
       const regex3 = /## this agency serves (.*?). Please/gim;
-      const result = regex.exec(this.lex.message);
-      if (result === null) {
+      // const result = regex.exec(this.lex.message);
+      if (this.meal === null) {
         return [{
           name: null,
           location: null,
@@ -83,10 +84,10 @@ export default {
         }];
       }
       return [{
-        name: result[1] || null,
-        location: result[2] || null,
-        href: regex2.exec(this.lex.message)[0],
-        time: result[3] || null,
+        name: this.meal.organizationName, // result[1] || null,
+        location: this.meal.address, // result[2] || null,
+        href: this.meal.phone_number, // regex2.exec(this.lex.message)[0],
+        time: this.meal.meals[0].startTime, // result[3] || null,
         serves: regex3.exec(this.lex.message)[1],
         image: '',
       }];

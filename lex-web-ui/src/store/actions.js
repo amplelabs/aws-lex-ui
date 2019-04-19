@@ -709,41 +709,10 @@ export default {
         platformJson: {
           tbd: 'n/a',
         },
+        intent: {
+          name: this.state.lex.intentName,
+        },
       };
-      switch (text.toLowerCase()) {
-        case 'free meal':
-          log.intent = {
-            name: 'free meal',
-          };
-          break;
-        case 'drop-in':
-          log.intent = {
-            name: 'drop-in',
-          };
-          break;
-        case 'clothing':
-          log.intent = {
-            name: 'clothing',
-          };
-          break;
-        case 'shelter':
-          log.intent = {
-            name: 'shelter',
-          };
-          break;
-        case 'emergency':
-          log.intent = {
-            name: 'emergency',
-          };
-          break;
-        case 'not listed':
-          log.intent = {
-            name: 'not listed',
-          };
-          break;
-        default:
-          break;
-      }
       // just save the user input for now
       context.commit('setLastUserInput', log);
     }
@@ -779,13 +748,6 @@ export default {
         }
         context.commit('setLastUserInput', null);
       }
-      // dashbot.logOutgoing({
-      //   text,
-      //   userId: context.state.config.lex.sessionAttributes.uuid,
-      //   platformJson: {
-      //     tbd: 'n/a',
-      //   },
-      // });
       axios.post(dashBotOutcomingURL, {
         text,
         userId: context.state.config.lex.sessionAttributes.uuid,

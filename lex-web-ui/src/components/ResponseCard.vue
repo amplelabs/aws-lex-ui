@@ -1,9 +1,26 @@
 <template>
   <v-container class="cgbuttonrow" grid-list-md >
-    <Carousel
-      v-bind:responseCard="responseCard"
-    ></Carousel>
+    <v-img
+      v-if="responseCard.imageUrl !== null"
+      :src="imageUrl"
+      :height="mapHeight"
+      width="80wh"
+      :style="mapOffset"
+    ></v-img>
     <v-layout row wrap>
+      <v-card-actions
+        v-if="responseCard.attachmentLinkUrl && displayLinkCaption()">
+        <v-btn
+          class="cgred"
+          :style="styleAdj"
+          round outline small
+          tag="a"
+          v-bind:href="responseCard.attachmentLinkUrl"
+          target="_blank"
+        >
+          {{ responseCard.subTitle }}
+        </v-btn>
+      </v-card-actions>
       <v-card-actions
         v-for="(button, index) in responseCard.buttons"
         v-bind:key="index"
@@ -38,15 +55,9 @@ or in the "license" file accompanying this file. This file is distributed on an 
 BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the
 License for the specific language governing permissions and limitations under the License.
 */
-
-import Carousel from '@/components/Carousel';
-
 export default {
   name: 'response-card',
   props: ['response-card'],
-  components: {
-    Carousel,
-  },
   data() {
     return {
       subTitle: null,

@@ -27,16 +27,8 @@ import silentMp3 from '@/assets/silent.mp3';
 
 import LexClient from '@/lib/lex/client';
 
-// TODO: Replace the key with env var
-// e.g. process.env.DASHBOT_API_KEY_GENERIC
-// TODO: add session ID:
-// e.g. sessionAttribute.uuid
-// TODO: log error handler
-// const dashbot = require('dashbot')('x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A').universal;
-// const dashbot = require('dashbot')(process.env.DASHBOT_KEY || '1234abcd').universal;
-
 const dashBotURL = 'https://tracker.dashbot.io/track?platform=universal&v=10.1.1-rest';
-const dashBotAPI = process.env.DASHBOT_KEY || 'x5NdMLh3FK37XE1mrmjfw0HIrF25scoqs8Y1Ol5A';
+const dashBotAPI = process.env.DASHBOT_KEY || '';
 const dashBotIncomingURL = `${dashBotURL}&type=incoming&apiKey=${dashBotAPI}`;
 const dashBotOutcomingURL = `${dashBotURL}&type=outgoing&apiKey=${dashBotAPI}`;
 

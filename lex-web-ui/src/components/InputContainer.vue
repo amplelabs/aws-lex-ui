@@ -92,8 +92,11 @@ export default {
   },
   computed: {
     readyForInput() {
+<<<<<<< HEAD
       // eslint-disable-next-line no-console
       // console.log(!this.$store.state.botIsTexting);
+=======
+>>>>>>> f659374d63408ec58424c5491870e0cf30677c31
       return !this.$store.state.botIsTexting;
     },
     isBotSpeaking() {
